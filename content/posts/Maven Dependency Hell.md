@@ -1,6 +1,6 @@
 ---
 title: "Maven Dependency Hell: Wat is het en hoe voorkom je het?"
-date: 2025-01-22 16:46
+date: 2025-01-22
 draft: "false"
 tags:
   - java
