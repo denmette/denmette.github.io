@@ -1,14 +1,17 @@
 baseurl = "/"
-languageCode = "en-us"
+languageCode = "nl-be"
+defaultContentLanguage = "nl"
 # Add it only if you keep the theme in the `themes` directory.
 # Remove it if you use the theme as a remote Hugo Module.
 theme = "PaperMod"
-paginate = 5
+
+[pagination]
+pagerSize = 5
 
 [params]
 # dir name of your main content (default is `content/posts`).
 # the list of set content will show up on your index page (baseurl).
-contentTypeName = "posts"
+contentTypeName = "content/posts"
 
 # if you set this to 0, only submenu trigger will be visible
 showMenuItems = 2
@@ -45,36 +48,37 @@ showLastUpdated = false
 # can be overridden in a page's front-matter
 # TocTitle = "Table of Contents" # default
 
+DateFormat = "2 January 2006"
 
 [params.twitter]
 # set Twitter handles for Twitter cards
 # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
 # do not include @
-creator = ""
+creator = "denmette"
 site = ""
 
 [languages]
-[languages.en]
-languageName = "English"
+[languages.nl]
+languageName = "Nederlands"
 title = "Maarten's Blog"
 
-[languages.en.params]
-subtitle = "A simple, retro theme for Hugo"
-owner = ""
-keywords = ""
+[languages.nl.params]
+subtitle = "Gewoon mijn inzichten"
+owner = "Maarten Casteels"
+keywords = ["persoonlijke blog", "home-assistant", "java"]
 copyright = ""
-menuMore = "Show more"
-readMore = "Read more"
-readOtherPosts = "Read other posts"
-newerPosts = "Newer posts"
-olderPosts = "Older posts"
-missingContentMessage = "Page not found..."
-missingBackButtonLabel = "Back to home page"
-minuteReadingTime = "min read"
-words = "words"
+menuMore = "Toon meer"
+readMore = "Lees meer"
+readOtherPosts = "Lees andere berichten"
+newerPosts = "Nieuwe berichten"
+olderPosts = "Oudere berichten"
+missingContentMessage = "Pagina niet gevonden..."
+missingBackButtonLabel = "Terug naar het begin"
+minuteReadingTime = "min leestijd"
+words = "woorden"
 
-[languages.en.params.logo]
-logoText = "Terminal"
+[languages.nl.params.logo]
+logoText = "Papermod"
 logoHomeLink = "/"
 
 #[languages.en.menu]

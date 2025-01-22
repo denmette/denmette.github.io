@@ -5,6 +5,10 @@ draft: "false"
 tags:
   - java
   - maven
+cover:
+  image: "/images/banners/maven-dependencies.png"
+  alt: "Maven Dependency Hell: Wat is het en hoe voorkom je het?"
+  caption: "Illustratie over dependencies met een zwartgat"
 ---
 Maven, de bekende build tool binnen het Java-ecosysteem, wordt nog steeds breed ingezet. Het is een krachtig hulpmiddel dat door de jaren heen veel uitdagingen heeft overwonnen. Voor mijn gevoel blijft Maven de eerste keuze voor de meeste Java-projecten. Toch brengt het gebruik ervan soms ook problemen met zich mee, zoals het fenomeen _Dependency Hell_. Maar wat betekent dat precies, en hoe kun je het voorkomen met Maven zelf?
 

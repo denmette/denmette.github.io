@@ -4,6 +4,10 @@ date: 2025-01-21
 draft: "false"
 tags:
   - home-assistant
+cover:
+  image: "/images/banners/philips-to-zigbee.png"
+  alt: "Van Philips Hue naar Zigbee2MQTT"
+  caption: "Illustratie over automatisatie van je huis"
 ---
 **Start van ons slimme huis**  
 Ongeveer vijf jaar geleden begon ik mijn avontuur in huisautomatisering met het installeren van slimme lampen, aangestuurd via een **Philips Hue Bridge**. Al snel kwamen er ook slimme stekkers bij om het gebruiksgemak te vergroten. 
