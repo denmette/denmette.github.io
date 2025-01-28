@@ -61,6 +61,40 @@ Voor de entiteit die de resterende boost-tijd toont, pas je dezelfde logica toe,
 
 ![Aanpassingsscherm van de entiteit resterende boost tijd](/images/posts/section-headers/popup-heading-card-visibility-remaining.png)
 
+## 5. De configuratie in code
+
+```yaml
+type: heading
+heading: Keuken
+heading_style: title
+icon: mdi:countertop
+badges:
+  - type: entity
+    entity: sensor.keuken_eetplaats_living_temperature
+  - type: entity
+    entity: sensor.keuken_eetplaats_living_humidity
+  - type: entity
+    show_state: true
+    show_icon: true
+    entity: script.keuken_boost
+    name: Boost
+    state_content: name
+    tap_action:
+      action: toggle
+    visibility:
+      - condition: state
+        entity: binary_sensor.keuken_eetplaats_living_boost_status
+        state_not: "on"
+  - type: entity
+    show_state: true
+    show_icon: true
+    entity: sensor.keuken_eetplaats_living_boost_remaining
+    visibility:
+      - condition: state
+        entity: binary_sensor.keuken_eetplaats_living_boost_status
+        state: "on"
+```
+
 Met deze stappen kun je een functionele en visueel aantrekkelijke sectie header maken die slim inspeelt op de status van je entiteiten. Dit biedt niet alleen meer gebruiksgemak, maar zorgt er ook voor dat je dashboard overzichtelijk blijft.
 
 Veel succes met je project in Home Assistant!
