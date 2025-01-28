@@ -5,6 +5,10 @@ draft: "false"
 tags:
   - home-assistant
   - tutorial
+cover:
+  image: "/images/banners/section-header-ha.png"
+  alt: "Maak een Sectie Header met Veranderbare Entiteiten in Home Assistant."
+  caption: "Een gegenereerde afbeelding over de keuken."
 ---
 
 Home Assistant biedt uitgebreide mogelijkheden om je dashboards te personaliseren, met behulp van **views** en **layouts**. In deze blogpost laat ik je zien hoe je een **sectie header** kunt maken met een veranderbare entiteit en hoe je met zichtbaarheid (visibility) extra functionaliteiten kunt toevoegen. 
