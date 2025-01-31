@@ -1,92 +1,145 @@
-baseurl = "/"
+baseURL = "https://casteels.dev"
+title = "Maarten's Blog"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
 languageCode = "nl-be"
 defaultContentLanguage = "nl"
-# Add it only if you keep the theme in the `themes` directory.
-# Remove it if you use the theme as a remote Hugo Module.
-theme = "PaperMod"
 
 [pagination]
 pagerSize = 5
 
+[minify]
+disableXML = true
+minifyOutput = true
+
 [params]
-# dir name of your main content (default is `content/posts`).
-# the list of set content will show up on your index page (baseurl).
-contentTypeName = "content/posts"
-
-# if you set this to 0, only submenu trigger will be visible
-showMenuItems = 2
-
-# show selector to switch language
-showLanguageSelector = false
-
-# set theme to full screen width
-fullWidthTheme = false
-
-# center theme with default width
-centerTheme = false
-
-# if your resource directory contains an image called `cover.(jpg|png|webp)`,
-# then the file will be used as a cover automatically.
-# With this option you don't have to put the `cover` param in a front-matter.
-autoCover = true
-
-# set post to show the last updated
-# If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-showLastUpdated = false
-
-# Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-# updatedDatePrefix = "Updated"
-
-# whether to show a page's estimated reading time
-# readingTime = false # default
-
-# whether to show a table of contents
-# can be overridden in a page's front-matter
-# Toc = false # default
-
-# set title for the table of contents
-# can be overridden in a page's front-matter
-# TocTitle = "Table of Contents" # default
-
-DateFormat = "2 January 2006"
-
-[params.twitter]
-# set Twitter handles for Twitter cards
-# see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
-# do not include @
-creator = "denmette"
-site = ""
-
-[languages]
-[languages.nl]
-languageName = "Nederlands"
+env = "production"
 title = "Maarten's Blog"
+description = "Alles over Home Automation, Java, Python en Agile. Tutorials, opinies en praktijkervaringen in het Nederlands."
+keywords = ["Home Automation", "Home Assistant", "Smart Home", "Domotica", "IoT", "HACS", "Zigbee", "Z-Wave", "MQTT", "Java", "Python", "Spring Framework", "TDD", "Testcontainers", "Clean Code", "Softwareontwikkeling", "Agile", "Scrum", "Kanban", "DevOps", "CI/CD", "Software Design Patterns", "Tutorials", "Opinies", "Tech Blog", "Nederlandstalig"]
+author = "Maarten Casteels"
+images = ["<link or path of image for opengraph, twitter-cards>"]
+DateFormat = "2 January 2006"
+defaultTheme = "auto"
+disableThemeToggle = true
 
-[languages.nl.params]
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = false
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+showtoc = false
+tocopen = false
+
+[params.assets]
+favicon = "/assets/favicon.ico"
+favicon16x16 = "/assets/favicon-16x16.png"
+favicon32x32 = "/assets/favicon-32x32.png"
+apple_touch_icon = "/assets/apple-touch-icon.png"
+
+[params.label]
+text = "Maarten's Blog"
+icon = "/apple-touch-icon.png"
+iconHeight = 35
+
+[params.profileMode]
+enabled = false
+title = "Maarten's Blog"
 subtitle = "Gewoon mijn inzichten"
-owner = "Maarten Casteels"
-keywords = ["persoonlijke blog", "home-assistant", "java"]
-copyright = ""
-menuMore = "Toon meer"
-readMore = "Lees meer"
-readOtherPosts = "Lees andere berichten"
-newerPosts = "Nieuwe berichten"
-olderPosts = "Oudere berichten"
-missingContentMessage = "Pagina niet gevonden..."
-missingBackButtonLabel = "Terug naar het begin"
-minuteReadingTime = "min leestijd"
-words = "woorden"
+imageUrl = "/assets/maarten.jpg"
+imageWidth = 120
+imageHeight = 120
+imageTitle = "Maarten Casteels"
 
-[languages.nl.params.logo]
-logoText = "Papermod"
-logoHomeLink = "/"
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "posts"
 
-#[languages.en.menu]
-#[[languages.en.menu.main]]
-#identifier = "about"
-#name = "About"
-#url = "/about"
-#[[languages.en.menu.main]]
-#identifier = "showcase"
-#name = "Showcase"
-#url = "/showcase"
+[[params.profileMode.buttons]]
+name = "Tags"
+url = "tags"
+
+[params.homeInfoParams]
+Title = "Welkom 👋"
+Content = "Een Nederlandstalige blog over Home Automation met Home Assistant, programmeertalen zoals Java en Python, en Agile-ontwikkeling. Tutorials, opinies en inzichten uit de praktijk."
+
+[[params.socialIcons]]
+name = "x"
+url = "https://x.com/denmette"
+
+[[params.socialIcons]]
+name = "stackoverflow"
+url = "https://stackoverflow.com/users/616215/denmette"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/denmette"
+
+[[params.socialIcons]]
+name = "bluesky"
+url = "https://bsky.app/profile/denmette.be"
+
+#[params.analytics.google]
+#SiteVerificationTag = "XYZabc"
+
+#[params.analytics.bing]
+#SiteVerificationTag = "XYZabc"
+
+#[params.analytics.yandex]
+#SiteVerificationTag = "XYZabc"
+
+[params.cover]
+hidden = false
+hiddenInList = false
+hiddenInSingle = false
+
+[params.editPost]
+URL = "https://github.com/denmette/denmette.github.io/blob/main/content"
+Text = "Wijziging voorstellen"
+appendFilePath = true
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+distance = 1000
+threshold = 0.4
+minMatchCharLength = 0
+limit = 10
+keys = ["title", "permalink", "summary", "content"]
+
+#[[menu.main]]
+#identifier = "categories"
+#name = "categories"
+#url = "/categories/"
+#weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "tags"
+url = "/tags/"
+weight = 20
+
+#[[menu.main]]
+#identifier = "example"
+#name = "example.org"
+#url = "https://example.org"
+#weight = 30
+
+pygmentsUseClasses = true
+
+[markup.highlight]
+noClasses = false
