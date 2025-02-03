@@ -10,9 +10,9 @@ resource "aws_s3_bucket" "blog" {
 
 resource "aws_s3_bucket_public_access_block" "blog" {
   bucket                  = aws_s3_bucket.blog.id
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
+  block_public_acls       = true  # Keep blocking ACLs
+  block_public_policy     = false # Allow bucket policy to control access
+  ignore_public_acls      = true
   restrict_public_buckets = false
 }
 
@@ -61,16 +61,29 @@ resource "aws_acm_certificate_validation" "blog_cert" {
   validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }
 
+resource "aws_cloudfront_function" "rewrite_function" {
+  name    = "blog-rewrite-url"
+  runtime = "cloudfront-js-2.0"
+  publish = true
+  code    = file("${path.module}/function.js")
+}
+
+resource "aws_cloudfront_origin_access_control" "oac" {
+  name                              = "casteels.dev OAC"
+  description                       = "Origin Access Control for S3 bucket"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
 # CloudFront Distribution
 resource "aws_cloudfront_distribution" "blog" {
   aliases = ["casteels.dev"]
-  origin {
-    domain_name = aws_s3_bucket.blog.bucket_regional_domain_name
-    origin_id   = "S3-${aws_s3_bucket.blog.id}"
 
-    s3_origin_config {
-      origin_access_identity = ""
-    }
+  origin {
+    domain_name              = aws_s3_bucket.blog.bucket_regional_domain_name
+    origin_id                = "S3-${aws_s3_bucket.blog.id}"
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
 
   enabled             = true
@@ -93,7 +106,13 @@ resource "aws_cloudfront_distribution" "blog" {
       }
     }
 
+
     response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers_policy.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite_function.arn
+    }
   }
 
   restrictions {

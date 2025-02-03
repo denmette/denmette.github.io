@@ -121,6 +121,9 @@ minMatchCharLength = 0
 limit = 10
 keys = ["title", "permalink", "summary", "content"]
 
+[permalinks]
+posts = "/posts/:filename"
+
 #[[menu.main]]
 #identifier = "categories"
 #name = "categories"
@@ -143,3 +146,13 @@ pygmentsUseClasses = true
 
 [markup.highlight]
 noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputs]
+home = ["HTML"]
+section = ["HTML"]
+taxonomy = ["HTML"]
+term = ["HTML"]
+page = ["HTML"]
