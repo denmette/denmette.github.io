@@ -17,7 +17,6 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
-  # response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers_policy.id
 
   origin {
     domain_name              = aws_s3_bucket.blog.bucket_regional_domain_name
@@ -26,20 +25,17 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   default_cache_behavior {
-    allowed_methods        = ["GET", "HEAD", "OPTIONS"]
-    cached_methods         = ["GET", "HEAD"]
-    target_origin_id       = "S3-${aws_s3_bucket.blog.id}"
-    viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
+    allowed_methods            = ["GET", "HEAD", "OPTIONS"]
+    cached_methods             = ["GET", "HEAD"]
+    target_origin_id           = "S3-${aws_s3_bucket.blog.id}"
+    viewer_protocol_policy     = "redirect-to-https"
+    origin_request_policy_id   = aws_cloudfront_origin_request_policy.website_origin_request_policy.id
+    cache_policy_id            = aws_cloudfront_cache_policy.website_cache_policy.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
+    min_ttl                    = 0
+    default_ttl                = 3600
+    max_ttl                    = 86400
+    compress                   = true
 
     function_association {
       event_type   = "viewer-request"
@@ -60,8 +56,41 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 }
 
-## aws_cloudfront_cache_policy should we forsee this?
-## aws_cloudfront_origin_request_policy should we forsee this?
+resource "aws_cloudfront_cache_policy" "website_cache_policy" {
+  name        = "website-cache-policy"
+  default_ttl = 50
+  min_ttl     = 1
+  max_ttl     = 100
+  parameters_in_cache_key_and_forwarded_to_origin {
+    enable_accept_encoding_brotli = true
+    enable_accept_encoding_gzip   = true
+    cookies_config {
+      cookie_behavior = "none"
+    }
+    headers_config {
+      header_behavior = "whitelist"
+      headers {
+        items = ["authorization"]
+      }
+    }
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+  }
+}
+
+resource "aws_cloudfront_origin_request_policy" "website_origin_request_policy" {
+  name = "website-origin-request-policy"
+  cookies_config {
+    cookie_behavior = "none"
+  }
+  headers_config {
+    header_behavior = "none"
+  }
+  query_strings_config {
+    query_string_behavior = "none"
+  }
+}
 
 resource "aws_cloudfront_response_headers_policy" "response_headers_policy" {
   name = "casteels-dev-response-headers-policy"
