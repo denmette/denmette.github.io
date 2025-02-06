@@ -112,8 +112,9 @@ resource "aws_cloudfront_response_headers_policy" "response_headers_policy" {
     }
 
     content_security_policy {
-      override                = true
-      content_security_policy = "default-src 'self';"
+      override = true
+      # content_security_policy = "default-src 'self';"
+      content_security_policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://casteels.dev; style-src 'self' 'unsafe-inline' https://casteels.dev; img-src 'self' https://casteels.dev data:;"
     }
 
     content_type_options {
