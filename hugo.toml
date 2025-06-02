@@ -1,6 +1,5 @@
 baseURL = "https://casteels.dev"
 title = "Maarten's Blog"
-theme = "PaperMod"
 
 enableRobotsTXT = true
 buildDrafts = false
@@ -16,6 +15,10 @@ pagerSize = 5
 [minify]
 disableXML = true
 minifyOutput = true
+
+[module]
+[[module.imports]]
+path = "github.com/adityatelange/hugo-PaperMod"
 
 [params]
 env = "production"
