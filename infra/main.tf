@@ -1,6 +1,29 @@
+terraform {
+  required_version = ">= 1.3.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 5.0"
+    }
+  }
+
+  backend "s3" {
+    bucket  = "casteels-dev-terraform-state-bucket"
+    key     = "hugo-site/terraform.tfstate"
+    region  = "eu-west-1"
+    encrypt = true
+  }
+}
+
 provider "aws" {
   alias  = "us-east-1"
   region = "us-east-1" # ACM certificates for CloudFront must be in us-east-1
+}
+
+provider "aws" {
+  alias  = "eu-west-1"
+  region = "eu-west-1"
 }
 
 # ACM Certificate in us-east-1

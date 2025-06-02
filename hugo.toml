@@ -122,13 +122,13 @@ limit = 10
 keys = ["title", "permalink", "summary", "content"]
 
 [permalinks]
-posts = "/posts/:filename"
+posts = "/posts/:contentbasename"
 
-#[[menu.main]]
-#identifier = "categories"
-#name = "categories"
-#url = "/categories/"
-#weight = 10
+[[menu.main]]
+identifier = "jcast"
+name = "JCast"
+url = "https://jcast.dev"
+weight = 10
 
 [[menu.main]]
 identifier = "tags"
