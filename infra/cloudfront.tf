@@ -58,8 +58,10 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
 
 resource "aws_cloudfront_distribution" "redirect_www" {
   origin {
-    domain_name = aws_s3_bucket.redirect_www.website_endpoint
-    origin_id   = "redirect-origin"
+    domain_name              = "${aws_s3_bucket.redirect_www.bucket}.s3-website.eu-west-1.amazonaws.com"
+    origin_id                = "redirect-origin"
+    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -105,10 +107,6 @@ resource "aws_cloudfront_distribution" "redirect_www" {
     geo_restriction {
       restriction_type = "none"
     }
-  }
-
-  tags = {
-    Environment = "production"
   }
 }
 
