@@ -28,10 +28,10 @@ provider "aws" {
 
 # ACM Certificate in us-east-1
 resource "aws_acm_certificate" "blog_cert" {
-  provider          = aws.us-east-1
-  domain_name       = "casteels.dev"
+  provider                  = aws.us-east-1
+  domain_name               = "casteels.dev"
   subject_alternative_names = ["www.casteels.dev"]
-  validation_method = "DNS"
+  validation_method         = "DNS"
   lifecycle {
     create_before_destroy = true
   }
