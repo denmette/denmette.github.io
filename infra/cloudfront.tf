@@ -58,9 +58,8 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
 
 resource "aws_cloudfront_distribution" "redirect_www" {
   origin {
-    domain_name              = "${aws_s3_bucket.redirect_www.bucket}.s3-website.eu-west-1.amazonaws.com"
-    origin_id                = "redirect-origin"
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    domain_name = "www.casteels.dev.s3-website.eu-west-1.amazonaws.com"
+    origin_id   = "redirect-origin"
 
     custom_origin_config {
       http_port              = 80
@@ -98,7 +97,7 @@ resource "aws_cloudfront_distribution" "redirect_www" {
   price_class = "PriceClass_100"
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.blog_cert.certificate_arn
+    acm_certificate_arn      = aws_acm_certificate.blog_cert.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
