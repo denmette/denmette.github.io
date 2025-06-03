@@ -56,6 +56,62 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 }
 
+resource "aws_cloudfront_distribution" "redirect_www" {
+  origin {
+    domain_name = aws_s3_bucket.redirect_www.website_endpoint
+    origin_id   = "redirect-origin"
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
+  }
+
+  enabled             = true
+  is_ipv6_enabled     = true
+  comment             = "Redirect www.casteels.dev to casteels.dev"
+  default_root_object = "index.html"
+
+  aliases = [
+    "www.casteels.dev"
+  ]
+
+  default_cache_behavior {
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "redirect-origin"
+
+    forwarded_values {
+      query_string = false
+
+      cookies {
+        forward = "none"
+      }
+    }
+
+    viewer_protocol_policy = "redirect-to-https"
+  }
+
+  price_class = "PriceClass_100"
+
+  viewer_certificate {
+    acm_certificate_arn      = aws_acm_certificate_validation.blog_cert.certificate_arn
+    ssl_support_method  = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
+  }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  tags = {
+    Environment = "production"
+  }
+}
+
 resource "aws_cloudfront_cache_policy" "website_cache_policy" {
   name        = "website-cache-policy"
   default_ttl = 50

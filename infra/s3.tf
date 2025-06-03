@@ -26,3 +26,16 @@ resource "aws_s3_bucket_policy" "blog" {
     }]
   })
 }
+
+resource "aws_s3_bucket" "redirect_www" {
+  bucket = "www.casteels.dev"
+}
+
+resource "aws_s3_bucket_website_configuration" "redirect_www" {
+  bucket = aws_s3_bucket.redirect_www.id
+
+  redirect_all_requests_to {
+    host_name = "casteels.dev"
+    protocol  = "https"
+  }
+}

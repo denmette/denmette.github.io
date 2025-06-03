@@ -30,6 +30,7 @@ provider "aws" {
 resource "aws_acm_certificate" "blog_cert" {
   provider          = aws.us-east-1
   domain_name       = "casteels.dev"
+  subject_alternative_names = ["www.casteels.dev"]
   validation_method = "DNS"
   lifecycle {
     create_before_destroy = true
@@ -62,6 +63,19 @@ resource "aws_acm_certificate_validation" "blog_cert" {
 resource "aws_route53_record" "blog" {
   zone_id = "Z003579951UE5LAOF83P"
   name    = "casteels.dev"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.cf_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.cf_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+# Route 53 DNS Record
+resource "aws_route53_record" "www" {
+  zone_id = "Z003579951UE5LAOF83P"
+  name    = "www.casteels.dev"
   type    = "A"
 
   alias {
