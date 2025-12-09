@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl-be">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{#if page}{page.title} - {/if}{site.title}</title>
+    <meta name="description" content="{site.description}">
+    <meta name="author" content="Maarten Casteels">
+    <meta name="keywords" content="Home Automation, Java, Python, Agile, Blog">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{site.url}{page.url ?: '/'}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="{page.title ?: site.title}">
+    <meta property="og:description" content="{site.description}">
+    <meta property="og:type" content="{page ? 'article' : 'website'}">
+    <meta property="og:url" content="{site.url}{page.url ?: '/'}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{page.title ?: site.title}">
+    <meta name="twitter:description" content="{site.description}">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="{site.title}" href="/feed.xml">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/papermod.css">
+
+    {#insert styles /}
+</head>
+<body class="theme-auto">
+    {#include partials/header.html /}
+
+    <main class="main">
+        {#insert content /}
+    </main>
+
+    {#include partials/footer.html /}
+
+    {#insert scripts /}
+</body>
+</html>
+

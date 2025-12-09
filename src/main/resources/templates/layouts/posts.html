@@ -1,0 +1,46 @@
+{#include main.html}
+    {#content}
+    <div class="page-content">
+        <header class="page-header">
+            <h1>Posts</h1>
+            <p class="page-description">Alle blogposts</p>
+        </header>
+
+        <section class="posts-list">
+            {#if posts}
+            <div class="post-entries">
+                {#for post in posts}
+                <article class="post-entry">
+                    <header class="post-entry-header">
+                        <h2 class="post-entry-title">
+                            <a href="{post.url}">{post.title}</a>
+                        </h2>
+                    </header>
+
+                    <footer class="post-entry-footer">
+                        {#if post.date}
+                        <time datetime="{post.date}">{post.date.format('d MMMM yyyy')}</time>
+                        {/if}
+
+                        <a href="{post.url}" class="read-more">Lees verder →</a>
+                    </footer>
+                </article>
+                {/for}
+            </div>
+            {/if}
+
+            {#if pagination}
+            <nav class="pagination">
+                {#if pagination.hasPrevious}
+                <a href="{pagination.previousUrl}" class="pagination-link pagination-prev">← Nieuwer</a>
+                {/if}
+                {#if pagination.hasNext}
+                <a href="{pagination.nextUrl}" class="pagination-link pagination-next">Ouder →</a>
+                {/if}
+            </nav>
+            {/if}
+        </section>
+    </div>
+    {/content}
+{/include}
+

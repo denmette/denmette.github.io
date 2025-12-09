@@ -1,0 +1,48 @@
+---
+title: Maarten's Blog
+description: Alles over Home Automation, Java, Python en Agile. Tutorials, opinies en praktijkervaringen in het Nederlands.
+layout: main
+---
+
+<div class="home-info-container">
+    <h1>Welkom 👋</h1>
+    <p>Een Nederlandstalige blog over Home Automation met Home Assistant, programmeertalen zoals Java en Python, en Agile-ontwikkeling. Tutorials, opinies en inzichten uit de praktijk.</p>
+    <div class="social-icons">
+        <a href="https://x.com/denmette" target="_blank" rel="noopener noreferrer me" title="X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+        </a>
+        <a href="https://stackoverflow.com/users/616215/denmette" target="_blank" rel="noopener noreferrer me" title="StackOverflow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path><path d="M8 16h8"></path><path d="M8.322 12.582l7.956.836"></path><path d="M8.787 9.168l7.826 1.664"></path><path d="M10.096 5.764l7.608 2.472"></path></svg>
+        </a>
+        <a href="https://github.com/denmette" target="_blank" rel="noopener noreferrer me" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+        <a href="https://bsky.app/profile/denmette.be" target="_blank" rel="noopener noreferrer me" title="Bluesky">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.335 5.144C4.681 6.38 3 8.533 3 12c0 3.065 2.14 4.024 3.978 4.174.247.02.496-.013.739-.065C5.975 17.186 4.2 18.882 4.2 21h15.6c0-2.118-1.775-3.814-3.517-4.89.243.051.492.085.739.064C18.86 16.024 21 15.065 21 12c0-3.467-1.68-5.62-3.335-6.856C15.944 3.87 14.062 3 12 3s-3.944.87-5.665 2.144z"></path></svg>
+        </a>
+    </div>
+</div>
+
+{#for post in site.collections.posts}
+<article class="post-entry">
+    {#if post.data.cover}
+    <figure class="entry-cover">
+        <img loading="lazy" src="{post.data.cover.image}" alt="{post.data.cover.alt ?: post.title}">
+    </figure>
+    {/if}
+    <header class="entry-header">
+        <h2><a href="{post.url}">{post.title}</a></h2>
+    </header>
+    <div class="entry-content">
+        <p>{post.contentAbstract}</p>
+    </div>
+    <footer class="entry-footer">
+        <span>{post.date.format('MMMM d, yyyy')}</span>
+        <span>· {post.readTime} min</span>
+        <span>· {post.content.stripHtml.numberOfWords} woorden</span>
+        <span>· Maarten Casteels</span>
+    </footer>
+    <a class="entry-link" aria-label="post link to {post.title}" href="{post.url}"></a>
+</article>
+{/for}
+
