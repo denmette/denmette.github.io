@@ -40,20 +40,59 @@
 
 <script>
   (function () {
-    try {
-      var stored = localStorage.getItem("theme");
-      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      var useDark = stored ? stored === "dark" : prefersDark;
-      if (useDark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
+    function resolveInitialTheme() {
+      try {
+        var stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") {
+          return stored;
+        }
+      } catch (e) {
+        // Ignore storage failures and fall back to media query.
       }
-    } catch (e) {
-      // If localStorage is blocked, fall back to prefers-color-scheme.
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark");
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    function applyTheme(next) {
+      var isDark = next === "dark";
+      var label = isDark ? "Wissel naar lichte modus" : "Wissel naar donkere modus";
+      document.documentElement.classList.toggle("dark", isDark);
+      return label;
+    }
+
+    var initial = resolveInitialTheme();
+    var initialLabel = applyTheme(initial);
+
+    function initToggle() {
+      var button = document.querySelector("[data-theme-toggle]");
+      var labelEl = document.querySelector("[data-theme-label]");
+      if (!button) {
+        return;
       }
+      button.setAttribute("aria-pressed", initial === "dark" ? "true" : "false");
+      button.setAttribute("aria-label", initialLabel);
+      if (labelEl) {
+        labelEl.textContent = initialLabel;
+      }
+      button.addEventListener("click", function () {
+        var next = document.documentElement.classList.contains("dark") ? "light" : "dark";
+        var nextLabel = applyTheme(next);
+        button.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
+        button.setAttribute("aria-label", nextLabel);
+        if (labelEl) {
+          labelEl.textContent = nextLabel;
+        }
+        try {
+          localStorage.setItem("theme", next);
+        } catch (e) {
+          // Ignore storage failures.
+        }
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initToggle);
+    } else {
+      initToggle();
     }
   })();
 </script>
