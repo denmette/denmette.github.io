@@ -6,7 +6,7 @@ date: 2025-12-30
 lastmod: 2025-12-30
 slug: "202512-eigen-hugo-theme-na-papermod"
 draft: false
-tags: [hugo, refelctie]
+tags: [hugo, reflectie]
 cover:
   image: "cover.webp"
   alt: "Minimalistische werkplek met een laptop waarop een zelfgebouwd blog en Hugo templates zichtbaar zijn, als symbool voor controle, rust en bewust bouwen"
