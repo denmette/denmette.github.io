@@ -1,3 +1,11 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ .Site.Title | jsonify }},
+  "url": {{ .Site.BaseURL | jsonify }}
+}
+</script>
 {{- if eq .Section "posts" -}}
   {{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description | default .Site.Title -}}
   {{- $description := $rawDescription | plainify | htmlUnescape | truncate 160 -}}
@@ -18,14 +26,20 @@
       {{- $authorName = $author -}}
     {{- end -}}
   {{- end -}}
+  {{- $hasModified := and .Lastmod (ne .Lastmod .Date) -}}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": {{ .Title | jsonify }},
     "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    {{- if $hasModified }}
     "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
-    "mainEntityOfPage": {{ .Permalink | jsonify }},
+    {{- end }}
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ .Permalink | jsonify }}
+    },
     "description": {{ $description | jsonify }}{{ if $authorName }},
     "author": {
       "@type": "Person",
@@ -33,6 +47,17 @@
     }{{ end }}{{ if $imageURL }},
     "image": [{{ $imageURL | jsonify }}]
     {{- end }}
+  }
+  </script>
+{{- end -}}
+{{- if and .IsPage (eq .Section "over-mij") -}}
+  {{- $sameAs := .Site.Params.sameAs -}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Maarten"{{ if $sameAs }},
+    "sameAs": {{ $sameAs | jsonify }}{{ end }}
   }
   </script>
 {{- end -}}

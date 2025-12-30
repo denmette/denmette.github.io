@@ -4,13 +4,15 @@
       class="inline-flex min-w-0 items-center gap-3 rounded-full text-slate-900 hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:text-slate-100 dark:hover:text-mustard dark:focus-visible:outline-moss"
       href="{{ .Site.Home.RelPermalink }}"
     >
-      <img
-        src="{{ "/maarten.webp" | relURL }}"
-        alt="Maarten"
-        class="h-9 w-9 shrink-0 rounded-full border border-slate-200 object-cover dark:border-slate-800"
-        loading="lazy"
-        decoding="async"
-      />
+      {{ partial "image.html" (dict
+        "page" .
+        "src" "/maarten.webp"
+        "alt" ""
+        "class" "h-9 w-9 shrink-0 rounded-full border border-slate-200 object-cover dark:border-slate-800"
+        "sizes" "36px"
+        "loading" "lazy"
+        "decoding" "async"
+      ) }}
       <span class="truncate text-base font-semibold sm:text-lg">{{ .Site.Title }}</span>
     </a>
     <div class="ml-auto flex items-center gap-3 md:gap-4">

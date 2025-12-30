@@ -43,6 +43,20 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     }
   }
 
+  custom_error_response {
+    error_code            = 403
+    response_page_path    = "/404.html"
+    response_code         = 404
+    error_caching_min_ttl = 60
+  }
+
+  custom_error_response {
+    error_code            = 404
+    response_page_path    = "/404.html"
+    response_code         = 404
+    error_caching_min_ttl = 60
+  }
+
   restrictions {
     geo_restriction {
       restriction_type = "none"

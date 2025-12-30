@@ -1,20 +1,33 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-{{- $pageTitle := .Title | default .Site.Title -}}
-{{- $fullTitle := cond .IsHome .Site.Title (printf "%s · %s" $pageTitle .Site.Title) -}}
-{{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description -}}
+{{- $siteTitle := .Site.Title | default "Site" -}}
+{{- $pageTitle := .Title | default $siteTitle -}}
+{{- $tagline := .Site.Params.tagline | default $siteTitle -}}
+{{- $fullTitle := "" -}}
+{{- if .IsHome -}}
+  {{- $fullTitle = printf "%s · %s" $siteTitle $tagline -}}
+{{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+  {{- $termTitle := .Title | default $pageTitle -}}
+  {{- if eq .Kind "term" -}}
+    {{- $termTitle = .Data.Term | default $termTitle -}}
+  {{- end -}}
+  {{- $fullTitle = printf "Tag: %s · %s" $termTitle $siteTitle -}}
+{{- else -}}
+  {{- $fullTitle = printf "%s · %s" $pageTitle $siteTitle -}}
+{{- end -}}
+{{- $rawDescription := "" -}}
+{{- if .IsHome -}}
+  {{- $rawDescription = .Site.Params.descriptionLong | default .Site.Params.description -}}
+{{- else -}}
+  {{- $rawDescription = .Params.description | default .Summary | default .Site.Params.description -}}
+{{- end -}}
 {{- $description := "" -}}
 {{- if $rawDescription -}}
-  {{- $description = ($rawDescription | plainify | htmlUnescape | truncate 160) -}}
+  {{- $description = ($rawDescription | plainify | htmlUnescape | truncate 220) -}}
 {{- end -}}
 {{- $keywordsValue := "" -}}
-{{- if .Params.keywords -}}
-  {{- if reflect.IsSlice .Params.keywords -}}
-    {{- $keywordsValue = delimit .Params.keywords ", " -}}
-  {{- else -}}
-    {{- $keywordsValue = .Params.keywords -}}
-  {{- end -}}
-{{- else if .Site.Params.keywords -}}
+{{- $isAboutPage := and .IsPage (eq .Section "over-mij") -}}
+{{- if and (or .IsHome $isAboutPage) .Site.Params.keywords -}}
   {{- if reflect.IsSlice .Site.Params.keywords -}}
     {{- $keywordsValue = delimit .Site.Params.keywords ", " -}}
   {{- else -}}
@@ -31,7 +44,7 @@
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 {{ template "_internal/opengraph.html" . }}
@@ -99,8 +112,7 @@
 
 {{ $css := resources.Get "css/main.css" | css.PostCSS }}
 {{ if hugo.IsProduction }}
-  {{ $css = $css | minify | fingerprint }}
-{{ else }}
-  {{ $css = $css | fingerprint }}
+  {{ $css = $css | minify }}
 {{ end }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous" />
+{{ $css = $css | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }} />
