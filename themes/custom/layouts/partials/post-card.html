@@ -1,0 +1,98 @@
+{{- $page := .page -}}
+{{- $title := $page.Title -}}
+
+{{- $summary := "" -}}
+{{- with $page.Params.summary -}}
+{{- $summary = . -}}
+{{- else -}}
+{{- $summary = $page.Summary -}}
+{{- end -}}
+
+{{- $imageSrc := "" -}}
+{{- with $page.Params.cover.image -}}
+{{- $imageSrc = . -}}
+{{- end -}}
+
+{{- $imageAlt := "" -}}
+{{- with $page.Params.cover.alt -}}
+{{- $imageAlt = . -}}
+{{- end -}}
+{{- if eq $imageAlt "" -}}
+{{- $imageAlt = $title -}}
+{{- end -}}
+
+<article class="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus-within:border-emerald-300 focus-within:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80 dark:focus-within:border-emerald-700 dark:focus-within:bg-slate-900/80">
+  <div class="space-y-4">
+    {{- with $imageSrc -}}
+    <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800">
+      {{- $imageResource := $page.Resources.GetMatch . -}}
+      {{- if $imageResource -}}
+      {{- partial "image.html" (dict
+      "page" $page
+      "src" $imageResource.Name
+      "alt" $imageAlt
+      "class" "h-48 w-full object-cover"
+      "sizes" "(max-width: 768px) 100vw, 560px"
+      ) -}}
+      {{- else -}}
+      <img
+              src="{{ . }}"
+              alt="{{ $imageAlt }}"
+              class="h-48 w-full object-cover"
+              loading="lazy"
+              decoding="async"
+      />
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">
+        <a
+                class="hover:text-emerald-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300"
+                href="{{ $page.RelPermalink }}"
+        >
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          <span class="relative z-10">{{ $title }}</span>
+        </a>
+      </h2>
+
+      {{- with $page.Date -}}
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        {{ partial "date.html" (dict "date" . "format" ":date_long") }}
+      </p>
+      {{- end -}}
+
+      {{- if $summary -}}
+      <p class="text-sm text-slate-600 dark:text-slate-300">{{ $summary }}</p>
+      {{- end -}}
+
+      {{- $terms := $page.GetTerms "tags" -}}
+      {{- if gt (len $terms) 0 -}}
+      <ul class="relative z-20 flex flex-wrap gap-2 pt-2">
+        {{- range $terms -}}
+        <li>
+          <a
+                  class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 hover:border-emerald-200 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300"
+                  href="{{ .RelPermalink }}"
+          >{{ .LinkTitle }}</a>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- else -}}
+      {{- with $page.Params.tags -}}
+      <ul class="flex flex-wrap gap-2 pt-2">
+        {{- range . -}}
+        <li>
+          <a
+                  class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 hover:border-emerald-200 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300"
+                  href="{{ (printf "/tags/%s/" . | urlize) | relURL }}"
+          >{{ . }}</a>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
+      {{- end -}}
+    </div>
+  </div>
+</article>

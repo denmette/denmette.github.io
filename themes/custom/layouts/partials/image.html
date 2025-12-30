@@ -1,0 +1,80 @@
+{{- $page := .page -}}
+{{- $src := .src -}}
+{{- if not (and $page $src) -}}
+  {{- errorf "image.html requires page and src" -}}
+{{- end -}}
+{{- if not (isset . "alt") -}}
+  {{- errorf "image.html requires alt for %q" $src -}}
+{{- end -}}
+{{- $alt := .alt -}}
+{{- if and (ne $alt "") (eq (strings.TrimSpace $alt) "") -}}
+  {{- errorf "image.html requires meaningful alt for %q" $src -}}
+{{- end -}}
+{{- $class := .class | default "" -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $decoding := .decoding | default "async" -}}
+{{- $isDecorative := eq $alt "" -}}
+
+{{- $resource := $page.Resources.GetMatch $src -}}
+{{- if $resource -}}
+  {{- $widths := slice 320 480 768 1024 1280 -}}
+  {{- $srcset := slice -}}
+  {{- range $widths -}}
+    {{- if ge $resource.Width . -}}
+      {{- $resized := $resource.Resize (printf "%dx" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not (in $srcset (printf "%s %dw" $resource.RelPermalink $resource.Width)) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $resource.RelPermalink $resource.Width) -}}
+  {{- end -}}
+  <img
+    src="{{ $resource.RelPermalink }}"
+    srcset="{{ delimit $srcset ", " }}"
+    sizes="{{ $sizes }}"
+    width="{{ $resource.Width }}"
+    height="{{ $resource.Height }}"
+    alt="{{ $alt }}"
+    {{- if $class }} class="{{ $class }}"{{- end }}
+    loading="{{ $loading }}"
+    decoding="{{ $decoding }}"
+    {{- if $isDecorative }} aria-hidden="true"{{- end }}
+  />
+{{- else -}}
+  {{- $fallbackWidth := 0 -}}
+  {{- $fallbackHeight := 0 -}}
+  {{- $staticPath := "" -}}
+  {{- if strings.HasPrefix $src "/" -}}
+    {{- $staticPath = printf "static/%s" (strings.TrimPrefix "/" $src) -}}
+  {{- end -}}
+  {{- if and $staticPath (fileExists $staticPath) -}}
+    {{- $config := imageConfig $staticPath -}}
+    {{- $fallbackWidth = $config.Width -}}
+    {{- $fallbackHeight = $config.Height -}}
+  {{- end -}}
+  {{- if and (eq $fallbackWidth 0) (isset . "width") -}}
+    {{- $fallbackWidth = int .width -}}
+  {{- end -}}
+  {{- if and (eq $fallbackHeight 0) (isset . "height") -}}
+    {{- $fallbackHeight = int .height -}}
+  {{- end -}}
+  {{- if eq $fallbackWidth 0 -}}
+    {{- $fallbackWidth = 1 -}}
+  {{- end -}}
+  {{- if eq $fallbackHeight 0 -}}
+    {{- $fallbackHeight = 1 -}}
+  {{- end -}}
+  <img
+    src="{{ $src }}"
+    srcset="{{ $src }} {{ $fallbackWidth }}w"
+    sizes="{{ $sizes }}"
+    width="{{ $fallbackWidth }}"
+    height="{{ $fallbackHeight }}"
+    alt="{{ $alt }}"
+    {{- if $class }} class="{{ $class }}"{{- end }}
+    loading="{{ $loading }}"
+    decoding="{{ $decoding }}"
+    {{- if $isDecorative }} aria-hidden="true"{{- end }}
+  />
+{{- end -}}

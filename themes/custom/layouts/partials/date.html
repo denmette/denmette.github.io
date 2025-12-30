@@ -1,0 +1,12 @@
+{{- $date := .date -}}
+{{- $format := .format | default ":date_long" -}}
+{{- if $date -}}
+  {{- $t := time.AsTime $date -}}
+  {{- if eq $format ":date_long" -}}
+    {{- $months := slice "januari" "februari" "maart" "april" "mei" "juni" "juli" "augustus" "september" "oktober" "november" "december" -}}
+    {{- $monthName := index $months (sub $t.Month 1) -}}
+    {{- printf "%d %s %d" $t.Day $monthName $t.Year -}}
+  {{- else -}}
+    {{- time.Format $format $t -}}
+  {{- end -}}
+{{- end -}}

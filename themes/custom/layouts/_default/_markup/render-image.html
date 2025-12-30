@@ -1,0 +1,31 @@
+{{/*
+Markdown example: ![Alt text](hero.jpg)
+- If hero.jpg is a Page Resource, uses partial "image.html" for responsive output.
+- Otherwise renders a plain <img>.
+*/}}
+
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $decorative := false -}}
+{{- with .Attributes.decorative -}}
+  {{- $decorative = eq . "true" -}}
+{{- end -}}
+{{- if and (eq $alt "") (not $decorative) -}}
+  {{- $alt = .Page.Title -}}
+{{- end -}}
+{{- $class := .Attributes.class | default "my-6 rounded-lg" -}}
+{{- $sizes := "(max-width: 768px) 100vw, 768px" -}}
+
+{{- $resource := .Page.Resources.GetMatch $src -}}
+{{- if $resource -}}
+  {{- partial "image.html" (dict "page" .Page "src" $resource.Name "alt" $alt "class" $class "sizes" $sizes) -}}
+{{- else -}}
+  <img
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    class="{{ $class }}"
+    loading="lazy"
+    decoding="async"
+    {{- if $decorative }} aria-hidden="true"{{- end }}
+  />
+{{- end -}}

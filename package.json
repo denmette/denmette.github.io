@@ -1,0 +1,17 @@
+{
+  "name": "denmette-hugo-site",
+  "private": true,
+  "scripts": {
+    "build:css": "NODE_ENV=production hugo --minify",
+    "watch:css": "hugo server"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.19"
+  }
+}

@@ -1,0 +1,12 @@
+name = "custom"
+license = "MIT"
+licenselink = ""
+description = "Minimal custom theme"
+homepage = ""
+tags = []
+features = []
+min_version = "0.111.0"
+
+[author]
+name = ""
+homepage = ""

@@ -1,0 +1,67 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{{- $pageTitle := .Title | default .Site.Title -}}
+{{- $fullTitle := cond .IsHome .Site.Title (printf "%s · %s" $pageTitle .Site.Title) -}}
+{{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description -}}
+{{- $description := "" -}}
+{{- if $rawDescription -}}
+  {{- $description = ($rawDescription | plainify | htmlUnescape | truncate 160) -}}
+{{- end -}}
+{{- $keywordsValue := "" -}}
+{{- if .Params.keywords -}}
+  {{- if reflect.IsSlice .Params.keywords -}}
+    {{- $keywordsValue = delimit .Params.keywords ", " -}}
+  {{- else -}}
+    {{- $keywordsValue = .Params.keywords -}}
+  {{- end -}}
+{{- else if .Site.Params.keywords -}}
+  {{- if reflect.IsSlice .Site.Params.keywords -}}
+    {{- $keywordsValue = delimit .Site.Params.keywords ", " -}}
+  {{- else -}}
+    {{- $keywordsValue = .Site.Params.keywords -}}
+  {{- end -}}
+{{- end -}}
+<title>{{ $fullTitle }}</title>
+{{- if $description -}}
+<meta name="description" content="{{ $description }}">
+{{- end -}}
+{{- if $keywordsValue -}}
+<meta name="keywords" content="{{ $keywordsValue }}">
+{{- end -}}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/twitter_cards.html" . }}
+{{ partial "schema-jsonld.html" . }}
+
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var useDark = stored ? stored === "dark" : prefersDark;
+      if (useDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } catch (e) {
+      // If localStorage is blocked, fall back to prefers-color-scheme.
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      }
+    }
+  })();
+</script>
+
+{{ $css := resources.Get "css/main.css" | css.PostCSS }}
+{{ if hugo.IsProduction }}
+  {{ $css = $css | minify | fingerprint }}
+{{ else }}
+  {{ $css = $css | fingerprint }}
+{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous" />

@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 text-slate-800 dark:text-slate-100">
+    <div class="flex flex-col gap-6">
+      {{- $pageSize := 5 -}}
+      {{- $posts := where .Site.RegularPages "Section" "posts" -}}
+      {{- $paginator := .Paginate $posts $pageSize -}}
+      {{ range $paginator.Pages }}
+        {{ partial "post-card.html" (dict "page" .) }}
+      {{ end }}
+    </div>
+    {{ partial "pagination.html" (dict "p" $paginator) }}
+  </div>
+{{ end }}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 text-slate-800 dark:text-slate-100">
+    <header class="space-y-1">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Onderwerp</p>
+      <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
+    </header>
+    <div class="flex flex-col gap-6">
+      {{- $pageSize := 5 -}}
+      {{- $paginator := .Paginate .Pages $pageSize -}}
+      {{ range $paginator.Pages }}
+        {{ partial "post-card.html" (dict "page" .) }}
+      {{ end }}
+    </div>
+    {{ partial "pagination.html" (dict "p" $paginator) }}
+  </div>
+{{ end }}

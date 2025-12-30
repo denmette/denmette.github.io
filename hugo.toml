@@ -1,10 +1,12 @@
 baseURL = "https://casteels.dev"
 title = "Maarten's Blog"
+theme = "custom"
 
 enableRobotsTXT = true
-buildDrafts = false
-buildFuture = false
-buildExpired = false
+
+[params]
+description = "Inzichten over home automation, Java en agile werken. Praktische tutorials en opinies in het Nederlands."
+keywords = ["Maarten Casteels", "home automation", "domotica", "java", "agile", "software engineering"]
 
 languageCode = "nl-be"
 defaultContentLanguage = "nl"
@@ -16,136 +18,11 @@ pagerSize = 5
 disableXML = true
 minifyOutput = true
 
-[module]
-[[module.imports]]
-path = "github.com/adityatelange/hugo-PaperMod"
-
-[params]
-env = "production"
-title = "Maarten's Blog"
-description = "Alles over Home Automation, Java, Python en Agile. Tutorials, opinies en praktijkervaringen in het Nederlands."
-keywords = ["Home Automation", "Home Assistant", "Smart Home", "Domotica", "IoT", "HACS", "Zigbee", "Z-Wave", "MQTT", "Java", "Python", "Spring Framework", "TDD", "Testcontainers", "Clean Code", "Softwareontwikkeling", "Agile", "Scrum", "Kanban", "DevOps", "CI/CD", "Software Design Patterns", "Tutorials", "Opinies", "Tech Blog", "Nederlandstalig"]
-author = "Maarten Casteels"
-images = ["<link or path of image for opengraph, twitter-cards>"]
-DateFormat = "2 January 2006"
-defaultTheme = "auto"
-disableThemeToggle = true
-
-ShowReadingTime = true
-ShowShareButtons = true
-ShowPostNavLinks = true
-ShowBreadCrumbs = false
-ShowCodeCopyButtons = false
-ShowWordCount = true
-ShowRssButtonInSectionTermList = true
-UseHugoToc = true
-disableSpecial1stPost = false
-disableScrollToTop = false
-comments = false
-hidemeta = false
-hideSummary = false
-showtoc = false
-tocopen = false
-
-[params.assets]
-favicon = "/assets/favicon.ico"
-favicon16x16 = "/assets/favicon-16x16.png"
-favicon32x32 = "/assets/favicon-32x32.png"
-apple_touch_icon = "/assets/apple-touch-icon.png"
-
-[params.label]
-text = "Maarten's Blog"
-icon = "/apple-touch-icon.png"
-iconHeight = 35
-
-[params.profileMode]
-enabled = false
-title = "Maarten's Blog"
-subtitle = "Gewoon mijn inzichten"
-imageUrl = "/assets/maarten.jpg"
-imageWidth = 120
-imageHeight = 120
-imageTitle = "Maarten Casteels"
-
-[[params.profileMode.buttons]]
-name = "Posts"
-url = "posts"
-
-[[params.profileMode.buttons]]
-name = "Tags"
-url = "tags"
-
-[params.homeInfoParams]
-Title = "Welkom 👋"
-Content = "Een Nederlandstalige blog over Home Automation met Home Assistant, programmeertalen zoals Java en Python, en Agile-ontwikkeling. Tutorials, opinies en inzichten uit de praktijk."
-
-[[params.socialIcons]]
-name = "x"
-url = "https://x.com/denmette"
-
-[[params.socialIcons]]
-name = "stackoverflow"
-url = "https://stackoverflow.com/users/616215/denmette"
-
-[[params.socialIcons]]
-name = "github"
-url = "https://github.com/denmette"
-
-[[params.socialIcons]]
-name = "bluesky"
-url = "https://bsky.app/profile/denmette.be"
-
-#[params.analytics.google]
-#SiteVerificationTag = "XYZabc"
-
-#[params.analytics.bing]
-#SiteVerificationTag = "XYZabc"
-
-#[params.analytics.yandex]
-#SiteVerificationTag = "XYZabc"
-
-[params.cover]
-hidden = false
-hiddenInList = false
-hiddenInSingle = false
-
-[params.editPost]
-URL = "https://github.com/denmette/denmette.github.io/blob/main/content"
-Text = "Wijziging voorstellen"
-appendFilePath = true
-
-[params.fuseOpts]
-isCaseSensitive = false
-shouldSort = true
-location = 0
-distance = 1000
-threshold = 0.4
-minMatchCharLength = 0
-limit = 10
-keys = ["title", "permalink", "summary", "content"]
-
 [permalinks]
-posts = "/posts/:contentbasename"
+posts = "/posts/:slug/"
 
-[[menu.main]]
-identifier = "jcast"
-name = "JCast"
-url = "https://jcast.dev"
-weight = 10
-
-[[menu.main]]
-identifier = "tags"
-name = "tags"
-url = "/tags/"
-weight = 20
-
-#[[menu.main]]
-#identifier = "example"
-#name = "example.org"
-#url = "https://example.org"
-#weight = 30
-
-pygmentsUseClasses = true
+[taxonomies]
+tag = "tags"
 
 [markup.highlight]
 noClasses = false
@@ -154,8 +31,13 @@ noClasses = false
 unsafe = true
 
 [outputs]
-home = ["HTML"]
+home = ["HTML", "SITEMAP"]
 section = ["HTML"]
 taxonomy = ["HTML"]
 term = ["HTML"]
 page = ["HTML"]
+
+[sitemap]
+changefreq = "weekly"
+priority = 0.5
+filename = "sitemap.xml"

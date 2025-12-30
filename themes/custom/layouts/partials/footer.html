@@ -1,0 +1,58 @@
+<footer class="mx-auto max-w-3xl border-t border-slate-200 px-6 py-4 text-xs text-slate-600 dark:border-slate-800 dark:text-slate-400">
+  <p class="text-center">
+    {{ .Site.Title }} · Sinds 2025 — gebouwd met
+    <a
+      class="text-emerald-700 underline-offset-4 transition hover:text-emerald-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-emerald-300 dark:hover:text-emerald-200 dark:focus-visible:ring-emerald-300/70 dark:focus-visible:ring-offset-slate-950"
+      href="https://gohugo.io"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Hugo</a>
+  </p>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var button = document.querySelector("[data-theme-toggle]");
+    var label = document.querySelector("[data-theme-label]");
+    if (!button) {
+      return;
+    }
+
+    function applyTheme(next) {
+      var isDark = next === "dark";
+      var nextLabel = isDark ? "Wissel naar lichte modus" : "Wissel naar donkere modus";
+      root.classList.toggle("dark", isDark);
+      button.setAttribute("aria-pressed", isDark ? "true" : "false");
+      button.setAttribute("aria-label", nextLabel);
+      if (label) {
+        label.textContent = nextLabel;
+      }
+    }
+
+    function getInitial() {
+      var stored = null;
+      try {
+        stored = localStorage.getItem("theme");
+      } catch (e) {
+        stored = null;
+      }
+      if (stored === "light" || stored === "dark") {
+        return stored;
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    applyTheme(getInitial());
+
+    button.addEventListener("click", function () {
+      var next = root.classList.contains("dark") ? "light" : "dark";
+      applyTheme(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {
+        // Ignore storage failures.
+      }
+    });
+  })();
+</script>
