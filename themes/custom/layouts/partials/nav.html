@@ -1,8 +1,8 @@
 {{- $isHome := .IsHome -}}
 {{- $isTags := eq .RelPermalink "/tags/" -}}
 {{- $isAbout := eq .RelPermalink "/over-mij/" -}}
-<nav aria-label="Hoofdnavigatie" class="flex items-center">
-  <ul class="flex flex-wrap items-center gap-3 text-sm font-semibold">
+<nav aria-label="Hoofdnavigatie" class="hidden items-center md:flex">
+  <ul class="flex items-center gap-3 text-sm font-semibold">
     <li>
       <a class="rounded px-2 py-1 text-slate-700 hover:text-moss hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:text-slate-300 dark:hover:text-mustard dark:focus-visible:outline-moss {{ if $isHome }}text-moss dark:text-mustard{{ end }}" href="/"{{ if $isHome }} aria-current="page"{{ end }}>Start</a>
     </li>

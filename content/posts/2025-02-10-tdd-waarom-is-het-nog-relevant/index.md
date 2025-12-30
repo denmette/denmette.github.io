@@ -1,6 +1,7 @@
 ---
 title: "TDD in 2025: Waarom het nog steeds relevant is."
 description: "Een persoonlijke en hedendaagse kijk op Test Driven Development, met aandacht voor praktische valkuilen, moderne teststrategieën en waarom TDD ook in 2025 zijn waarde behoudt."
+summary: "TDD wordt vaak gezien als dogma, theorie of tijdverlies. En toch blijf ik ernaar teruggrijpen, zelfs wanneer ik het even loslaat. Niet omdat het perfect is, maar omdat het me dwingt beter na te denken over wat ik bouw."
 author: "Maarten"
 date: 2025-02-10
 lastmod: 2025-02-10

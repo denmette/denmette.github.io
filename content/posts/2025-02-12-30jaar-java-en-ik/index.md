@@ -1,6 +1,7 @@
 ---
 title: "30 Jaar Java en Ik: Een Langdurige Relatie Zonder Breaking Changes"
 description: "Een persoonlijke terugblik op dertig jaar Java, van de eerste stappen met generics tot moderne innovaties, en waarom de taal dankzij stabiliteit en evolutie relevant blijft."
+summary: "Ik begon met Java zonder te vermoeden dat het zo’n constante zou worden. Versies kwamen en gingen, maar mijn oude code bleef werken. Net die combinatie van stabiliteit en vernieuwing maakt dat Java na al die jaren nog steeds mijn eerste reflex is."
 author: "Maarten"
 date: 2025-02-12
 lastmod: 2025-02-12

@@ -1,6 +1,7 @@
 ---
 title: "Check-ins die blijven plakken: Obsidian met Templater + Tasks"
 description: "Een praktische en persoonlijke kijk op hoe Obsidian, met Templater en Tasks, check-ins opnieuw ritme geeft door frictie weg te nemen en opvolging zichtbaar te maken in het dagelijkse werk."
+summary: "Mijn check-ins verwaterden niet door gebrek aan intentie, maar door kleine fricties. Te veel keuzes, te weinig ritme. Met een paar gerichte automatisaties werd opvolging weer vanzelfsprekend en kreeg het systeem opnieuw ademruimte."
 author: "Maarten"
 date: 2025-10-05
 lastmod: 2025-10-09

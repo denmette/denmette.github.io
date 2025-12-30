@@ -1,6 +1,7 @@
 ---
 title: "Van Philips Hue naar Zigbee2MQTT"
 description: "Een persoonlijke terugblik op de overstap van Philips Hue naar Zigbee2MQTT binnen Home Assistant, met aandacht voor vereenvoudiging, integratie en onverwachte technische hindernissen."
+summary: "Alles werkte, maar toch voelde mijn smart home onnodig complex aan. Twee Zigbee-systemen, meerdere bridges en instellingen die ik nooit gebruikte. De overstap naar Zigbee2MQTT bracht rust, tot een update alles weer op scherp zette. Dit is hoe vereenvoudiging soms eerst door chaos moet."
 author: "Maarten"
 date: 2025-01-21
 lastmod: 2025-01-21

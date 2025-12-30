@@ -1,6 +1,7 @@
 ---
 title: "Maak een Sectie Header met Veranderbare Entiteiten in Home Assistant"
 description: "Een praktische stap-voor-stap uitleg om in Home Assistant een dynamische sectie header te bouwen die temperatuur, luchtvochtigheid en slimme zichtbaarheid combineert voor een overzichtelijk dashboard."
+summary: "Een dashboard kan mooi zijn en toch in de weg zitten. Met een paar slimme keuzes kan één header ineens context tonen, acties sturen en zichzelf aanpassen aan de situatie. Minder knoppen, meer duidelijkheid, precies waar je kijkt."
 author: "Maarten"
 date: 2025-01-28
 lastmod: 2025-01-28

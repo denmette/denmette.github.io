@@ -1,6 +1,7 @@
 ---
 title: "JCast: Java als startpunt, goesting als drijvende kracht"
 description: "Het ontstaan van JCast, een Nederlandstalige podcast waarin Java het vertrekpunt is voor gesprekken over softwareontwikkeling, technologie en alles wat developers bezighoudt."
+summary: "Wat begon als een onverwachte vraag van twee collega’s, groeide uit tot een podcast met goesting. Java is het vertrekpunt, maar de gesprekken gaan veel breder. Geen zenden, wel delen, lachen en herkenning voor developers."
 author: "Maarten"
 date: 2025-05-16
 lastmod: 2025-05-16

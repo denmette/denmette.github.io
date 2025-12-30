@@ -1,12 +1,13 @@
 ---
 title: "Agile - Terug naar de Kern"
 description: "Een kritische reflectie op wat Agile werkelijk betekent, waarom Scrum vaak zijn doel voorbijschiet en hoe teams kunnen terugkeren naar samenwerking, vakmanschap en continu leren."
+summary: "Agile begon als een manier om beter samen te werken, maar onderweg werd het een verzameling rituelen en regels. Sprints, points en ceremonies namen het over. Misschien is het tijd om even stil te staan en terug te keren naar wat ooit de bedoeling was."
 author: "Maarten"
 date: 2025-01-29
 lastmod: 2025-01-29
 slug: "202501-agile-terug-naar-kern"
 draft: false
-tags: [agile]
+tags: [agile, reflectie]
 cover:
   image: "cover.webp"
   alt: "Softwareontwikkelaars die samen aan code werken in een open ruimte, met focus op samenwerking en overleg"

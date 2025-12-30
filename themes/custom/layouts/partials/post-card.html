@@ -21,7 +21,7 @@
 {{- $imageAlt = $title -}}
 {{- end -}}
 
-<article class="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-moss hover:bg-eggshell focus-within:border-moss focus-within:bg-eggshell dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80 dark:focus-within:border-moss dark:focus-within:bg-slate-900/80">
+<article class="relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-moss hover:bg-eggshell focus-within:border-moss focus-within:bg-eggshell dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80 dark:focus-within:border-moss dark:focus-within:bg-slate-900/80 md:p-6">
   <div class="space-y-4">
     {{- with $imageSrc -}}
     <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800">
@@ -31,7 +31,7 @@
       "page" $page
       "src" $imageResource.Name
       "alt" $imageAlt
-      "class" "h-48 w-full object-cover"
+      "class" "h-36 w-full object-cover md:h-48"
       "sizes" "(max-width: 768px) 100vw, 560px"
       ) -}}
       {{- else -}}
@@ -64,7 +64,7 @@
       {{- end -}}
 
       {{- if $summary -}}
-      <p class="text-sm text-slate-600 dark:text-slate-300">{{ $summary }}</p>
+      <p class="text-slate-600 dark:text-slate-300">{{ $summary }}</p>
       {{- end -}}
 
       {{- $terms := $page.GetTerms "tags" -}}

@@ -1,6 +1,7 @@
 ---
 title: "Terugblik op een bewogen jaar"
 description: "Een persoonlijke terugblik op 2025, waarin werk, community, gezin en vrijwilligerswerk samenkomen in een jaar vol groei, lef, verlies en dankbaarheid."
+summary: "2025 was een jaar waarin alles samenkwam: werk, community, vrijwilligerswerk en gezin. Er was groei en lef, maar ook afscheid en dankbaarheid. Sommige momenten waren luid, andere stil, en net die mix maakte het jaar zo intens."
 author: "Maarten"
 date: 2025-12-03
 lastmod: 2025-12-03

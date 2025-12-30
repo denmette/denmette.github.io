@@ -1,6 +1,7 @@
 ---
 title: "Mijn Ervaring met Obsidian: Een Jaar Later"
 description: "Een persoonlijke reflectie na een jaar werken met Obsidian, waarin de tool wordt geëvalueerd op structuur, flexibiliteit en dagelijkse inzet voor notities en documentatie."
+summary: "Ik probeerde jarenlang notities bij te houden, maar niets bleef plakken. Tot één tool wél bleef hangen en langzaam mijn dagelijkse werk overnam. Na een jaar is het duidelijk wat werkt, wat niet en waarom ik niet meer terug wil."
 author: "Maarten"
 date: 2025-02-06
 lastmod: 2025-02-06

@@ -1,6 +1,7 @@
 ---
 title: "Herschrijven is geen oplossing, het is een laatste redmiddel"
 description: "Een pleidooi tegen de reflex om legacy software te herschrijven, met focus op kleine verbeteringen, samenwerking en het bewust omgaan met technische schuld."
+summary: "Zodra iets ‘legacy’ genoemd wordt, duikt het woord rewrite op. Alsof opnieuw beginnen altijd de redding is. In de praktijk levert het vaak nieuwe problemen op. Kleine, doordachte stappen blijken verrassend vaak de betere weg."
 author: "Maarten"
 date: 2025-04-02
 lastmod: 2025-04-02

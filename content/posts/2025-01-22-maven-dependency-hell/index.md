@@ -1,6 +1,7 @@
 ---
 title: "Maven Dependency Hell: Wat is het en hoe voorkom je het?"
 description: "Een heldere uitleg van Maven Dependency Hell, hoe het ontstaat in Java-projecten en welke praktische tools en technieken je kunt inzetten om afhankelijkheden beheersbaar te houden."
+summary: "Het project bouwt nog, maar elke dependency-update voelt als Russische roulette. Conflicterende versies, oude libraries en niemand die nog weet waarom iets er staat. Dependency Hell sluipt langzaam binnen. Gelukkig hoeft het geen eindstation te zijn."
 author: "Maarten"
 date: 2025-01-22
 lastmod: 2025-01-22
