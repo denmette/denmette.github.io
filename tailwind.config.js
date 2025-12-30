@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        moss: "#576238",
+        mustard: "#FFD95D",
+        eggshell: "#F0EADC",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

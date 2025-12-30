@@ -3,7 +3,7 @@
   <nav aria-label="Paginering" class="mt-6 flex w-full flex-wrap items-center justify-between gap-4 text-sm text-slate-700 dark:text-slate-200">
     <div class="flex items-center gap-2">
       {{- if $p.HasPrev -}}
-        <a class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-emerald-200 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300" href="{{ $p.Prev.URL }}" rel="prev">
+        <a class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss" href="{{ $p.Prev.URL }}" rel="prev">
           <span aria-hidden="true">←</span>
           Vorige
         </a>
@@ -33,11 +33,11 @@
         {{- end -}}
         {{- $pager := index $p.Pagers (sub $num 1) -}}
         {{- if eq $num $current -}}
-          <span aria-current="page" class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white dark:border-emerald-300 dark:bg-emerald-300 dark:text-emerald-950">
+          <span aria-current="page" class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-moss bg-moss px-3 py-1.5 text-sm font-semibold text-white">
             {{ $num }}
           </span>
         {{- else -}}
-          <a class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-emerald-200 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300" href="{{ $pager.URL }}" aria-label="Pagina {{ $num }}">
+          <a class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss" href="{{ $pager.URL }}" aria-label="Pagina {{ $num }}">
             {{ $num }}
           </a>
         {{- end -}}
@@ -46,7 +46,7 @@
     </div>
     <div class="flex items-center gap-2">
       {{- if $p.HasNext -}}
-        <a class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-emerald-200 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 dark:focus-visible:outline-emerald-300" href="{{ $p.Next.URL }}" rel="next">
+        <a class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss" href="{{ $p.Next.URL }}" rel="next">
           Volgende
           <span aria-hidden="true">→</span>
         </a>
