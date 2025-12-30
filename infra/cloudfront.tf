@@ -72,7 +72,6 @@ resource "aws_cloudfront_distribution" "redirect_www" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "Redirect www.casteels.dev to casteels.dev"
-  default_root_object = "index.html"
 
   aliases = [
     "www.casteels.dev"
