@@ -9,6 +9,8 @@ description = "Inzichten over home automation, Java en agile werken. Praktische 
 descriptionLong = "Nederlandstalige blog over home automation, Java en agile werken, met heldere how-to's, praktijkvoorbeelden en meningen voor engineers die graag blijven leren."
 keywords = ["Maarten Casteels", "home automation", "domotica", "java", "agile", "software engineering"]
 tagline = "Eerlijke inzichten over software en automatisatie"
+author = "Maarten Casteels"
+avatar = "/maarten.webp"
 
 languageCode = "nl-be"
 defaultContentLanguage = "nl"
