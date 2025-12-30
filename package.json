@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build:css": "NODE_ENV=production hugo --minify",
-    "watch:css": "hugo server"
+    "dev": "hugo server --buildFuture --disableFastRender --buildDrafts"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
