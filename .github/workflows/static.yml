@@ -17,6 +17,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3
         with:
@@ -24,18 +33,15 @@ jobs:
           extended: true
 
       - name: Cache Hugo Modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/hugo
           key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-hugo-
 
-      - name: Install Hugo Modules
-        run: hugo mod get && hugo mod tidy
-
       - name: Build Site
-        run: hugo --minify
+        run: npm run build:css
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4
