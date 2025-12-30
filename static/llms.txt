@@ -1,0 +1,22 @@
+LLMs.txt
+
+Person
+- Name: Maarten Casteels
+- Role: Personal blog author and site owner
+
+Site
+- Name: Maarten's Blog
+- Canonical URL: https://casteels.dev/
+- Language: nl-BE (Dutch)
+
+Summary
+A Dutch personal blog with practical tutorials, opinions, and reflections on home automation, Java, and agile software development.
+
+Main Topics
+- Home automation (domotica, Home Assistant)
+- Java and software engineering
+- Agile practices and team collaboration
+- Tooling and productivity for developers
+
+Social Links
+- (none listed)
