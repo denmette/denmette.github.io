@@ -33,11 +33,11 @@
         {{- end -}}
         {{- $pager := index $p.Pagers (sub $num 1) -}}
         {{- if eq $num $current -}}
-          <span aria-current="page" class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-moss bg-moss px-3 py-1.5 text-sm font-semibold text-white">
+          <span aria-current="page" class="inline-flex min-w-10 items-center justify-center rounded-full border border-moss bg-moss px-3 py-1.5 text-sm font-semibold text-white">
             {{ $num }}
           </span>
         {{- else -}}
-          <a class="inline-flex min-w-[2.5rem] items-center justify-center rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss" href="{{ $pager.URL }}" aria-label="Pagina {{ $num }}">
+          <a class="inline-flex min-w-10 items-center justify-center rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss motion-reduce:transition-none dark:border-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss" href="{{ $pager.URL }}" aria-label="Pagina {{ $num }}">
             {{ $num }}
           </a>
         {{- end -}}
