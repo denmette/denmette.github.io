@@ -1,5 +1,52 @@
-@tailwind base;
+@import "tailwindcss";
 
-@tailwind components;
+@plugin "@tailwindcss/typography";
 
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-moss: #576238;
+  --color-mustard: #FFD95D;
+  --color-eggshell: #F0EADC;
+}
+
+@layer components {
+  .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+  }
+
+  .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-top: 1.4em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+  }
+}
+
+@layer base {
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@source "../../../../themes/custom/layouts/**/*.html";
+@source "../../../../layouts/**/*.html";
+@source "../../../../content/**/*.md";
+@source "../../../../content/**/*.html";
+@source "../../../../themes/custom/assets/**/*.{js,ts,jsx,tsx}";
+@source "../../../../static/**/*.{js,ts,jsx,tsx}";
