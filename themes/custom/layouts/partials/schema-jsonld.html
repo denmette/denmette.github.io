@@ -6,30 +6,23 @@
   "url": {{ .Site.BaseURL | jsonify }}
 }
 </script>
-{{- if .IsHome -}}
-  {{- $author := .Site.Params.author | default .Site.Author.name -}}
-  {{- $authorName := "" -}}
-  {{- if $author -}}
-    {{- if (reflect.IsMap $author) -}}
-      {{- $authorName = index $author "name" -}}
-    {{- else -}}
-      {{- $authorName = $author -}}
-    {{- end -}}
-  {{- end -}}
-  {{- $personName := $authorName | default .Site.Title -}}
-  {{- $avatar := .Site.Params.avatar | default "/maarten.webp" -}}
-  {{- $sameAs := .Site.Params.sameAs -}}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": {{ $personName | jsonify }},
-    "url": {{ .Site.BaseURL | jsonify }},
-    "image": {{ $avatar | absURL | jsonify }}{{ if $sameAs }},
-    "sameAs": {{ $sameAs | jsonify }}{{ end }}
-  }
-  </script>
-{{- end -}}
+{{- $person := .Site.Params.person -}}
+{{- $personName := $person.name | default .Site.Params.author | default .Site.Author.name | default .Site.Title -}}
+{{- $personURL := $person.url | default .Site.BaseURL -}}
+{{- $personImage := $person.image | default .Site.Params.avatar -}}
+{{- $sameAs := $person.sameAs | default .Site.Params.sameAs -}}
+{{- $personId := printf "%s#maarten" (.Site.BaseURL | absURL) -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": {{ $personId | jsonify }},
+  "name": {{ $personName | jsonify }},
+  "url": {{ $personURL | absURL | jsonify }}{{ if $personImage }},
+  "image": {{ $personImage | absURL | jsonify }}{{ end }}{{ if $sameAs }},
+  "sameAs": {{ $sameAs | jsonify }}{{ end }}
+}
+</script>
 {{- if eq .Section "posts" -}}
   {{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description | default .Site.Title -}}
   {{- $description := $rawDescription | plainify | htmlUnescape | truncate 160 -}}

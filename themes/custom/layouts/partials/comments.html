@@ -1,0 +1,72 @@
+{{- $comments := .Site.Params.comments -}}
+{{- if and $comments $comments.repo -}}
+  {{- $issueTerm := $comments.issueTerm | default "pathname" -}}
+  <section class="mt-8 border-t border-slate-200 pt-6 dark:border-slate-800" aria-labelledby="comments-title">
+    <h2 id="comments-title" class="text-lg font-semibold text-slate-900 dark:text-slate-100">Reacties</h2>
+    <div class="mt-4" id="utterances-container"></div>
+    <script>
+      (function () {
+        function resolveUtterancesTheme() {
+          try {
+            var stored = localStorage.getItem("theme");
+            if (stored === "dark") {
+              return "github-dark";
+            }
+            if (stored === "light") {
+              return "github-light";
+            }
+          } catch (e) {
+            // Ignore storage failures and fall back to media query.
+          }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "github-dark" : "github-light";
+        }
+
+        var theme = resolveUtterancesTheme();
+        var script = document.createElement("script");
+        script.src = "https://utteranc.es/client.js";
+        script.async = true;
+        script.crossOrigin = "anonymous";
+        script.setAttribute("repo", "{{ $comments.repo }}");
+        script.setAttribute("issue-term", "{{ $issueTerm }}");
+        {{- with $comments.label }}
+        script.setAttribute("label", "{{ . }}");
+        {{- end }}
+        script.setAttribute("theme", theme);
+
+        var container = document.getElementById("utterances-container");
+        if (container) {
+          container.appendChild(script);
+        }
+
+        function sendTheme(nextTheme) {
+          var iframe = document.querySelector(".utterances-frame");
+          if (!iframe) {
+            return;
+          }
+          iframe.contentWindow.postMessage(
+            { type: "set-theme", theme: nextTheme },
+            "https://utteranc.es"
+          );
+        }
+
+        function themeFromDom() {
+          return document.documentElement.classList.contains("dark") ? "github-dark" : "github-light";
+        }
+
+        var currentTheme = theme;
+        var observer = new MutationObserver(function () {
+          var nextTheme = themeFromDom();
+          if (nextTheme !== currentTheme) {
+            currentTheme = nextTheme;
+            sendTheme(nextTheme);
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"]
+        });
+      })();
+    </script>
+  </section>
+{{- end -}}

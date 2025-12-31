@@ -11,5 +11,8 @@
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
+    {{ partial "cookie-banner.html" . }}
+    {{ partial "cookie-preferences.html" . }}
+    <script src="/js/cookie-consent.js" defer></script>
   </body>
 </html>

@@ -12,6 +12,24 @@ tagline = "Eerlijke inzichten over software en automatisatie"
 author = "Maarten Casteels"
 avatar = "/maarten.webp"
 
+[params.person]
+name = "Maarten Casteels"
+url = "https://casteels.dev"
+image = "/maarten.webp"
+sameAs = [
+  "https://jcast.dev/",
+  "https://github.com/denmette",
+  "https://www.linkedin.com/in/maartencasteels",
+  "https://bsky.app/profile/casteels.dev",
+  "https://denmette.be/",
+  "https://x.com/denmette"
+]
+
+[params.comments]
+repo = "denmette/denmette.github.io"
+issueTerm = "og:title"
+label = "comments"
+
 languageCode = "nl-be"
 defaultContentLanguage = "nl"
 

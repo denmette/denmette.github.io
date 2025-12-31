@@ -1,6 +1,7 @@
 {{- $isHome := .IsHome -}}
 {{- $isTags := eq .RelPermalink "/tags/" -}}
 {{- $isAbout := eq .RelPermalink "/over-mij/" -}}
+{{- $isPrivacy := eq .RelPermalink "/privacy/" -}}
 <nav aria-label="Hoofdnavigatie" class="hidden items-center md:flex">
   <ul class="flex items-center gap-3 text-sm font-semibold">
     <li>
@@ -11,6 +12,9 @@
     </li>
     <li>
       <a class="rounded px-2 py-1 text-slate-700 hover:text-moss hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:text-slate-300 dark:hover:text-mustard dark:focus-visible:outline-moss {{ if $isAbout }}text-moss dark:text-mustard{{ end }}" href="/over-mij/"{{ if $isAbout }} aria-current="page"{{ end }}>Over mij</a>
+    </li>
+    <li>
+      <a class="rounded px-2 py-1 text-slate-700 hover:text-moss hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:text-slate-300 dark:hover:text-mustard dark:focus-visible:outline-moss {{ if $isPrivacy }}text-moss dark:text-mustard{{ end }}" href="/privacy/"{{ if $isPrivacy }} aria-current="page"{{ end }}>Privacy</a>
     </li>
   </ul>
 </nav>

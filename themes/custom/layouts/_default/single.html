@@ -1,8 +1,13 @@
 {{ define "main" }}
+<article class="space-y-4">
+  <header class="space-y-2">
+    <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
+  </header>
+
   <div class="space-y-4 text-slate-800 dark:text-slate-100">
-    {{- if eq (len (findRE "<h1\\b" .Content)) 0 -}}
-      <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
-    {{- end -}}
-    {{ .Content }}
+    <div class="prose prose-slate prose-a:text-moss prose-a:no-underline prose-a:underline-offset-4 hover:prose-a:text-moss hover:prose-a:underline dark:prose-invert dark:prose-a:text-mustard dark:hover:prose-a:text-mustard dark:hover:prose-a:underline">
+      {{ .Content }}
+    </div>
   </div>
+</article>
 {{ end }}

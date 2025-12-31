@@ -2,6 +2,47 @@
 # All AWS Cloudfront related stuff
 ##
 
+locals {
+  csp_default_src = ["'self'"]
+  csp_script_src_allow = [
+    "'self'",
+    "'unsafe-inline'",
+    "https://casteels.dev",
+    "https://utteranc.es",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com"
+  ]
+  csp_style_src_allow = [
+    "'self'",
+    "'unsafe-inline'",
+    "https://casteels.dev"
+  ]
+  csp_img_src_allow = [
+    "'self'",
+    "https://casteels.dev",
+    "https://www.google-analytics.com",
+    "data:"
+  ]
+  csp_frame_src_allow = [
+    "'self'",
+    "https://utteranc.es"
+  ]
+  csp_connect_src_allow = [
+    "'self'",
+    "https://api.github.com",
+    "https://www.google-analytics.com"
+  ]
+  csp_directives = [
+    "default-src ${join(" ", local.csp_default_src)}",
+    "script-src ${join(" ", local.csp_script_src_allow)}",
+    "style-src ${join(" ", local.csp_style_src_allow)}",
+    "img-src ${join(" ", local.csp_img_src_allow)}",
+    "frame-src ${join(" ", local.csp_frame_src_allow)}",
+    "connect-src ${join(" ", local.csp_connect_src_allow)}"
+  ]
+  csp_value = "${join("; ", local.csp_directives)};"
+}
+
 resource "aws_cloudfront_origin_access_control" "default" {
   name                              = "casteels-dev OAC"
   description                       = "Origin Access Control for S3 bucket"
@@ -180,7 +221,7 @@ resource "aws_cloudfront_response_headers_policy" "response_headers_policy" {
     content_security_policy {
       override = true
       # content_security_policy = "default-src 'self';"
-      content_security_policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://casteels.dev; style-src 'self' 'unsafe-inline' https://casteels.dev; img-src 'self' https://casteels.dev data:;"
+      content_security_policy = local.csp_value
     }
 
     content_type_options {

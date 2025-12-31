@@ -1,0 +1,101 @@
+{{- $url := .Permalink -}}
+
+<footer class="border-t border-slate-200 pt-4 dark:border-slate-800">
+  <div class="grid gap-6 md:grid-cols-2">
+    <!-- Tags -->
+    <div>
+      <div class="pl-0 md:pl-2">
+        <div class="flex items-center gap-3 md:block">
+          <p class="shrink-0 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            Tags
+          </p>
+
+          {{- $terms := .GetTerms "tags" -}}
+          {{- if gt (len $terms) 0 -}}
+          <ul class="flex flex-nowrap gap-2 overflow-x-auto md:mt-2 md:flex-wrap md:overflow-visible">
+            {{- range $terms -}}
+            <li class="shrink-0">
+              <a
+                      class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss"
+                      href="{{ .RelPermalink }}"
+              >
+                {{ .LinkTitle }}
+              </a>
+            </li>
+            {{- end -}}
+          </ul>
+          {{- else -}}
+          {{- with .Params.tags -}}
+          {{- if gt (len .) 0 -}}
+          <ul class="flex flex-nowrap gap-2 overflow-x-auto md:mt-2 md:flex-wrap md:overflow-visible">
+            {{- range . -}}
+            <li class="shrink-0">
+              <a
+                      class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 hover:border-moss hover:text-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-mustard dark:hover:text-mustard dark:focus-visible:outline-moss"
+                      href="{{ (printf "/tags/%s/" . | urlize) | relURL }}"
+              >
+              {{ . }}
+              </a>
+            </li>
+            {{- end -}}
+          </ul>
+          {{- end -}}
+          {{- end -}}
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Delen -->
+    <div class="md:pl-2 md:text-right">
+      <div class="flex items-center gap-3 md:block md:text-right">
+        <p class="shrink-0 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+          Delen
+        </p>
+
+        <nav aria-label="Deel dit artikel" class="w-full">
+          <ul class="flex flex-nowrap gap-2 overflow-x-auto md:mt-2 md:justify-end md:overflow-visible">
+            <li class="shrink-0">
+              <a
+                      class="inline-flex items-center justify-center rounded-full text-slate-400 transition-colors hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-slate-500 dark:hover:text-mustard dark:focus-visible:ring-moss/70 dark:focus-visible:ring-offset-slate-950 motion-reduce:transition-none"
+                      href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | urlquery }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Deel op LinkedIn"
+                      title="Delen op LinkedIn"
+              >
+          {{ partial "icon.html" (dict "name" "linkedin" "class" "h-5 w-5 stroke-current" "size" 24) }}
+        </a>
+            </li>
+
+            <li class="shrink-0">
+              <a
+                      class="inline-flex items-center justify-center rounded-full text-slate-400 transition-colors hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-slate-500 dark:hover:text-mustard dark:focus-visible:ring-moss/70 dark:focus-visible:ring-offset-slate-950 motion-reduce:transition-none"
+                      href="https://twitter.com/intent/tweet?url={{ $url | urlquery }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Deel op X"
+                      title="Delen op X"
+              >
+          {{ partial "icon.html" (dict "name" "x" "class" "h-5 w-5 stroke-current" "size" 24) }}
+        </a>
+            </li>
+
+            <li class="shrink-0">
+              <a
+                      class="inline-flex items-center justify-center rounded-full text-slate-400 transition-colors hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-slate-500 dark:hover:text-mustard dark:focus-visible:ring-moss/70 dark:focus-visible:ring-offset-slate-950 motion-reduce:transition-none"
+                      href="https://bsky.app/intent/compose?text={{ $url | urlquery }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Deel op Bluesky"
+                      title="Delen op Bluesky"
+              >
+          {{ partial "icon.html" (dict "name" "bluesky" "class" "h-5 w-5 stroke-current" "size" 24) }}
+        </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
