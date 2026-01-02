@@ -14,15 +14,26 @@ avatar = "/maarten.webp"
 
 [params.person]
 name = "Maarten Casteels"
+id = "https://casteels.dev/#maarten-casteels"
 url = "https://casteels.dev"
 image = "/maarten.webp"
+worksFor = { name = "Sopra Steria BeLux", url = "https://www.soprasteria.be/" }
 sameAs = [
   "https://github.com/denmette",
   "https://www.linkedin.com/in/maartencasteels",
   "https://bsky.app/profile/casteels.dev",
-  "https://denmette.be/",
-  "https://x.com/denmette"
+  "https://x.com/denmette",
+  "https://denmette.be/"
 ]
+[[params.person.memberOf]]
+name = "JCast"
+url = "https://jcast.dev/"
+roleName = "Co-host"
+
+[[params.person.memberOf]]
+name = "Top Vakantie VZW"
+url = "https://www.topvakantie.be/"
+roleName = "Vrijwilliger"
 
 [params.comments]
 repo = "denmette/denmette.github.io"

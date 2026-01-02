@@ -11,7 +11,12 @@
 {{- $personURL := $person.url | default .Site.BaseURL -}}
 {{- $personImage := $person.image | default .Site.Params.avatar -}}
 {{- $sameAs := $person.sameAs | default .Site.Params.sameAs -}}
+{{- $worksFor := $person.worksFor -}}
+{{- $memberOf := $person.memberOf -}}
 {{- $personId := printf "%s#maarten" (.Site.BaseURL | absURL) -}}
+{{- if $person.id -}}
+  {{- $personId = $person.id -}}
+{{- end -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,7 +25,25 @@
   "name": {{ $personName | jsonify }},
   "url": {{ $personURL | absURL | jsonify }}{{ if $personImage }},
   "image": {{ $personImage | absURL | jsonify }}{{ end }}{{ if $sameAs }},
-  "sameAs": {{ $sameAs | jsonify }}{{ end }}
+  "sameAs": {{ $sameAs | jsonify }}{{ end }}{{ if $worksFor }},
+  "worksFor": {
+    "@type": "Organization",
+    "name": {{ $worksFor.name | jsonify }}{{ with $worksFor.url }},
+    "url": {{ . | jsonify }}{{ end }}
+  }{{ end }}{{ if $memberOf }},
+  "memberOf": [
+    {{- range $index, $org := $memberOf }}{{ if $index }},{{ end }}
+    {
+      "@type": "Organization",
+      "name": {{ $org.name | jsonify }}{{ with $org.url }},
+      "url": {{ . | jsonify }}{{ end }}{{ with $org.roleName }},
+      "member": {
+        "@type": "Role",
+        "roleName": {{ . | jsonify }}
+      }{{ end }}
+    }
+    {{- end }}
+  ]{{ end }}
 }
 </script>
 {{- if eq .Section "posts" -}}
