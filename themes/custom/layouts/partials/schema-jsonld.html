@@ -1,51 +1,102 @@
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": {{ .Site.Title | jsonify }},
-  "url": {{ .Site.BaseURL | jsonify }}
-}
-</script>
+{{- $nodes := slice -}}
+
+{{- $siteURL := .Site.BaseURL -}}
+{{- if not (hasPrefix $siteURL "http") -}}
+  {{- $siteURL = $siteURL | absURL -}}
+{{- end -}}
+
+{{- $website := dict
+  "@type" "WebSite"
+  "name" .Site.Title
+  "url" $siteURL
+-}}
+{{- $nodes = $nodes | append $website -}}
+
 {{- $person := .Site.Params.person -}}
 {{- $personName := $person.name | default .Site.Params.author | default .Site.Author.name | default .Site.Title -}}
-{{- $personURL := $person.url | default .Site.BaseURL -}}
-{{- $personImage := $person.image | default .Site.Params.avatar -}}
-{{- $sameAs := $person.sameAs | default .Site.Params.sameAs -}}
-{{- $worksFor := $person.worksFor -}}
-{{- $memberOf := $person.memberOf -}}
-{{- $personId := printf "%s#maarten" (.Site.BaseURL | absURL) -}}
-{{- if $person.id -}}
-  {{- $personId = $person.id -}}
+{{- $personURL := $person.url | default $siteURL -}}
+{{- if not (hasPrefix $personURL "http") -}}
+  {{- $personURL = $personURL | absURL -}}
 {{- end -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": {{ $personId | jsonify }},
-  "name": {{ $personName | jsonify }},
-  "url": {{ $personURL | absURL | jsonify }}{{ if $personImage }},
-  "image": {{ $personImage | absURL | jsonify }}{{ end }}{{ if $sameAs }},
-  "sameAs": {{ $sameAs | jsonify }}{{ end }}{{ if $worksFor }},
-  "worksFor": {
-    "@type": "Organization",
-    "name": {{ $worksFor.name | jsonify }}{{ with $worksFor.url }},
-    "url": {{ . | jsonify }}{{ end }}
-  }{{ end }}{{ if $memberOf }},
-  "memberOf": [
-    {{- range $index, $org := $memberOf }}{{ if $index }},{{ end }}
-    {
-      "@type": "Organization",
-      "name": {{ $org.name | jsonify }}{{ with $org.url }},
-      "url": {{ . | jsonify }}{{ end }}{{ with $org.roleName }},
-      "member": {
-        "@type": "Role",
-        "roleName": {{ . | jsonify }}
-      }{{ end }}
-    }
-    {{- end }}
-  ]{{ end }}
-}
-</script>
+{{- $personImage := $person.image | default .Site.Params.avatar -}}
+{{- if $personImage -}}
+  {{- if not (hasPrefix $personImage "http") -}}
+    {{- $personImage = $personImage | absURL -}}
+  {{- end -}}
+{{- end -}}
+{{- $personId := $person.id | default (printf "%s#maarten-casteels" $siteURL) -}}
+{{- if not (hasPrefix $personId "http") -}}
+  {{- $personId = $personId | absURL -}}
+{{- end -}}
+{{- $sameAs := $person.sameAs | default .Site.Params.sameAs -}}
+{{- $sameAsList := slice -}}
+{{- if $sameAs -}}
+  {{- range $sameAs -}}
+    {{- $item := . -}}
+    {{- if not (hasPrefix $item "http") -}}
+      {{- $item = $item | absURL -}}
+    {{- end -}}
+    {{- $sameAsList = $sameAsList | append $item -}}
+  {{- end -}}
+{{- end -}}
+{{- $worksFor := $person.worksFor -}}
+{{- $worksForNode := dict -}}
+{{- if $worksFor -}}
+  {{- $worksForURL := $worksFor.url -}}
+  {{- if $worksForURL -}}
+    {{- if not (hasPrefix $worksForURL "http") -}}
+      {{- $worksForURL = $worksForURL | absURL -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $worksForNode = dict "@type" "Organization" "name" $worksFor.name -}}
+  {{- if $worksForURL -}}
+    {{- $worksForNode = merge $worksForNode (dict "url" $worksForURL) -}}
+  {{- end -}}
+{{- end -}}
+{{- $memberOf := $person.memberOf -}}
+{{- $memberOfNodes := slice -}}
+{{- if $memberOf -}}
+  {{- range $memberOf -}}
+    {{- $orgURL := .url -}}
+    {{- if $orgURL -}}
+      {{- if not (hasPrefix $orgURL "http") -}}
+        {{- $orgURL = $orgURL | absURL -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $orgNode := dict
+      "@type" "Organization"
+      "name" .name
+    -}}
+    {{- if $orgURL -}}
+      {{- $orgNode = merge $orgNode (dict "url" $orgURL) -}}
+    {{- end -}}
+    {{- if .roleName -}}
+      {{- $orgNode = merge $orgNode (dict "member" (dict "@type" "Role" "roleName" .roleName)) -}}
+    {{- end -}}
+    {{- $memberOfNodes = $memberOfNodes | append $orgNode -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $personNode := dict
+  "@type" "Person"
+  "@id" $personId
+  "name" $personName
+  "url" $personURL
+-}}
+{{- if $personImage -}}
+  {{- $personNode = merge $personNode (dict "image" $personImage) -}}
+{{- end -}}
+{{- if gt (len $sameAsList) 0 -}}
+  {{- $personNode = merge $personNode (dict "sameAs" $sameAsList) -}}
+{{- end -}}
+{{- if $worksFor -}}
+  {{- $personNode = merge $personNode (dict "worksFor" $worksForNode) -}}
+{{- end -}}
+{{- if gt (len $memberOfNodes) 0 -}}
+  {{- $personNode = merge $personNode (dict "memberOf" $memberOfNodes) -}}
+{{- end -}}
+{{- $nodes = $nodes | append $personNode -}}
+
 {{- if eq .Section "posts" -}}
   {{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description | default .Site.Title -}}
   {{- $description := $rawDescription | plainify | htmlUnescape | truncate 160 -}}
@@ -54,39 +105,34 @@
     {{- with $.Resources.GetMatch . -}}
       {{- $imageURL = .Permalink -}}
     {{- else -}}
-      {{- $imageURL = . | absURL -}}
+      {{- $imageURL = . -}}
     {{- end -}}
   {{- end -}}
-  {{- $author := .Site.Params.author | default .Site.Author.name -}}
-  {{- $authorName := "" -}}
-  {{- if $author -}}
-    {{- if (reflect.IsMap $author) -}}
-      {{- $authorName = index $author "name" -}}
-    {{- else -}}
-      {{- $authorName = $author -}}
+  {{- if $imageURL -}}
+    {{- if not (hasPrefix $imageURL "http") -}}
+      {{- $imageURL = $imageURL | absURL -}}
     {{- end -}}
   {{- end -}}
   {{- $hasModified := and .Lastmod (ne .Lastmod .Date) -}}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": {{ .Title | jsonify }},
-    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
-    {{- if $hasModified }}
-    "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
-    {{- end }}
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": {{ .Permalink | jsonify }}
-    },
-    "description": {{ $description | jsonify }}{{ if $authorName }},
-    "author": {
-      "@type": "Person",
-      "name": {{ $authorName | jsonify }}
-    }{{ end }}{{ if $imageURL }},
-    "image": [{{ $imageURL | jsonify }}]
-    {{- end }}
-  }
-  </script>
+  {{- $blogPosting := dict
+    "@type" "BlogPosting"
+    "headline" .Title
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "description" $description
+    "author" (dict "@type" "Person" "@id" $personId)
+  -}}
+  {{- if $hasModified -}}
+    {{- $blogPosting = merge $blogPosting (dict "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")) -}}
+  {{- end -}}
+  {{- if $imageURL -}}
+    {{- $blogPosting = merge $blogPosting (dict "image" (slice $imageURL)) -}}
+  {{- end -}}
+  {{- $nodes = $nodes | append $blogPosting -}}
 {{- end -}}
+
+{{- $graph := dict
+  "@context" "https://schema.org"
+  "@graph" $nodes
+-}}
+<script type="application/ld+json">{{ $graph | jsonify }}</script>
