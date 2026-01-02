@@ -135,4 +135,4 @@
   "@context" "https://schema.org"
   "@graph" $nodes
 -}}
-<script type="application/ld+json">{{ $graph | jsonify }}</script>
+<script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
