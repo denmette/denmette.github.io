@@ -17,7 +17,6 @@ name = "Maarten Casteels"
 url = "https://casteels.dev"
 image = "/maarten.webp"
 sameAs = [
-  "https://jcast.dev/",
   "https://github.com/denmette",
   "https://www.linkedin.com/in/maartencasteels",
   "https://bsky.app/profile/casteels.dev",
