@@ -57,6 +57,12 @@
 {{- $memberOfNodes := slice -}}
 {{- if $memberOf -}}
   {{- range $memberOf -}}
+    {{- $orgId := .id -}}
+    {{- if $orgId -}}
+      {{- if not (hasPrefix $orgId "http") -}}
+        {{- $orgId = $orgId | absURL -}}
+      {{- end -}}
+    {{- end -}}
     {{- $orgURL := .url -}}
     {{- if $orgURL -}}
       {{- if not (hasPrefix $orgURL "http") -}}
@@ -67,6 +73,9 @@
       "@type" "Organization"
       "name" .name
     -}}
+    {{- if $orgId -}}
+      {{- $orgNode = merge $orgNode (dict "@id" $orgId) -}}
+    {{- end -}}
     {{- if $orgURL -}}
       {{- $orgNode = merge $orgNode (dict "url" $orgURL) -}}
     {{- end -}}

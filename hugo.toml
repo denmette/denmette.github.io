@@ -26,6 +26,7 @@ sameAs = [
   "https://denmette.be/"
 ]
 [[params.person.memberOf]]
+id="https://jcast.dev/#org"
 name = "JCast"
 url = "https://jcast.dev/"
 roleName = "Co-host"
