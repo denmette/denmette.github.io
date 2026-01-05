@@ -2,12 +2,14 @@
   "name": "denmette-hugo-site",
   "private": true,
   "scripts": {
-    "build:css": "NODE_ENV=production hugo --minify",
-    "dev": "hugo server --buildFuture --disableFastRender --buildDrafts --cleanDestinationDir"
+    "build": "hugo --minify && pagefind --site public",
+    "build:css": "npm run build",
+    "dev": "pagefind --site public && hugo server --buildFuture --disableFastRender --buildDrafts --cleanDestinationDir"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
+    "pagefind": "^1.4.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.1.18"
