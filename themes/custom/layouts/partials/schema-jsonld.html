@@ -4,16 +4,24 @@
 {{- if not (hasPrefix $siteURL "http") -}}
   {{- $siteURL = $siteURL | absURL -}}
 {{- end -}}
+{{- $siteTitle := .Site.Title | default "Site" -}}
+{{- $orgId := printf "%s#org" $siteURL -}}
+{{- $websiteId := printf "%s#website" $siteURL -}}
+{{- $logoId := printf "%s#logo" $siteURL -}}
 
-{{- $website := dict
-  "@type" "WebSite"
-  "name" .Site.Title
-  "url" $siteURL
--}}
-{{- $nodes = $nodes | append $website -}}
+{{- $logoURL := .Site.Params.avatar -}}
+{{- if $logoURL -}}
+  {{- if not (hasPrefix $logoURL "http") -}}
+    {{- $logoURL = $logoURL | absURL -}}
+  {{- end -}}
+{{- end -}}
 
 {{- $person := .Site.Params.person -}}
-{{- $personName := $person.name | default .Site.Params.author | default .Site.Author.name | default .Site.Title -}}
+{{- $personName := $person.name | default .Site.Params.author -}}
+{{- $personId := $person.id | default (printf "%s#maarten-casteels" $siteURL) -}}
+{{- if not (hasPrefix $personId "http") -}}
+  {{- $personId = $personId | absURL -}}
+{{- end -}}
 {{- $personURL := $person.url | default $siteURL -}}
 {{- if not (hasPrefix $personURL "http") -}}
   {{- $personURL = $personURL | absURL -}}
@@ -24,10 +32,6 @@
     {{- $personImage = $personImage | absURL -}}
   {{- end -}}
 {{- end -}}
-{{- $personId := $person.id | default (printf "%s#maarten-casteels" $siteURL) -}}
-{{- if not (hasPrefix $personId "http") -}}
-  {{- $personId = $personId | absURL -}}
-{{- end -}}
 {{- $sameAs := $person.sameAs | default .Site.Params.sameAs -}}
 {{- $sameAsList := slice -}}
 {{- if $sameAs -}}
@@ -36,7 +40,9 @@
     {{- if not (hasPrefix $item "http") -}}
       {{- $item = $item | absURL -}}
     {{- end -}}
-    {{- $sameAsList = $sameAsList | append $item -}}
+    {{- if and $item (ne $item "https://denmette.be") (ne $item "https://denmette.be/") -}}
+      {{- $sameAsList = $sameAsList | append $item -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $worksFor := $person.worksFor -}}
@@ -57,60 +63,99 @@
 {{- $memberOfNodes := slice -}}
 {{- if $memberOf -}}
   {{- range $memberOf -}}
-    {{- $orgId := .id -}}
-    {{- if $orgId -}}
-      {{- if not (hasPrefix $orgId "http") -}}
-        {{- $orgId = $orgId | absURL -}}
+    {{- $memberOrgId := .id -}}
+    {{- if $memberOrgId -}}
+      {{- if not (hasPrefix $memberOrgId "http") -}}
+        {{- $memberOrgId = $memberOrgId | absURL -}}
       {{- end -}}
     {{- end -}}
-    {{- $orgURL := .url -}}
-    {{- if $orgURL -}}
-      {{- if not (hasPrefix $orgURL "http") -}}
-        {{- $orgURL = $orgURL | absURL -}}
+    {{- $memberOrgURL := .url -}}
+    {{- if $memberOrgURL -}}
+      {{- if not (hasPrefix $memberOrgURL "http") -}}
+        {{- $memberOrgURL = $memberOrgURL | absURL -}}
       {{- end -}}
     {{- end -}}
-    {{- $orgNode := dict
+    {{- $memberOrgNode := dict
       "@type" "Organization"
       "name" .name
     -}}
-    {{- if $orgId -}}
-      {{- $orgNode = merge $orgNode (dict "@id" $orgId) -}}
+    {{- if $memberOrgId -}}
+      {{- $memberOrgNode = merge $memberOrgNode (dict "@id" $memberOrgId) -}}
     {{- end -}}
-    {{- if $orgURL -}}
-      {{- $orgNode = merge $orgNode (dict "url" $orgURL) -}}
+    {{- if $memberOrgURL -}}
+      {{- $memberOrgNode = merge $memberOrgNode (dict "url" $memberOrgURL) -}}
     {{- end -}}
     {{- if .roleName -}}
-      {{- $orgNode = merge $orgNode (dict "member" (dict "@type" "Role" "roleName" .roleName)) -}}
+      {{- $memberOrgNode = merge $memberOrgNode (dict "member" (dict "@type" "Role" "roleName" .roleName)) -}}
     {{- end -}}
-    {{- $memberOfNodes = $memberOfNodes | append $orgNode -}}
+    {{- $memberOfNodes = $memberOfNodes | append $memberOrgNode -}}
   {{- end -}}
 {{- end -}}
 
-{{- $personNode := dict
-  "@type" "Person"
-  "@id" $personId
-  "name" $personName
-  "url" $personURL
+{{- $orgNode := dict
+  "@type" "Organization"
+  "@id" $orgId
+  "name" $siteTitle
+  "url" $siteURL
 -}}
-{{- if $personImage -}}
-  {{- $personNode = merge $personNode (dict "image" $personImage) -}}
+{{- if $logoURL -}}
+  {{- $orgNode = merge $orgNode (dict "logo" (dict "@type" "ImageObject" "@id" $logoId "url" $logoURL)) -}}
 {{- end -}}
-{{- if gt (len $sameAsList) 0 -}}
-  {{- $personNode = merge $personNode (dict "sameAs" $sameAsList) -}}
+{{- if $personName -}}
+  {{- $orgNode = merge $orgNode (dict "founder" (dict "@id" $personId)) -}}
 {{- end -}}
-{{- if $worksFor -}}
-  {{- $personNode = merge $personNode (dict "worksFor" $worksForNode) -}}
+{{- $nodes = $nodes | append $orgNode -}}
+
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" $websiteId
+  "name" $siteTitle
+  "url" $siteURL
+  "publisher" (dict "@id" $orgId)
+-}}
+{{- $nodes = $nodes | append $website -}}
+
+{{- if $personName -}}
+  {{- $personNode := dict
+    "@type" "Person"
+    "@id" $personId
+    "name" $personName
+    "url" $personURL
+  -}}
+  {{- if $personImage -}}
+    {{- $personNode = merge $personNode (dict "image" $personImage) -}}
+  {{- end -}}
+  {{- if gt (len $sameAsList) 0 -}}
+    {{- $personNode = merge $personNode (dict "sameAs" $sameAsList) -}}
+  {{- end -}}
+  {{- if $worksFor -}}
+    {{- $personNode = merge $personNode (dict "worksFor" $worksForNode) -}}
+  {{- end -}}
+  {{- if gt (len $memberOfNodes) 0 -}}
+    {{- $personNode = merge $personNode (dict "memberOf" $memberOfNodes) -}}
+  {{- end -}}
+  {{- $nodes = $nodes | append $personNode -}}
 {{- end -}}
-{{- if gt (len $memberOfNodes) 0 -}}
-  {{- $personNode = merge $personNode (dict "memberOf" $memberOfNodes) -}}
+
+{{- $pageURL := .Permalink -}}
+{{- $webpageId := printf "%s#webpage" $pageURL -}}
+{{- $webpageName := .Title | default $siteTitle -}}
+{{- $webpageNode := dict
+  "@type" "WebPage"
+  "@id" $webpageId
+  "url" $pageURL
+  "name" $webpageName
+  "isPartOf" (dict "@id" $websiteId)
+-}}
+{{- $languageCode := .Site.Language.LanguageCode | default .Site.Language.Lang | default .Site.LanguageCode -}}
+{{- if $languageCode -}}
+  {{- $webpageNode = merge $webpageNode (dict "inLanguage" $languageCode) -}}
 {{- end -}}
-{{- $nodes = $nodes | append $personNode -}}
+{{- $nodes = $nodes | append $webpageNode -}}
 
 {{- if eq .Section "posts" -}}
-  {{- $rawDescription := .Params.description | default .Summary | default .Site.Params.description | default .Site.Title -}}
-  {{- $description := $rawDescription | plainify | htmlUnescape | truncate 160 -}}
   {{- $imageURL := "" -}}
-  {{- with .Params.image -}}
+  {{- with .Params.cover.image -}}
     {{- with $.Resources.GetMatch . -}}
       {{- $imageURL = .Permalink -}}
     {{- else -}}
@@ -122,20 +167,23 @@
       {{- $imageURL = $imageURL | absURL -}}
     {{- end -}}
   {{- end -}}
-  {{- $hasModified := and .Lastmod (ne .Lastmod .Date) -}}
+  {{- $hasModified := and .Lastmod (gt (sub .Lastmod.Unix .Date.Unix) 86400) -}}
   {{- $blogPosting := dict
     "@type" "BlogPosting"
+    "@id" (printf "%s#article" .Permalink)
     "headline" .Title
     "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
-    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
-    "description" $description
-    "author" (dict "@type" "Person" "@id" $personId)
+    "mainEntityOfPage" (dict "@id" $webpageId)
+    "publisher" (dict "@id" $orgId)
   -}}
+  {{- if $personName -}}
+    {{- $blogPosting = merge $blogPosting (dict "author" (dict "@id" $personId)) -}}
+  {{- end -}}
   {{- if $hasModified -}}
     {{- $blogPosting = merge $blogPosting (dict "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")) -}}
   {{- end -}}
   {{- if $imageURL -}}
-    {{- $blogPosting = merge $blogPosting (dict "image" (slice $imageURL)) -}}
+    {{- $blogPosting = merge $blogPosting (dict "image" $imageURL) -}}
   {{- end -}}
   {{- $nodes = $nodes | append $blogPosting -}}
 {{- end -}}
