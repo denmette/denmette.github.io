@@ -41,8 +41,15 @@ repo = "denmette/denmette.github.io"
 issueTerm = "og:title"
 label = "comments"
 
-languageCode = "nl-be"
+languageCode = "nl-BE"
 defaultContentLanguage = "nl"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.nl]
+    languageCode = "nl-BE"
+    languageName = "Nederlands"
+    weight = 1
 
 [pagination]
 pagerSize = 5
