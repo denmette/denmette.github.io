@@ -1,0 +1,12 @@
+{{- $summary := .Params.description | default .Summary | default "" -}}
+{{- $summary = $summary | plainify | htmlUnescape -}}
+{{- if $summary -}}
+<meta data-pagefind-meta="summary:{{ $summary | truncate 240 }}">
+{{- end -}}
+{{- with .Date -}}
+<meta data-pagefind-meta="date:{{ . | time.Format "2006-01-02" }}">
+{{- end -}}
+{{- with .Params.tags -}}
+<meta data-pagefind-meta="tags:{{ delimit . ", " }}">
+{{- end -}}
+<meta data-pagefind-meta="title:{{ .Title }}">
