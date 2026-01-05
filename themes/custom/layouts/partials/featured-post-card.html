@@ -1,0 +1,122 @@
+{{- $page := .page -}}
+{{- $title := $page.Title -}}
+
+{{- $summary := "" -}}
+{{- with $page.Params.summary -}}
+{{- $summary = . -}}
+{{- else -}}
+{{- $summary = $page.Summary -}}
+{{- end -}}
+
+{{- $imageSrc := "" -}}
+{{- with $page.Params.cover.image -}}
+{{- $imageSrc = . -}}
+{{- end -}}
+
+{{- $imageAlt := "" -}}
+{{- with $page.Params.cover.alt -}}
+{{- $imageAlt = . -}}
+{{- end -}}
+{{- if eq $imageAlt "" -}}
+{{- $imageAlt = $title -}}
+{{- end -}}
+
+{{- $paragraphs := findRE `<p[^>]*>[\s\S]*?</p>` $page.Content -}}
+{{- $safeParagraphs := slice -}}
+{{- range $paragraphs -}}
+  {{- $p := . -}}
+  {{- if not (findRE `<(img|figure|picture|pre|code|ul|ol|li|table|blockquote)` $p) -}}
+    {{- $p = replaceRE `<a[^>]*>` "" $p -}}
+    {{- $p = replaceRE `</a>` "" $p -}}
+    {{- $p = replaceRE `^<p[^>]*>` "" $p -}}
+    {{- $p = replaceRE `</p>$` "" $p -}}
+    {{- $safeParagraphs = $safeParagraphs | append $p -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $excerptParagraphs := slice -}}
+{{- if ge (len $safeParagraphs) 2 -}}
+  {{- $excerptParagraphs = first 2 $safeParagraphs -}}
+{{- else if eq (len $safeParagraphs) 1 -}}
+  {{- $excerptParagraphs = first 1 $safeParagraphs -}}
+{{- end -}}
+
+<article class="relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-moss hover:bg-eggshell focus-within:border-moss focus-within:bg-eggshell dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80 dark:focus-within:border-moss dark:focus-within:bg-slate-900/80 md:p-6">
+  <div class="space-y-4">
+    {{- with $imageSrc -}}
+    <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800">
+      {{- $imageResource := $page.Resources.GetMatch . -}}
+      {{- if $imageResource -}}
+      {{- partial "image.html" (dict
+      "page" $page
+      "src" $imageResource.Name
+      "alt" $imageAlt
+      "class" "h-36 w-full object-cover md:h-48"
+      "sizes" "(max-width: 768px) 100vw, 560px"
+      ) -}}
+      {{- else -}}
+      <img
+              src="{{ . }}"
+              alt="{{ $imageAlt }}"
+              class="h-48 w-full object-cover"
+              loading="lazy"
+              decoding="async"
+      />
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-100">
+        <a
+                class="hover:text-moss hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss dark:hover:text-mustard dark:focus-visible:outline-moss"
+                href="{{ $page.RelPermalink }}"
+        >
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          <span class="relative z-10">{{ $title }}</span>
+        </a>
+      </h2>
+
+      {{- with $page.Date -}}
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        {{ partial "date.html" (dict "date" . "format" ":date_long") }}
+      </p>
+      {{- end -}}
+
+      {{- if gt (len $excerptParagraphs) 0 -}}
+      <div class="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        {{- range $index, $paragraph := $excerptParagraphs -}}
+        <p class="{{ if eq $index 1 }}hidden md:block{{ end }}">{{ $paragraph | safeHTML }}</p>
+        {{- end -}}
+      </div>
+      {{- else if $summary -}}
+      <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{{ $summary | plainify }}</p>
+      {{- end -}}
+
+      {{- $terms := $page.GetTerms "tags" -}}
+      {{- if gt (len $terms) 0 -}}
+      <ul class="relative z-20 flex flex-wrap gap-2 pt-2">
+        {{- range $terms -}}
+        <li>
+          <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+            {{ .LinkTitle }}
+          </span>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- else -}}
+      {{- with $page.Params.tags -}}
+      <ul class="flex flex-wrap gap-2 pt-2">
+        {{- range . -}}
+        <li>
+          <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+            {{ . }}
+          </span>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
+      {{- end -}}
+    </div>
+  </div>
+</article>

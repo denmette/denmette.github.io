@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build:css": "NODE_ENV=production hugo --minify",
-    "dev": "hugo server --buildFuture --disableFastRender --buildDrafts"
+    "dev": "hugo server --buildFuture --disableFastRender --buildDrafts --cleanDestinationDir"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
