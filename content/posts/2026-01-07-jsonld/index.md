@@ -3,8 +3,8 @@ title: "JSON+LD is geen SEO-truc, maar een modelleerprobleem"
 description: "JSON+LD dwingt je om expliciet na te denken over entiteiten, rollen en context. Geen snelle SEO-winst, wel een correct en toekomstvast model."
 summary: "Ik dacht dat JSON+LD draaide om zoekmachines. Het bleek vooral te gaan over verantwoordelijkheid, identiteit en nuance. Deze walkthrough laat zien waarom correcte modellering meer oplevert dan snelle optimalisatie."
 author: "Maarten"
-date: 2026-01-08
-lastmod: 2026-01-08
+date: 2026-01-07
+lastmod: 2026-01-07
 slug: "202601-jsonld-is-geen-seo-truc"
 draft: false
 tags: ["json-ld", "schema-org", "webontwikkeling"]
