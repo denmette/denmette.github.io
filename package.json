@@ -4,7 +4,8 @@
   "scripts": {
     "build": "hugo --minify && pagefind --site public",
     "build:css": "npm run build",
-    "dev": "pagefind --site public && hugo server --buildFuture --disableFastRender --buildDrafts --cleanDestinationDir"
+    "pagefind": "pagefind --site public",
+    "dev": "hugo --cleanDestinationDir --buildFuture --buildDrafts && pagefind --site public && hugo server --buildFuture --disableFastRender --buildDrafts"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
