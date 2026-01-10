@@ -7,6 +7,8 @@ locals {
   csp_script_src_allow = [
     "'self'",
     "'unsafe-inline'",
+    "'wasm-unsafe-eval'",
+    "'unsafe-eval'",
     "https://casteels.dev",
     "https://utteranc.es",
     "https://www.googletagmanager.com",
@@ -35,6 +37,7 @@ locals {
   csp_directives = [
     "default-src ${join(" ", local.csp_default_src)}",
     "script-src ${join(" ", local.csp_script_src_allow)}",
+    "script-src-elem ${join(" ", local.csp_script_src_allow)}",
     "style-src ${join(" ", local.csp_style_src_allow)}",
     "img-src ${join(" ", local.csp_img_src_allow)}",
     "frame-src ${join(" ", local.csp_frame_src_allow)}",
