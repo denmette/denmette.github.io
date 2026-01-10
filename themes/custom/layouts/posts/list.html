@@ -8,17 +8,6 @@
       {{- if not $paginator -}}
         {{- $paginator = .Paginate $posts $pageSize -}}
       {{- end -}}
-      {{- if eq $paginator.PageNumber 1 -}}
-        <section class="space-y-2">
-          <h2 class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Intro</h2>
-          <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 md:hidden">
-            Ik leer veel, deel te weinig, en probeer dat hier recht te trekken, meestal als reflectie, altijd om anderen vooruit te helpen.
-          </p>
-          <p class="hidden text-base leading-relaxed text-slate-600 dark:text-slate-300 md:block">
-            Ik leer veel, deel te weinig, en probeer dat hier recht te trekken, meestal als reflectie, altijd om anderen vooruit te helpen. Je leest hier over software engineering, Java, clean code en agile werken, aangevuld met home automation, tools zoals Obsidian en kleine how-to's die onderweg ontstaan. Af en toe duiken ook verhalen op uit JCast en projecten die ik bouw met Hugo, Home Assistant of Maven.
-          </p>
-        </section>
-      {{- end -}}
       {{- if and (eq $paginator.PageNumber 1) (gt (len $paginator.Pages) 0) -}}
         {{- $featured := index $paginator.Pages 0 -}}
         {{ partial "featured-post-card.html" (dict "page" $featured) }}

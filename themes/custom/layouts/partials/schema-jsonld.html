@@ -7,6 +7,7 @@
 {{- $siteTitle := .Site.Title | default "Site" -}}
 {{- $orgId := printf "%s#org" $siteURL -}}
 {{- $websiteId := printf "%s#website" $siteURL -}}
+{{- $blogId := printf "%s#blog" $siteURL -}}
 {{- $logoId := printf "%s#logo" $siteURL -}}
 
 {{- $logoURL := .Site.Params.avatar -}}
@@ -115,6 +116,27 @@
 -}}
 {{- $nodes = $nodes | append $website -}}
 
+{{- $siteDescription := .Site.Params.descriptionLong | default .Site.Params.description -}}
+{{- $blogNode := dict
+  "@type" "Blog"
+  "@id" $blogId
+  "name" $siteTitle
+  "url" $siteURL
+  "isPartOf" (dict "@id" $websiteId)
+  "publisher" (dict "@id" $orgId)
+-}}
+{{- if $siteDescription -}}
+  {{- $blogNode = merge $blogNode (dict "description" $siteDescription) -}}
+{{- end -}}
+{{- if $personName -}}
+  {{- $blogNode = merge $blogNode (dict "author" (dict "@id" $personId)) -}}
+{{- end -}}
+{{- $languageCode := .Site.Language.LanguageCode | default .Site.Language.Lang | default .Site.LanguageCode -}}
+{{- if $languageCode -}}
+  {{- $blogNode = merge $blogNode (dict "inLanguage" $languageCode) -}}
+{{- end -}}
+{{- $nodes = $nodes | append $blogNode -}}
+
 {{- if $personName -}}
   {{- $personNode := dict
     "@type" "Person"
@@ -147,13 +169,40 @@
   "name" $webpageName
   "isPartOf" (dict "@id" $websiteId)
 -}}
-{{- $languageCode := .Site.Language.LanguageCode | default .Site.Language.Lang | default .Site.LanguageCode -}}
 {{- if $languageCode -}}
   {{- $webpageNode = merge $webpageNode (dict "inLanguage" $languageCode) -}}
 {{- end -}}
+
+{{- $isPostList := or .IsHome (and (eq .Kind "section") (eq .Section "posts")) -}}
+{{- if $isPostList -}}
+  {{- $pageSize := 5 -}}
+  {{- $posts := where .Site.RegularPages "Section" "posts" -}}
+  {{- $paginator := .Paginate $posts $pageSize -}}
+  {{- $listPages := $paginator.Pages -}}
+  {{- if gt (len $listPages) 0 -}}
+    {{- $itemListId := printf "%s#itemlist" $pageURL -}}
+    {{- $itemListElements := slice -}}
+    {{- range $index, $page := $listPages -}}
+      {{- $itemListElements = $itemListElements | append (dict
+        "@type" "ListItem"
+        "position" (add $index 1)
+        "item" (dict "@id" $page.Permalink "name" $page.Title)
+      ) -}}
+    {{- end -}}
+    {{- $itemListNode := dict
+      "@type" "ItemList"
+      "@id" $itemListId
+      "itemListElement" $itemListElements
+      "numberOfItems" (len $listPages)
+    -}}
+    {{- $webpageNode = merge $webpageNode (dict "mainEntity" (dict "@id" $itemListId)) -}}
+    {{- $nodes = $nodes | append $itemListNode -}}
+  {{- end -}}
+{{- end -}}
+
 {{- $nodes = $nodes | append $webpageNode -}}
 
-{{- if eq .Section "posts" -}}
+{{- if and .IsPage (eq .Section "posts") -}}
   {{- $imageURL := "" -}}
   {{- with .Params.cover.image -}}
     {{- with $.Resources.GetMatch . -}}
@@ -174,6 +223,7 @@
     "headline" .Title
     "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
     "mainEntityOfPage" (dict "@id" $webpageId)
+    "isPartOf" (dict "@id" $blogId)
     "publisher" (dict "@id" $orgId)
   -}}
   {{- if $personName -}}
