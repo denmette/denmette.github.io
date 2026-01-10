@@ -9,6 +9,15 @@ import * as pagefind from "/pagefind/pagefind.js";
     return;
   }
 
+  if (
+    window.location.search.indexOf("focus=1") !== -1 ||
+    window.location.hash === "#search"
+  ) {
+    window.requestAnimationFrame(function () {
+      input.focus();
+    });
+  }
+
   var formatter = new Intl.DateTimeFormat("nl-BE", {
     day: "numeric",
     month: "long",
@@ -17,6 +26,7 @@ import * as pagefind from "/pagefind/pagefind.js";
 
   var debounceId = null;
   var activeSearch = 0;
+  var debounceDelay = 250;
 
   function setStatus(message) {
     statusEl.textContent = message;
@@ -38,6 +48,7 @@ import * as pagefind from "/pagefind/pagefind.js";
       })
       .filter(Boolean);
   }
+
 
   function formatDate(value) {
     if (!value) {
@@ -111,9 +122,27 @@ import * as pagefind from "/pagefind/pagefind.js";
     resultsEl.innerHTML = "";
   }
 
-  async function runSearch(query) {
+  function updateQueryParam(query) {
+    var params = new URLSearchParams(window.location.search);
+    if (query) {
+      params.set("q", query);
+    } else {
+      params.delete("q");
+    }
+    var next = window.location.pathname;
+    var nextQuery = params.toString();
+    if (nextQuery) {
+      next += "?" + nextQuery;
+    }
+    window.history.replaceState(null, "", next);
+  }
+
+  async function runSearch(query, fromInput) {
     var searchId = (activeSearch += 1);
     setStatus("Zoeken...");
+    if (fromInput) {
+      updateQueryParam(query);
+    }
 
     try {
       var search = await pagefind.search(query);
@@ -137,6 +166,7 @@ import * as pagefind from "/pagefind/pagefind.js";
 
       resultsEl.innerHTML = "";
       resultsEl.appendChild(fragment);
+
       setStatus(
         search.results.length +
           (search.results.length === 1 ? " resultaat" : " resultaten") +
@@ -155,6 +185,7 @@ import * as pagefind from "/pagefind/pagefind.js";
     if (!query) {
       activeSearch += 1;
       clearResults();
+      updateQueryParam("");
       return;
     }
 
@@ -163,7 +194,19 @@ import * as pagefind from "/pagefind/pagefind.js";
     }
 
     debounceId = window.setTimeout(function () {
-      runSearch(query);
-    }, 150);
+      runSearch(query, true);
+    }, debounceDelay);
   });
+
+  function initializeFromQuery() {
+    var params = new URLSearchParams(window.location.search);
+    var query = params.get("q");
+    if (!query) {
+      return;
+    }
+    input.value = query;
+    runSearch(query, false);
+  }
+
+  initializeFromQuery();
 })();

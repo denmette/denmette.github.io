@@ -114,6 +114,12 @@
   "url" $siteURL
   "publisher" (dict "@id" $orgId)
 -}}
+{{- $searchTarget := printf "%szoeken/?q={search_term_string}" $siteURL -}}
+{{- $website = merge $website (dict "potentialAction" (dict
+  "@type" "SearchAction"
+  "target" $searchTarget
+  "query-input" "required name=search_term_string"
+)) -}}
 {{- $nodes = $nodes | append $website -}}
 
 {{- $siteDescription := .Site.Params.descriptionLong | default .Site.Params.description -}}

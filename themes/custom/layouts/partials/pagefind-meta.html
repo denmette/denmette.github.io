@@ -9,4 +9,8 @@
 {{- with .Params.tags -}}
 <meta data-pagefind-meta="tags:{{ delimit . ", " }}">
 {{- end -}}
+<meta data-pagefind-meta="kind:{{ .Kind }}">
+{{- with .Section -}}
+<meta data-pagefind-meta="section:{{ . }}">
+{{- end -}}
 <meta data-pagefind-meta="title:{{ .Title }}">
