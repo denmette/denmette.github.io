@@ -60,10 +60,14 @@ Use deterministic @id patterns based on the canonical domain and canonical path.
 
 - Organization:
     - `https://{domain}/#org`
+- Person (for personal sites or individual authors):
+    - `https://{domain}/#person` (or another stable slug-based ID)
 - Website:
     - `https://{domain}/#website`
 - Logo:
     - `https://{domain}/#logo`
+- Blog (when the site is a blog or has a primary blog section):
+    - `https://{domain}/#blog`
 - WebPage:
     - `https://{domain}{path}/#webpage`
 - Primary entity (choose by type):
@@ -95,16 +99,21 @@ Recommended pattern uses `@graph`:
     - absolute URLs
     - stable @id values
 
-Include:
-- Organization:
+- Organization or Person:
     - name, url
-    - logo (ImageObject) if available
+    - logo/image (ImageObject) if available
     - sameAs (official social profiles) only if verified
 - WebSite:
-    - url, name, publisher -> Organization
+    - url, name, publisher -> Organization/Person
 - WebPage:
     - url, name
     - isPartOf -> WebSite
+
+Optional when relevant:
+- Blog:
+    - url, name, isPartOf -> WebSite, publisher -> Organization/Person
+- Person (site owner/author):
+    - name, url, image, sameAs
 
 ---
 
@@ -113,7 +122,8 @@ You must choose exactly one primary entity type per page based on page intent.
 
 ### 5.1 Common page intents and types
 - Home page:
-    - Primary focus is the site itself: use WebPage as main, plus Organization and WebSite
+    - Use WebPage as main
+    - If the home page is a post feed/listing, use CollectionPage and optionally ItemList
 - Blog post:
     - Use `BlogPosting` (or `Article` if not a blog)
 - News post:
@@ -138,7 +148,7 @@ Link the page and primary entity using one of these patterns:
 - On the primary entity: `mainEntityOfPage` -> WebPage @id or URL
 - On WebPage: `mainEntity` -> primary entity @id
 
-Choose one approach and keep it consistent across the site.
+Choose one approach and keep it consistent across the site. If you include both, ensure they are consistent and point at each other.
 
 ---
 
@@ -157,6 +167,8 @@ Minimum:
 Recommended:
 - publisher -> Organization
 - description (only if it matches visible excerpt/summary)
+- url (canonical URL)
+- inLanguage (when known)
 
 ### 6.2 Product + Offer
 Product minimum:
