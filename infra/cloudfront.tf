@@ -14,6 +14,14 @@ locals {
     "https://www.googletagmanager.com",
     "https://www.google-analytics.com"
   ]
+  csp_script_src_elem_allow = [
+    "'self'",
+    "'unsafe-inline'",
+    "https://casteels.dev",
+    "https://utteranc.es",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com"
+  ]
   csp_style_src_allow = [
     "'self'",
     "'unsafe-inline'",
@@ -48,7 +56,7 @@ locals {
   csp_directives = [
     "default-src ${join(" ", local.csp_default_src)}",
     "script-src ${join(" ", local.csp_script_src_allow)}",
-    "script-src-elem ${join(" ", local.csp_script_src_allow)}",
+    "script-src-elem ${join(" ", local.csp_script_src_elem_allow)}",
     "style-src ${join(" ", local.csp_style_src_allow)}",
     "font-src ${join(" ", local.csp_font_src_allow)}",
     "img-src ${join(" ", local.csp_img_src_allow)}",
