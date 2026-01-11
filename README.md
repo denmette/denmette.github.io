@@ -55,7 +55,7 @@ terraform -chdir=infra apply
 Notes:
 - Backend state is stored in `s3://casteels-dev-terraform-state-bucket/hugo-site/terraform.tfstate`.
 - AWS credentials are required for `eu-west-1` and `us-east-1`.
-- CSP allowlists are defined in `infra/cloudfront.tf` (fonts, analytics, comments, etc.).
+- CSP allowlists are defined in `infra/cloudfront.tf` (fonts, analytics, comments, etc.). If a browser reports CSP violations, add the required domains to the relevant `csp_*_allow` list.
 
 ## Comments
 Comments are handled via `utteranc.es` linked to `denmette/denmette.github.io` (see `hugo.toml`).

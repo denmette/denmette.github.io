@@ -27,7 +27,9 @@ locals {
   csp_img_src_allow = [
     "'self'",
     "https://casteels.dev",
+    "https://www.googletagmanager.com",
     "https://www.google-analytics.com",
+    "https://stats.g.doubleclick.net",
     "data:"
   ]
   csp_frame_src_allow = [
@@ -37,7 +39,11 @@ locals {
   csp_connect_src_allow = [
     "'self'",
     "https://api.github.com",
-    "https://www.google-analytics.com"
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://region1.google-analytics.com",
+    "https://region2.google-analytics.com",
+    "https://stats.g.doubleclick.net"
   ]
   csp_directives = [
     "default-src ${join(" ", local.csp_default_src)}",
