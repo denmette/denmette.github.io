@@ -17,7 +17,12 @@ locals {
   csp_style_src_allow = [
     "'self'",
     "'unsafe-inline'",
-    "https://casteels.dev"
+    "https://casteels.dev",
+    "https://fonts.googleapis.com"
+  ]
+  csp_font_src_allow = [
+    "'self'",
+    "https://fonts.gstatic.com"
   ]
   csp_img_src_allow = [
     "'self'",
@@ -39,6 +44,7 @@ locals {
     "script-src ${join(" ", local.csp_script_src_allow)}",
     "script-src-elem ${join(" ", local.csp_script_src_allow)}",
     "style-src ${join(" ", local.csp_style_src_allow)}",
+    "font-src ${join(" ", local.csp_font_src_allow)}",
     "img-src ${join(" ", local.csp_img_src_allow)}",
     "frame-src ${join(" ", local.csp_frame_src_allow)}",
     "connect-src ${join(" ", local.csp_connect_src_allow)}"
