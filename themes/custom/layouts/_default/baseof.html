@@ -4,10 +4,11 @@
     {{ partial "head.html" . }}
     {{ block "head" . }}{{ end }}
   </head>
-  <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100" data-search-url="{{ "/zoeken/" | relURL }}"{{ if not (and .IsPage (eq .Section "posts")) }} data-pagefind-ignore{{ end }}>
+  {{- $isPostPage := and .IsPage (eq .Section "posts") -}}
+  <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100" data-search-url="{{ "/zoeken/" | relURL }}"{{ if not $isPostPage }} data-pagefind-ignore{{ end }}>
     <a class="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:left-6 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded focus-visible:bg-white focus-visible:px-3 focus-visible:py-2 focus-visible:text-sm focus-visible:font-semibold focus-visible:text-slate-900 focus-visible:shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:focus-visible:bg-slate-900 dark:focus-visible:text-slate-100 dark:focus-visible:outline-slate-100" href="#main">Ga naar inhoud</a>
     {{ partial "header.html" . }}
-    <main id="main" class="mx-auto max-w-3xl px-6 py-8"{{ if and .IsPage (eq .Section "posts") }} data-pagefind-body{{ end }}>
+    <main id="main" class="mx-auto max-w-3xl px-6 py-8"{{ if $isPostPage }} data-pagefind-body{{ end }}>
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
@@ -15,5 +16,6 @@
     {{ partial "cookie-preferences.html" . }}
     <script src="/js/cookie-consent.js" defer></script>
     <script src="/js/search-shortcut.js" defer></script>
+    <script src="/js/mobile-nav.js" defer></script>
   </body>
 </html>
