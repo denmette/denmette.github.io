@@ -21,9 +21,14 @@ npm run dev
 ```
 
 What it does:
+- Builds the CSS once, then keeps Tailwind/PostCSS watching for changes
 - Builds the site (including drafts and future posts)
 - Runs Pagefind on `public/`
 - Starts the Hugo dev server
+
+Important:
+- `hugo server` alone does not rebuild `static/css/main.css`.
+- For template or Tailwind changes, use `npm run dev` or run `npm run build:css` manually.
 
 ## Build
 ```sh

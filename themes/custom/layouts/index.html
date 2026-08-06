@@ -1,21 +1,33 @@
+{{ define "before_main" }}
+  <section class="sr-only" aria-hidden="true">
+    <h1>Maarten's Blog</h1>
+    <p>
+      Persoonlijke Nederlandstalige blog van Maarten Casteels met verhalen, reflecties en praktische stukken over software, samenwerking, home automation en tools die onderweg blijven hangen.
+    </p>
+    <p>
+      Deze site bevat ook een publiek llms.txt-bestand en gestructureerde metadata voor zoekmachines en AI-systemen.
+    </p>
+  </section>
+{{ end }}
+
 {{ define "main" }}
+  {{- $posts := where .Site.RegularPages "Section" "posts" -}}
   <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 text-slate-800 dark:text-slate-100">
     <h1 class="hidden">Laatste posts</h1>
     <div class="flex flex-col gap-6">
       {{- $pageSize := 5 -}}
-      {{- $posts := where .Site.RegularPages "Section" "posts" -}}
       {{- $paginator := .Paginator -}}
       {{- if not $paginator -}}
         {{- $paginator = .Paginate $posts $pageSize -}}
       {{- end -}}
       {{- if eq $paginator.PageNumber 1 -}}
         <section class="space-y-2">
-          <h2 class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Intro</h2>
+          <h2 class="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">Nieuwste stukken</h2>
           <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 md:hidden">
-            Ik leer veel, deel te weinig, en probeer dat hier recht te trekken, meestal als reflectie, altijd om anderen vooruit te helpen.
+            Recente artikels, meestal vanuit iets dat bleef hangen en dus opgeschreven moest worden.
           </p>
           <p class="hidden text-base leading-relaxed text-slate-600 dark:text-slate-300 md:block">
-            Ik leer veel, deel te weinig, en probeer dat hier recht te trekken, meestal als reflectie, altijd om anderen vooruit te helpen. Je leest hier over software engineering, Java, clean code en agile werken, aangevuld met home automation, tools zoals Obsidian en kleine how-to's die onderweg ontstaan. Af en toe duiken ook verhalen op uit JCast en projecten die ik bouw met Hugo, Home Assistant of Maven.
+            Recente artikels, meestal ontstaan uit iets dat bleef hangen en dus opgeschreven moest worden. Soms praktisch, soms eerder reflectie, maar wel altijd met de bedoeling om er achteraf nog iets aan te hebben.
           </p>
         </section>
       {{- end -}}

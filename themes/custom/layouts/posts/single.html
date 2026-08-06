@@ -27,15 +27,19 @@
 
     <header class="space-y-2">
         <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
-        {{- with .Date -}}
-        <p class="text-sm text-slate-500 dark:text-slate-400">
-            Gepubliceerd op {{ partial "date.html" (dict "date" . "format" ":date_long") }}{{ if and $.Lastmod (gt (sub $.Lastmod.Unix $.Date.Unix) 86400) }} · bijgewerkt {{ partial "date.html" (dict "date" $.Lastmod "format" ":date_long") }}{{ end }}
-        </p>
-        {{- end -}}
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500 dark:text-slate-400">
+          {{- with .Date -}}
+            <p>
+              Gepubliceerd op {{ partial "date.html" (dict "date" . "format" ":date_long") }}{{ if and $.Lastmod (gt (sub $.Lastmod.Unix $.Date.Unix) 86400) }} · bijgewerkt {{ partial "date.html" (dict "date" $.Lastmod "format" ":date_long") }}{{ end }}
+            </p>
+          {{- end -}}
+          <p>{{ .ReadingTime }} min leestijd</p>
+          <p>{{ .WordCount }} woorden</p>
+        </div>
     </header>
 
     <div class="space-y-4 text-slate-800 dark:text-slate-100">
-        <div class="prose prose-slate prose-a:text-moss prose-a:no-underline prose-a:underline-offset-4 hover:prose-a:text-moss hover:prose-a:underline dark:prose-invert dark:prose-a:text-mustard dark:hover:prose-a:text-mustard dark:hover:prose-a:underline">
+        <div class="prose prose-slate prose-a:text-moss prose-a:no-underline prose-a:underline-offset-4 hover:prose-a:text-moss hover:prose-a:underline dark:prose-invert dark:prose-a:text-mustard dark:hover:prose-a:text-mustard dark:hover:prose-a:underline max-w-none">
             {{ .Content }}
         </div>
 

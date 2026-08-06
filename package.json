@@ -4,15 +4,16 @@
   "scripts": {
     "build": "npm run build:css && hugo --minify && pagefind --site public",
     "build:css": "NODE_OPTIONS='--disable-warning=DEP0205' postcss themes/custom/assets/css/main.css -o static/css/main.css",
+    "build:css:watch": "NODE_OPTIONS='--disable-warning=DEP0205' postcss themes/custom/assets/css/main.css -o static/css/main.css --watch",
     "pagefind": "pagefind --site public",
-    "dev": "npm run build:css && hugo --cleanDestinationDir --buildFuture --buildDrafts && pagefind --site public && hugo server --buildFuture --disableFastRender --buildDrafts"
+    "dev": "npm run build:css && hugo --cleanDestinationDir --buildFuture --buildDrafts && pagefind --site public && sh -c 'npm run build:css:watch & trap \"kill $!\" EXIT INT TERM; hugo server --buildFuture --disableFastRender --buildDrafts'"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
     "pagefind": "^1.4.0",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.3.3"
   }
 }

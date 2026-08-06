@@ -11,3 +11,4 @@ Onderwerpen die nog openstaan voor latere posts.
 - [ ] Mijn nieuwe rol als People Manager en hoe die de voorbije periode veranderd is
 - [ ] People Manager van People Managers zijn: wat daar anders aan is dan individuele begeleiding
 - [ ] Hoe navigeer je in een moeilijke omgeving zonder jezelf of je team kwijt te raken
+- [ ] Training geven in hybride, online en klassikale context: wat fijn is, wat werkt, wat niet werkt en welke vorm wanneer het best landt

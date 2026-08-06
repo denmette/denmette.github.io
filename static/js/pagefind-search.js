@@ -4,8 +4,9 @@ import * as pagefind from "/pagefind/pagefind.js";
   var input = document.querySelector("#search-input");
   var resultsEl = document.querySelector("#search-results");
   var statusEl = document.querySelector("#search-status");
+  var searchRegion = document.querySelector("[data-search-region]");
 
-  if (!input || !resultsEl || !statusEl) {
+  if (!input || !resultsEl || !statusEl || !searchRegion) {
     return;
   }
 
@@ -32,9 +33,14 @@ import * as pagefind from "/pagefind/pagefind.js";
     statusEl.textContent = message;
   }
 
+  function setBusy(value) {
+    searchRegion.setAttribute("aria-busy", value ? "true" : "false");
+  }
+
   function clearResults() {
     resultsEl.innerHTML = "";
     setStatus("");
+    setBusy(false);
   }
 
   function parseTags(raw) {
@@ -140,6 +146,7 @@ import * as pagefind from "/pagefind/pagefind.js";
   async function runSearch(query, fromInput) {
     var searchId = (activeSearch += 1);
     setStatus("Zoeken...");
+    setBusy(true);
     if (fromInput) {
       updateQueryParam(query);
     }
@@ -152,6 +159,7 @@ import * as pagefind from "/pagefind/pagefind.js";
 
       if (!search.results.length) {
         renderEmpty(query);
+        setBusy(false);
         return;
       }
 
@@ -174,8 +182,10 @@ import * as pagefind from "/pagefind/pagefind.js";
           query +
           '".'
       );
+      setBusy(false);
     } catch (error) {
       setStatus("Zoeken mislukt, probeer opnieuw.");
+      setBusy(false);
     }
   }
 

@@ -238,6 +238,11 @@
   {{- if $postDescription -}}
     {{- $blogPosting = merge $blogPosting (dict "description" ($postDescription | plainify | htmlUnescape)) -}}
   {{- end -}}
+  {{- $blogPosting = merge $blogPosting (dict
+    "timeRequired" (printf "PT%dM" .ReadingTime)
+    "wordCount" .WordCount
+    "inLanguage" ($languageCode | default "nl-BE")
+  ) -}}
   {{- with .Params.tags -}}
     {{- if gt (len .) 0 -}}
       {{- $blogPosting = merge $blogPosting (dict "keywords" .) -}}

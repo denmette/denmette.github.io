@@ -5,10 +5,10 @@ theme = "custom"
 enableRobotsTXT = true
 
 [params]
-description = "Inzichten over home automation, Java en agile werken. Praktische tutorials en opinies in het Nederlands."
-descriptionLong = "Nederlandstalige blog over home automation, Java en agile werken, met heldere how-to's, praktijkvoorbeelden en meningen voor engineers die graag blijven leren."
+description = "Persoonlijke Nederlandstalige blog over software, samenwerking en dingen die het opschrijven waard zijn."
+descriptionLong = "Persoonlijke Nederlandstalige blog van Maarten Casteels, met verhalen, reflecties en praktische stukken over software, samenwerking, home automation en tools die onderweg blijven hangen."
 keywords = ["Maarten Casteels", "home automation", "domotica", "java", "agile", "software engineering"]
-tagline = "Eerlijke inzichten over software en automatisatie"
+tagline = "Persoonlijke notities over software en wat blijft hangen"
 author = "Maarten Casteels"
 avatar = "/maarten.webp"
 

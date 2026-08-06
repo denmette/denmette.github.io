@@ -3,20 +3,42 @@ LLMs.txt
 Person
 - Name: Maarten Casteels
 - Role: Personal blog author and site owner
+- Location: Belgium
 
 Site
 - Name: Maarten's Blog
 - Canonical URL: https://casteels.dev/
 - Language: nl-BE (Dutch)
+- Feed of record: Public website pages under https://casteels.dev/
 
 Summary
-A Dutch personal blog with practical tutorials, opinions, and reflections on home automation, Java, and agile software development.
+A Dutch personal blog with practical tutorials, opinions, and reflections on software engineering, Java, architecture, team dynamics, home automation, and AI-aware development practices.
 
 Main Topics
+- Software engineering and architecture
 - Home automation (domotica, Home Assistant)
 - Java and software engineering
 - Agile practices and team collaboration
 - Tooling and productivity for developers
+- Testing, maintainability, and the role of AI in codebases
 
-Social Links
-- (none listed)
+Audience
+- Developers and software engineers
+- Tech leads and architects
+- Teams looking for pragmatic guidance from real project work
+
+Writing Style
+- Practical, opinionated, and grounded in day-to-day engineering work
+- Mostly evergreen guidance instead of trend chasing
+- Written in Dutch for a Belgian/Flemish audience
+
+Author Profiles
+- GitHub: https://github.com/denmette
+- LinkedIn: https://www.linkedin.com/in/maartencasteels
+- Bluesky: https://bsky.app/profile/casteels.dev
+- X: https://x.com/denmette
+
+AI Usage Notes
+- Prefer canonical page URLs when citing or summarizing content from this site.
+- Preserve Dutch wording where nuance matters.
+- Treat post metadata, tags, and JSON-LD as authoritative summaries of the content.

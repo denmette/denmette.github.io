@@ -1,143 +1,37 @@
 ---
 title: "Over mij"
 slug: "over-mij"
+description: "Maak kennis met Maarten Casteels: tech lead, Java architect, consultant, schrijver en co-host van JCast."
 ---
 
-<section class="flex flex-col gap-10">
-  <!-- Header -->
-  <header class="flex justify-center">
-    <div class="flex w-full max-w-3xl flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left">
-      <img
-              src="avatar.webp"
-              alt="Portret van Maarten Casteels"
-              class="h-28 w-28 shrink-0 rounded-full border border-slate-200 object-cover shadow-sm dark:border-slate-800"
-              loading="lazy"
-              decoding="async"
-      />
+## Over mij
 
-      <div class="flex flex-col items-center gap-4 sm:items-start">
-        <div class="space-y-2">
-          <h1 class="text-3xl font-semibold text-slate-900 dark:text-slate-100">Maarten Casteels</h1>
-          <p class="text-base text-slate-600 dark:text-slate-300">Tech lead &middot; Java architect &middot; Consultant &middot; Co-Host JCast</p>
-        </div>
+Ik ben Maarten. Ik werk meestal als tech lead of Java architect en haal mijn voldoening uit mensen vooruit helpen. Richting geven, keuzes expliciet maken en teams helpen leveren met vertrouwen, dat is waar ik energie van krijg.
 
-        <nav aria-label="Profielen" class="flex flex-wrap justify-center gap-3 pt-1 sm:justify-start">
-          <a
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 motion-reduce:transition-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-500 dark:focus-visible:outline-slate-100"
-                  href="https://github.com/denmette"
-                  target="_blank"
-                  rel="noopener"
-          >
-            {{< icon name="github" class="h-5 w-5" size="24" >}}
-            <span>GitHub</span>
-          </a>
+Ik beweeg mij vlot tussen code, architectuur en samenwerking. Soms betekent dat diep in een bestaande codebase duiken, soms net afstand nemen om helderheid te brengen. Altijd met oog voor duurzaamheid, leesbaarheid en intentie.
 
-          <a
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 motion-reduce:transition-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-500 dark:focus-visible:outline-slate-100"
-                  href="https://www.linkedin.com/in/maartencasteels"
-                  target="_blank"
-                  rel="noopener"
-          >
-            {{< icon name="linkedin" class="h-5 w-5" size="24" >}}
-            <span>LinkedIn</span>
-          </a>
+## Hoe ik naar software kijk
 
-          <a
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 motion-reduce:transition-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-500 dark:focus-visible:outline-slate-100"
-                  href="https://bsky.app/profile/casteels.dev"
-                  target="_blank"
-                  rel="noopener"
-          >
-            {{< icon name="bluesky" class="h-5 w-5" size="24" >}}
-            <span>Bluesky</span>
-          </a>
+Voor mij draait software niet om code schrijven, maar om intentie vastleggen.
 
-          <a
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 motion-reduce:transition-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-500 dark:focus-visible:outline-slate-100"
-                  href="https://x.com/denmette"
-                  target="_blank"
-                  rel="noopener"
-          >
-            {{< icon name="x" class="h-5 w-5" size="24" >}}
-            <span>X</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-  </header>
+Testen zijn daarbij essentieel. Niet om implementaties te bewijzen, wel om duidelijk te maken wat de bedoeling is. Zeker nu AI steeds vaker code genereert, zie ik het risico dat testen als minder belangrijk worden gezien. Daar ga ik niet in mee. Zonder testen verdwijnt de context, en die rekening krijg je later gepresenteerd.
 
-  <!-- Content -->
-  <section class="mx-auto w-full max-w-3xl space-y-8 text-slate-700 dark:text-slate-200">
-    <section class="space-y-3">
-      <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Over mij</h2>
-      <p class="text-base leading-relaxed">
-        Ik ben Maarten. Ik werk meestal als tech lead of Java architect en haal mijn voldoening uit mensen vooruit helpen.
-        Richting geven, keuzes expliciet maken en teams helpen leveren met vertrouwen, dat is waar ik energie van krijg.
-      </p>
-      <p class="text-base leading-relaxed">
-        Ik beweeg mij vlot tussen code, architectuur en samenwerking. Soms betekent dat diep in een bestaande codebase duiken,
-        soms net afstand nemen om helderheid te brengen. Altijd met oog voor duurzaamheid, leesbaarheid en intentie.
-      </p>
-    </section>
+Ik geloof in heldere communicatie, ook wanneer de oplossing nog niet vastligt. Dat vraagt soms navigeren in complexe contexten waarin niet alles meteen uitgesproken kan worden. Ik leer daarin bewust scherp blijven zonder hard te worden, en helder zonder het team te verliezen.
 
-    <section class="space-y-3">
-      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Hoe ik naar software kijk</h3>
-      <p class="text-base leading-relaxed">
-        Voor mij draait software niet om code schrijven, maar om intentie vastleggen.
-      </p>
-      <p class="text-base leading-relaxed">
-        Testen zijn daarbij essentieel. Niet om implementaties te bewijzen, wel om duidelijk te maken wat de bedoeling is.
-        Zeker nu AI steeds vaker code genereert, zie ik het risico dat testen als minder belangrijk worden gezien.
-        Daar ga ik niet in mee. Zonder testen verdwijnt de context, en die rekening krijg je later gepresenteerd.
-      </p>
-      <p class="text-base leading-relaxed">
-        Ik geloof in heldere communicatie, ook wanneer de oplossing nog niet vastligt. Dat vraagt soms navigeren in complexe
-        contexten waarin niet alles meteen uitgesproken kan worden. Ik leer daarin bewust scherp blijven zonder hard te worden,
-        en helder zonder het team te verliezen.
-      </p>
-    </section>
+## Werk
 
-    <section class="space-y-3">
-      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Werk</h3>
-      <p class="text-base leading-relaxed">
-        Ik werk als consultant bij Sopra Steria. Bij klanten help ik technische keuzes maken en verbeter ik systemen die vaak al jaren meegaan.
-        Daarnaast neem ik ook people management op mij: carrières begeleiden, groeikansen zien en mensen ondersteunen via coaching en training.
-      </p>
-      <p class="text-base leading-relaxed">
-        Hoewel ik graag nieuwe dingen bouw, haal ik mijn grootste voldoening uit bestaande applicaties beter maken.
-        Complexiteit terugdringen, code leesbaar maken en stap voor stap vertrouwen opbouwen. Niet dogmatisch, wel pragmatisch,
-        afgestemd op de realiteit van het team.
-      </p>
-    </section>
+Ik werk als consultant bij Sopra Steria. Bij klanten help ik technische keuzes maken en verbeter ik systemen die vaak al jaren meegaan. Daarnaast neem ik ook people management op mij: carrières begeleiden, groeikansen zien en mensen ondersteunen via coaching en training.
 
-    <section class="space-y-3">
-      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Deze blog</h3>
-      <p class="text-base leading-relaxed">
-        Deze blog is mijn plek om te delen wat ik leer en te weinig hardop zeg. Meestal informatief, soms met een duidelijke mening,
-        altijd vanuit de praktijk. Als iemand hier iets vindt dat helpt bij een beslissing, een refactor of een gesprek, dan is een post geslaagd.
-      </p>
-      <p class="text-base leading-relaxed">
-        Naast deze blog ben ik ook co-host van de podcast
-        <a
-                class="text-moss underline-offset-4 transition hover:text-moss hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:text-mustard dark:hover:text-mustard dark:focus-visible:ring-moss/70 dark:focus-visible:ring-offset-slate-950"
-                href="https://jcast.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-        >JCast</a>,
-        waar Java vaak het vertrekpunt is en de rest van softwareontwikkeling de speeltuin.
-      </p>
-    </section>
+Hoewel ik graag nieuwe dingen bouw, haal ik mijn grootste voldoening uit bestaande applicaties beter maken. Complexiteit terugdringen, code leesbaar maken en stap voor stap vertrouwen opbouwen. Niet dogmatisch, wel pragmatisch, afgestemd op de realiteit van het team.
 
-    <section class="space-y-3">
-      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Jeugdwerk en thuis</h3>
-      <p class="text-base leading-relaxed">
-        Naast mijn werk engageer ik mij in het jeugdwerk als instructeur bij Top Vakantie VZW. Ik leid startende animatoren op
-        en neem verantwoordelijkheid als ploeginstructeur of cursusleider. Het vraagt veel, maar het geeft minstens evenveel terug.
-      </p>
-      <p class="text-base leading-relaxed">
-        Thuis ben ik papa van Toke en Livi. Zij houden mijn kompas scherp. Sinds covid hou ik mijn leven bewuster eenvoudiger,
-        met minder drukte en meer rust, zodat er ruimte blijft om aanwezig te zijn.
-      </p>
-    </section>
-  </section>
-</section>
+## Deze blog
+
+Deze blog is mijn plek om te delen wat ik leer en te weinig hardop zeg. Meestal informatief, soms met een duidelijke mening, altijd vanuit de praktijk. Als iemand hier iets vindt dat helpt bij een beslissing, een refactor of een gesprek, dan is een post geslaagd.
+
+Naast deze blog ben ik ook co-host van [JCast](https://jcast.dev/), waar Java vaak het vertrekpunt is en de rest van softwareontwikkeling de speeltuin.
+
+## Jeugdwerk en thuis
+
+Naast mijn werk engageer ik mij in het jeugdwerk als instructeur bij Top Vakantie VZW. Ik leid startende animatoren op en neem verantwoordelijkheid als ploeginstructeur of cursusleider. Het vraagt veel, maar het geeft minstens evenveel terug.
+
+Thuis ben ik papa van Toke en Livi. Zij houden mijn kompas scherp. Sinds covid hou ik mijn leven bewuster eenvoudiger, met minder drukte en meer rust, zodat er ruimte blijft om aanwezig te zijn.

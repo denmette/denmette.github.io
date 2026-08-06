@@ -6,6 +6,10 @@
 {{- with .Date -}}
 <meta data-pagefind-meta="date:{{ . | time.Format "2006-01-02" }}">
 {{- end -}}
+{{- if and .IsPage (eq .Section "posts") -}}
+<meta data-pagefind-meta="reading_time:{{ .ReadingTime }}">
+<meta data-pagefind-meta="word_count:{{ .WordCount }}">
+{{- end -}}
 {{- with .Params.tags -}}
 <meta data-pagefind-meta="tags:{{ delimit . ", " }}">
 {{- end -}}
