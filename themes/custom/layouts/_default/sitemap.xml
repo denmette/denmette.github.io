@@ -1,4 +1,4 @@
-{{- $pages := where .Site.AllPages "Sitemap.Disable" "ne" true -}}
+{{- $pages := where .Site.Pages "Sitemap.Disable" "ne" true -}}
 {{- $pages = where $pages "Kind" "ne" "sitemap" -}}
 {{- $pages = $pages | union (slice .Site.Home) -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}

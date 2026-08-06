@@ -137,7 +137,7 @@
 {{- if $personName -}}
   {{- $blogNode = merge $blogNode (dict "author" (dict "@id" $personId)) -}}
 {{- end -}}
-{{- $languageCode := .Site.Language.LanguageCode | default .Site.Language.Lang | default .Site.LanguageCode -}}
+{{- $languageCode := .Site.Language.Locale | default .Site.Language.Lang -}}
 {{- if $languageCode -}}
   {{- $blogNode = merge $blogNode (dict "inLanguage" $languageCode) -}}
 {{- end -}}

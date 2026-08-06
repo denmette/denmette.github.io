@@ -47,8 +47,8 @@ defaultContentLanguageInSubdir = false
 
 [languages]
   [languages.nl]
-    languageCode = "nl-BE"
-    languageName = "Nederlands"
+    locale = "nl-BE"
+    label = "Nederlands"
     weight = 1
 
 [pagination]
@@ -69,6 +69,12 @@ noClasses = false
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[security.node.permissions]
+allowAddons = ['tailwindcss', 'lightningcss']
+allowChildProcess = ['tailwindcss']
+allowRead = ['.']
+allowWorker = ['tailwindcss']
 
 [outputs]
 home = ["HTML", "SITEMAP"]

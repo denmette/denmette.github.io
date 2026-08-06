@@ -38,6 +38,11 @@ Outputs the site to `public/` and generates the Pagefind index.
 - `static/` - static assets copied to the site
 - `resources/` - Hugo pipeline cache/artifacts
 
+### Post convention
+- Blog posts under `content/posts/...` should use `cover.webp` as the hero image.
+- Preferred cover size is `2400x1260`.
+- New posts created with `hugo new posts/...` use `archetypes/posts.md`, which includes the standard cover front matter.
+
 ## Infrastructure
 Terraform lives in `infra/` and manages:
 - S3 buckets: `casteels.dev` and `www.casteels.dev`

@@ -114,9 +114,4 @@
   })();
 </script>
 
-{{ $css := resources.Get "css/main.css" | css.PostCSS }}
-{{ if hugo.IsProduction }}
-  {{ $css = $css | minify }}
-{{ end }}
-{{ $css = $css | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }} />
+<link rel="stylesheet" href="/css/main.css" />
