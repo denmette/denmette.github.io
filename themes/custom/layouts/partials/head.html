@@ -48,7 +48,8 @@
 {{- if $keywordsValue -}}
 <meta name="keywords" content="{{ $keywordsValue }}">
 {{- end -}}
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+{{- $robots := .Params.robots | default "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+<meta name="robots" content="{{ $robots }}">
 <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="{{ .Permalink }}">

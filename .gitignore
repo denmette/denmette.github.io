@@ -1,4 +1,6 @@
 scripts
+!scripts/
+!scripts/indexnow-submit.mjs
 
 node_modules
 

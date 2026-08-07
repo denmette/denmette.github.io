@@ -36,6 +36,12 @@ npm run build
 ```
 Outputs the site to `public/` and generates the Pagefind index.
 
+To preview the IndexNow payload from the current sitemap:
+```sh
+npm run build
+npm run indexnow:dry-run
+```
+
 ## Content structure
 - `content/` - posts and pages
 - `layouts/` - custom layouts/shortcodes
@@ -66,6 +72,11 @@ Notes:
 - Backend state is stored in `s3://casteels-dev-terraform-state-bucket/hugo-site/terraform.tfstate`.
 - AWS credentials are required for `eu-west-1` and `us-east-1`.
 - CSP allowlists are defined in `infra/cloudfront.tf` (fonts, analytics, comments, etc.). If a browser reports CSP violations, add the required domains to the relevant `csp_*_allow` list.
+
+## IndexNow
+- The site hosts its IndexNow key at `/a9396471fd0ec31f789c1992bb07f313.txt`.
+- The deploy workflow compares the live sitemap with the freshly built `public/sitemap.xml`.
+- After the S3 sync, it submits added, updated, and removed URLs to the IndexNow global endpoint.
 
 ## Comments
 Comments are handled via `utteranc.es` linked to `denmette/denmette.github.io` (see `hugo.toml`).

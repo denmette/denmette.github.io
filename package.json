@@ -6,7 +6,8 @@
     "build:css": "NODE_OPTIONS='--disable-warning=DEP0205' postcss themes/custom/assets/css/main.css -o static/css/main.css",
     "build:css:watch": "NODE_OPTIONS='--disable-warning=DEP0205' postcss themes/custom/assets/css/main.css -o static/css/main.css --watch",
     "pagefind": "pagefind --site public",
-    "dev": "npm run build:css && hugo --cleanDestinationDir --buildFuture --buildDrafts && pagefind --site public && sh -c 'npm run build:css:watch & trap \"kill $!\" EXIT INT TERM; hugo server --buildFuture --disableFastRender --buildDrafts'"
+    "dev": "npm run build:css && hugo --cleanDestinationDir --buildFuture --buildDrafts && pagefind --site public && sh -c 'npm run build:css:watch & trap \"kill $!\" EXIT INT TERM; hugo server --buildFuture --disableFastRender --buildDrafts'",
+    "indexnow:dry-run": "node scripts/indexnow-submit.mjs --site-url https://casteels.dev --current-sitemap public/sitemap.xml --key-file public/a9396471fd0ec31f789c1992bb07f313.txt --dry-run"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

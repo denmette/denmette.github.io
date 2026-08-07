@@ -43,6 +43,9 @@ jobs:
       - name: Build Site
         run: npm run build
 
+      - name: Capture previous sitemap
+        run: curl -fsS https://casteels.dev/sitemap.xml -o /tmp/previous-sitemap.xml || true
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
         with:
@@ -52,3 +55,6 @@ jobs:
 
       - name: Sync to S3
         run: aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --delete
+
+      - name: Submit changed URLs to IndexNow
+        run: node scripts/indexnow-submit.mjs --site-url https://casteels.dev --previous-sitemap /tmp/previous-sitemap.xml --current-sitemap public/sitemap.xml --key-file public/a9396471fd0ec31f789c1992bb07f313.txt

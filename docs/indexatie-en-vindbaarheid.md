@@ -15,6 +15,7 @@ Deze zaken zitten vandaag al in de site:
 
 - XML sitemap via Hugo
   Verwachte URL: `https://casteels.dev/sitemap.xml`
+  Opmerking: utility-pagina's zoals interne zoekresultaten horen hier niet in thuis.
 - `robots.txt` via `enableRobotsTXT = true` in [hugo.toml](/Users/macs/Coding/Personal/denmette.github.io/hugo.toml)
 - Canonical tags in [themes/custom/layouts/partials/head.html](/Users/macs/Coding/Personal/denmette.github.io/themes/custom/layouts/partials/head.html)
 - JSON-LD / structured data in [themes/custom/layouts/partials/schema-jsonld.html](/Users/macs/Coding/Personal/denmette.github.io/themes/custom/layouts/partials/schema-jsonld.html)
@@ -91,19 +92,19 @@ Voor een statische blog is **IndexNow** waarschijnlijk de beste volgende stap na
 - Documentatie:
   [IndexNow documentation](https://www.indexnow.org/documentation?hl=en)
 
-### Nog te implementeren in deze repo
+### Wat nu in deze repo zit
 
-- Een IndexNow key genereren
-- Het key-bestand in `static/` publiceren
-- Een eenvoudige deploy-stap toevoegen die gewijzigde URLs pingt na publicatie
+- Een IndexNow key file op rootniveau van de site
+- Een deploy-stap die de vorige live sitemap vergelijkt met de nieuwe build
+- Een automatische submit van toegevoegde, gewijzigde en verwijderde URLs naar het IndexNow endpoint
 
 ### Aanbevolen aanpak
 
 Hou dit klein:
 
-1. Key genereren
-2. Key-file publiceren
-3. Na deploy een script laten sturen met de gewijzigde post-URLs
+1. Key file op root publiceren
+2. Na deploy oude en nieuwe sitemap vergelijken
+3. Alleen de gewijzigde URLs submitten
 
 Voor deze blog is dat voldoende. Niet meteen over-engineeren.
 
@@ -127,6 +128,7 @@ Wat belangrijker is:
 - `llms.txt` behouden
 - Geen zware client-side rendering introduceren voor kerncontent
 - Controleren dat `robots.txt` geen accidenten bevat
+- Interne zoekpagina's op `noindex,follow` zetten en uit de sitemap houden
 - Indien ooit nodig: expliciet toelaten van `OAI-SearchBot`
 
 ## Aanbevolen publicatiechecklist
