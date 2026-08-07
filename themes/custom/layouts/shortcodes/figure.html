@@ -1,0 +1,35 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $src -}}
+  {{- errorf "figure shortcode requires src in %q" .Page.File.Path -}}
+{{- end -}}
+{{- if not $alt -}}
+  {{- errorf "figure shortcode requires alt for %q in %q" $src .Page.File.Path -}}
+{{- end -}}
+{{- $title := .Get "title" -}}
+{{- $caption := .Get "caption" -}}
+{{- $class := .Get "class" | default "my-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950/40" -}}
+{{- $imageClass := .Get "imageClass" | default "block w-full" -}}
+{{- $sizes := .Get "sizes" | default "(max-width: 768px) 100vw, 768px" -}}
+
+<figure class="{{ $class }}">
+  {{ partial "image.html" (dict
+    "page" .Page
+    "src" $src
+    "alt" $alt
+    "class" $imageClass
+    "sizes" $sizes
+    "loading" "lazy"
+    "decoding" "async"
+  ) }}
+  {{- if or $title $caption }}
+    <figcaption class="mt-0 border-t border-slate-200 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-600 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300">
+      {{- with $title }}
+        <span class="block text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100">{{ . }}</span>
+      {{- end }}
+      {{- with $caption }}
+        <span class="mt-1 block">{{ . }}</span>
+      {{- end }}
+    </figcaption>
+  {{- end }}
+</figure>
