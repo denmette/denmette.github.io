@@ -214,3 +214,7 @@ override.tf.json
 terraform.rc
 
 # End of https://www.toptal.com/developers/gitignore/api/hugo,intellij+all,windows,macos,terraform
+
+# Local Codex/agent context that must never be published
+AGENTS.md
+.agents/
