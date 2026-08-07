@@ -3,6 +3,8 @@
 Onderwerpen die nog openstaan voor latere posts.
 
 - [ ] Mijn GitOps-homelab: waarom ik mijn thuisomgeving beheer alsof het een echt platform is
+- [ ] Traefik in mijn homelab: waarom één inkompoort nog niet hetzelfde is als overzicht
+- [ ] Authentik in mijn homelab: waarom centrale toegang rust brengt, ook in een kleine setup
 - [ ] Home Assistant in mijn homelab: wat er draait, waarom het zo opgezet is en wat ik daarvan leer
 - [ ] Top Vakantie en mijn parcours als instructeur in het jeugdwerk
 - [ ] Wat jeugdwerk mij leerde over leiding geven, verantwoordelijkheid en mensen laten groeien

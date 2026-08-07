@@ -7,7 +7,7 @@ date: 2025-01-21
 lastmod: 2025-01-21
 slug: "202501-van-philips-hue-naar-zigbee2mqtt"
 draft: false
-tags: [home-assistant]
+tags: [homelab]
 cover:
   image: "cover.webp"
   alt: "Abstracte illustratie van een slim huis met pijlen en iconen voor automatisatie, verlichting en connectiviteit"

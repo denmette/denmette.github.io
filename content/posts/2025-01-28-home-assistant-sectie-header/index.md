@@ -7,7 +7,7 @@ date: 2025-01-28
 lastmod: 2025-01-28
 slug: "202501-home-assistant-sectie-header"
 draft: false
-tags: [home-assistant, tutorial]
+tags: [homelab, tutorial]
 cover:
   image: "cover.webp"
   alt: "Dashboardweergave van Home Assistant met een sectie header voor de keuken, inclusief temperatuur en luchtvochtigheid"
