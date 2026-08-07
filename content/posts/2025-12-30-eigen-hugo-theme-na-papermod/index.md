@@ -1,6 +1,7 @@
 ---
 title: "Waarom ik PaperMod losliet en mijn eigen Hugo theme bouwde"
 description: "Waarom een bestaand Hugo theme niet meer volstond en hoe het bouwen van een eigen theme zorgde voor rust, controle en bewuste keuzes."
+summary: "Waarom een bestaand Hugo theme niet meer volstond en hoe een eigen theme bouwen zorgde voor meer rust, controle en bewuste technische keuzes."
 author: "Maarten"
 date: 2025-12-30
 lastmod: 2025-12-30
