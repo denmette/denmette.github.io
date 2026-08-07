@@ -7,6 +7,9 @@
 {{- else -}}
 {{- $summary = $page.Summary -}}
 {{- end -}}
+{{- if $summary -}}
+{{- $summary = $summary | plainify | htmlUnescape | replaceRE `\s+` " " | replaceRE `^\s+|\s+$` "" -}}
+{{- end -}}
 
 {{- $imageSrc := "" -}}
 {{- with $page.Params.cover.image -}}
@@ -19,26 +22,6 @@
 {{- end -}}
 {{- if eq $imageAlt "" -}}
 {{- $imageAlt = $title -}}
-{{- end -}}
-
-{{- $paragraphs := findRE `<p[^>]*>[\s\S]*?</p>` $page.Content -}}
-{{- $safeParagraphs := slice -}}
-{{- range $paragraphs -}}
-  {{- $p := . -}}
-  {{- if not (findRE `<(img|figure|picture|pre|code|ul|ol|li|table|blockquote)` $p) -}}
-    {{- $p = replaceRE `<a[^>]*>` "" $p -}}
-    {{- $p = replaceRE `</a>` "" $p -}}
-    {{- $p = replaceRE `^<p[^>]*>` "" $p -}}
-    {{- $p = replaceRE `</p>$` "" $p -}}
-    {{- $safeParagraphs = $safeParagraphs | append $p -}}
-  {{- end -}}
-{{- end -}}
-
-{{- $excerptParagraphs := slice -}}
-{{- if ge (len $safeParagraphs) 2 -}}
-  {{- $excerptParagraphs = first 2 $safeParagraphs -}}
-{{- else if eq (len $safeParagraphs) 1 -}}
-  {{- $excerptParagraphs = first 1 $safeParagraphs -}}
 {{- end -}}
 
 <article class="relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-moss hover:bg-eggshell focus-within:border-moss focus-within:bg-eggshell dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-900/80 dark:focus-within:border-moss dark:focus-within:bg-slate-900/80 md:p-6">
@@ -83,14 +66,8 @@
       </p>
       {{- end -}}
 
-      {{- if gt (len $excerptParagraphs) 0 -}}
-      <div class="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-        {{- range $index, $paragraph := $excerptParagraphs -}}
-        <p class="{{ if eq $index 1 }}hidden md:block{{ end }}">{{ $paragraph | safeHTML }}</p>
-        {{- end -}}
-      </div>
-      {{- else if $summary -}}
-      <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{{ $summary | plainify }}</p>
+      {{- if $summary -}}
+      <p class="line-clamp-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">{{ $summary }}</p>
       {{- end -}}
 
       {{- $terms := $page.GetTerms "tags" -}}

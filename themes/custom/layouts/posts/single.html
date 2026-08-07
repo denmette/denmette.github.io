@@ -27,13 +27,15 @@
 
     <header class="space-y-2">
         <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500 dark:text-slate-400">
+        <div class="flex flex-wrap items-center gap-y-1 text-sm text-slate-500 dark:text-slate-400">
           {{- with .Date -}}
             <p>
-              Gepubliceerd op {{ partial "date.html" (dict "date" . "format" ":date_long") }}{{ if and $.Lastmod (gt (sub $.Lastmod.Unix $.Date.Unix) 86400) }} · bijgewerkt {{ partial "date.html" (dict "date" $.Lastmod "format" ":date_long") }}{{ end }}
+              Gepubliceerd op {{ partial "date.html" (dict "date" . "format" ":date_long") }}{{ if and $.Lastmod (gt (sub $.Lastmod.Unix $.Date.Unix) 86400) }} <span aria-hidden="true">&bull;</span> bijgewerkt {{ partial "date.html" (dict "date" $.Lastmod "format" ":date_long") }}{{ end }}
             </p>
           {{- end -}}
+          <span class="px-3 text-slate-400 dark:text-slate-500" aria-hidden="true">&bull;</span>
           <p>{{ .ReadingTime }} min leestijd</p>
+          <span class="px-3 text-slate-400 dark:text-slate-500" aria-hidden="true">&bull;</span>
           <p>{{ .WordCount }} woorden</p>
         </div>
     </header>

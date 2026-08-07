@@ -7,6 +7,9 @@
 {{- else -}}
 {{- $summary = $page.Summary -}}
 {{- end -}}
+{{- if $summary -}}
+{{- $summary = $summary | plainify | htmlUnescape | replaceRE `\s+` " " | replaceRE `^\s+|\s+$` "" -}}
+{{- end -}}
 
 {{- $imageSrc := "" -}}
 {{- with $page.Params.cover.image -}}
@@ -64,7 +67,7 @@
       {{- end -}}
 
       {{- if $summary -}}
-      <p class="text-slate-600 dark:text-slate-300">{{ $summary }}</p>
+      <p class="line-clamp-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">{{ $summary }}</p>
       {{- end -}}
 
       {{- $terms := $page.GetTerms "tags" -}}
