@@ -75,6 +75,7 @@ Notes:
 
 ## IndexNow
 - The site hosts its IndexNow key at `/a9396471fd0ec31f789c1992bb07f313.txt`.
+- The first deploy after the key goes live submits the full sitemap to IndexNow.
 - The deploy workflow compares the live sitemap with the freshly built `public/sitemap.xml`.
 - After the S3 sync, it submits added, updated, and removed URLs to the IndexNow global endpoint.
 

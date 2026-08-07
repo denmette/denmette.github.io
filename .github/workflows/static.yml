@@ -46,8 +46,17 @@ jobs:
       - name: Capture previous sitemap
         run: curl -fsS https://casteels.dev/sitemap.xml -o /tmp/previous-sitemap.xml || true
 
+      - name: Detect initial IndexNow publish
+        id: indexnow
+        run: |
+          if curl -fsS https://casteels.dev/a9396471fd0ec31f789c1992bb07f313.txt >/dev/null; then
+            echo "initial_publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "initial_publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
+        uses: aws-actions/configure-aws-credentials@v6.2.3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -56,5 +65,10 @@ jobs:
       - name: Sync to S3
         run: aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --delete
 
+      - name: Submit all sitemap URLs to IndexNow
+        if: steps.indexnow.outputs.initial_publish == 'true'
+        run: node scripts/indexnow-submit.mjs --site-url https://casteels.dev --current-sitemap public/sitemap.xml --key-file public/a9396471fd0ec31f789c1992bb07f313.txt
+
       - name: Submit changed URLs to IndexNow
+        if: steps.indexnow.outputs.initial_publish != 'true'
         run: node scripts/indexnow-submit.mjs --site-url https://casteels.dev --previous-sitemap /tmp/previous-sitemap.xml --current-sitemap public/sitemap.xml --key-file public/a9396471fd0ec31f789c1992bb07f313.txt

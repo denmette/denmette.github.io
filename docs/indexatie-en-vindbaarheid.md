@@ -95,6 +95,7 @@ Voor een statische blog is **IndexNow** waarschijnlijk de beste volgende stap na
 ### Wat nu in deze repo zit
 
 - Een IndexNow key file op rootniveau van de site
+- Een eerste publicatie die alle sitemap-URLs submit zodra de key live staat
 - Een deploy-stap die de vorige live sitemap vergelijkt met de nieuwe build
 - Een automatische submit van toegevoegde, gewijzigde en verwijderde URLs naar het IndexNow endpoint
 
