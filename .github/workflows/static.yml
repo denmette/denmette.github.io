@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # GitHub Actions cron runs in UTC. 07:05 UTC is 09:05 in Belgium during CEST.
+    - cron: "5 7 26 8 *"
+    - cron: "5 7 9,23 9 *"
 
 permissions:
   contents: read
