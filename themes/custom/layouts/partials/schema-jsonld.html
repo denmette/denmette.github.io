@@ -19,7 +19,7 @@
 
 {{- $person := .Site.Params.person -}}
 {{- $personName := $person.name | default .Site.Params.author -}}
-{{- $personId := $person.id | default (printf "%s#maarten-casteels" $siteURL) -}}
+{{- $personId := $person.id | default (printf "%s#person-maarten-casteels" $siteURL) -}}
 {{- if not (hasPrefix $personId "http") -}}
   {{- $personId = $personId | absURL -}}
 {{- end -}}

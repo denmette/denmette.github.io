@@ -14,7 +14,7 @@ avatar = "/maarten.webp"
 
 [params.person]
 name = "Maarten Casteels"
-id = "https://casteels.dev/#maarten-casteels"
+id = "https://casteels.dev/#person-maarten-casteels"
 url = "https://casteels.dev"
 image = "/maarten.webp"
 worksFor = { name = "Sopra Steria BeLux", url = "https://www.soprasteria.be/" }

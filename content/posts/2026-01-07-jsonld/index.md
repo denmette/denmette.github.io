@@ -45,7 +45,7 @@ Voor casteels.dev was dat nog relatief eenvoudig. Die site gaat over mij, dus ik
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://casteels.dev/#maarten-casteels",
+  "@id": "https://casteels.dev/#person-maarten-casteels",
   "name": "Maarten Casteels",
   "url": "https://casteels.dev"
 }
@@ -132,7 +132,7 @@ Wat ik wél correct kan zeggen, is dat ik lid ben van de organisatie achter de p
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://casteels.dev/#maarten-casteels",
+  "@id": "https://casteels.dev/#person-maarten-casteels",
   "name": "Maarten Casteels",
   "url": "https://casteels.dev",
   "memberOf": {
@@ -172,7 +172,7 @@ En pas daarna zegt die organisatie wie erbij hoort.
   "@id": "https://jcast.dev/#org",
   "member": {
     "@type": "Person",
-    "@id": "https://casteels.dev/#maarten-casteels",
+    "@id": "https://casteels.dev/#person-maarten-casteels",
     "name": "Maarten Casteels"
   }
 }
@@ -259,7 +259,7 @@ Pas op het niveau van de aflevering koppel ik hosts of gasten.
   "roleName": "Host",
   "actor": {
     "@type": "Person",
-    "@id": "https://casteels.dev/#maarten-casteels",
+    "@id": "https://casteels.dev/#person-maarten-casteels",
     "name": "Maarten Casteels"
   }
 }
