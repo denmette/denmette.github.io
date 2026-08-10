@@ -11,6 +11,7 @@ keywords = ["Maarten Casteels", "home automation", "domotica", "java", "agile", 
 tagline = "Persoonlijke notities over software en wat blijft hangen"
 author = "Maarten Casteels"
 avatar = "/maarten.webp"
+images = ["/maarten.png"]
 
 [params.person]
 name = "Maarten Casteels"
@@ -53,6 +54,7 @@ defaultContentLanguageInSubdir = false
 
 [pagination]
 pagerSize = 5
+disableAliases = true
 
 [minify]
 disableXML = true

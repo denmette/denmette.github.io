@@ -3,6 +3,9 @@
     <header class="space-y-1">
       <p class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Onderwerp</p>
       <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{{ . }}</p>
+      {{ end }}
     </header>
     <div class="flex flex-col gap-6">
       {{- $pageSize := 5 -}}
