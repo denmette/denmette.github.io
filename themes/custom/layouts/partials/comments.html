@@ -6,7 +6,15 @@
     <div class="mt-4" id="utterances-container"></div>
     <script>
       (function () {
+        function themeFromDom() {
+          return document.documentElement.classList.contains("dark") ? "github-dark" : "github-light";
+        }
+
         function resolveUtterancesTheme() {
+          var domTheme = themeFromDom();
+          if (domTheme) {
+            return domTheme;
+          }
           try {
             var stored = localStorage.getItem("theme");
             if (stored === "dark") {
@@ -49,11 +57,23 @@
           );
         }
 
-        function themeFromDom() {
-          return document.documentElement.classList.contains("dark") ? "github-dark" : "github-light";
-        }
-
         var currentTheme = theme;
+        var syncTheme = function () {
+          currentTheme = themeFromDom();
+          sendTheme(currentTheme);
+        };
+
+        var iframeObserver = new MutationObserver(function () {
+          if (document.querySelector(".utterances-frame")) {
+            syncTheme();
+          }
+        });
+
+        iframeObserver.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+
         var observer = new MutationObserver(function () {
           var nextTheme = themeFromDom();
           if (nextTheme !== currentTheme) {
