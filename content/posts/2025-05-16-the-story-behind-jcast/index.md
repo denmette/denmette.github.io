@@ -25,7 +25,7 @@ Het overviel me, maar tegelijk voelde ik een vleugje trots. Zelf had ik dat idee
 Die vraag was verrassend snel beantwoord. We zijn met drie Java-ontwikkelaars, en voor ons is Java niet gewoon een programmeertaal, het is een vertrekpunt.  
 Van daaruit is het idee van **JCast** geboren: een podcast met Java als startpunt, en alles daarrond als ons speelveld.
 
-We registreerden het domein <a href="https://jcast.dev" target="_blank" rel="noopener noreferrer">jcast.dev</a> en de eerste opname volgde al snel.
+We registreerden het domein <a href="https://jcast.dev" target="_blank" rel="noopener">jcast.dev</a> en de eerste opname volgde al snel.
 
 #### En… is die eerste aflevering al te beluisteren?
 
@@ -54,5 +54,5 @@ We pretenderen niet de grote experts te zijn die alleen maar zenden. We willen g
 We zouden hier nog veel meer kunnen vertellen, maar we laten liever iets aan de verbeelding over.  
 Of nog beter: aan de eerste aflevering. 🎙️
 
-Je vindt alle info op <a href="https://jcast.dev" target="_blank" rel="noopener noreferrer">jcast.dev</a>.  
+Je vindt alle info op <a href="https://jcast.dev" target="_blank" rel="noopener">jcast.dev</a>.  
 Tot binnenkort in je oren?

@@ -1,3 +1,18 @@
+{{ define "head-pre" }}
+  {{- $pageSize := 5 -}}
+  {{- $posts := where .Site.RegularPages "Section" "posts" -}}
+  {{- $paginator := .Paginator -}}
+  {{- if not $paginator -}}
+    {{- $paginator = .Paginate $posts $pageSize -}}
+  {{- end -}}
+  {{- if gt $paginator.PageNumber 1 -}}
+    {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
+    {{- .Scratch.Set "seo_title" (printf "Artikels - Pagina %d | %s" $paginator.PageNumber .Site.Title) -}}
+    {{- .Scratch.Set "seo_canonical" ($paginator.URL | absURL) -}}
+    {{- .Scratch.Set "seo_robots" "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+  {{- end -}}
+{{ end }}
+
 {{ define "main" }}
   <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 text-slate-800 dark:text-slate-100">
     <h1 class="hidden">Laatste posts</h1>

@@ -1,3 +1,15 @@
+{{ define "head-pre" }}
+  {{- $pageSize := 5 -}}
+  {{- $paginator := .Paginate .Pages $pageSize -}}
+  {{- if gt $paginator.PageNumber 1 -}}
+    {{- $termTitle := .Data.Term | default .Title -}}
+    {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
+    {{- .Scratch.Set "seo_title" (printf "Tag: %s - Pagina %d | %s" $termTitle $paginator.PageNumber .Site.Title) -}}
+    {{- .Scratch.Set "seo_canonical" ($paginator.URL | absURL) -}}
+    {{- .Scratch.Set "seo_robots" "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+  {{- end -}}
+{{ end }}
+
 {{ define "main" }}
   <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 text-slate-800 dark:text-slate-100">
     <header class="space-y-1">

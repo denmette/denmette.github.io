@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default .Site.Language.Lang | default "nl" }}">
   <head>
+    {{ block "head-pre" . }}{{ end }}
     {{ partial "head.html" . }}
     {{ block "head" . }}{{ end }}
   </head>

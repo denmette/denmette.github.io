@@ -2,7 +2,7 @@
 
 <a href="{{ .Destination | safeURL }}"
    {{ with .Title }}title="{{ . }}"{{ end }}
-   {{ if $isExternal }}class="inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer nofollow"{{ end }}>
+   {{ if $isExternal }}class="inline-flex items-center gap-1" target="_blank" rel="noopener"{{ end }}>
     {{ .Text | safeHTML }}
     {{- if $isExternal -}}
       {{- partial "icon.html" (dict "name" "external-link" "class" "h-4 w-4 stroke-current" "size" 16) -}}

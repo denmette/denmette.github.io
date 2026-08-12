@@ -3,18 +3,42 @@
 <meta name="color-scheme" content="light dark">
 {{- $siteTitle := .Site.Title | default "Site" -}}
 {{- $pageTitle := .Title | default $siteTitle -}}
-{{- $tagline := .Site.Params.tagline | default $siteTitle -}}
+{{- $seoTitle := .Params.seoTitle | default $pageTitle -}}
+{{- $pageNumber := .Scratch.Get "seo_page_number" | default 1 -}}
+{{- $currentPermalink := .Scratch.Get "seo_canonical" | default .Permalink -}}
 {{- $fullTitle := "" -}}
-{{- if .IsHome -}}
-  {{- $fullTitle = printf "%s · %s" $siteTitle $tagline -}}
+{{- $scratchTitle := .Scratch.Get "seo_title" -}}
+{{- if $scratchTitle -}}
+  {{- $fullTitle = $scratchTitle -}}
+{{- else if and (gt $pageNumber 1) (or .IsHome (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term")) -}}
+  {{- $baseTitle := $pageTitle -}}
+  {{- if .IsHome -}}
+    {{- $baseTitle = "Start" -}}
+  {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $baseTitle = "Tags" -}}
+    {{- if eq .Kind "term" -}}
+      {{- $baseTitle = printf "Tag: %s" (.Data.Term | default $pageTitle) -}}
+    {{- end -}}
+  {{- else if and (eq .Kind "section") (eq .Section "posts") -}}
+    {{- $baseTitle = "Artikels" -}}
+  {{- end -}}
+  {{- $fullTitle = printf "%s - Pagina %d | %s" $baseTitle $pageNumber $siteTitle -}}
+{{- else if .IsHome -}}
+  {{- $fullTitle = printf "%s | Software en samenwerking" $siteTitle -}}
 {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
   {{- $termTitle := .Title | default $pageTitle -}}
   {{- if eq .Kind "term" -}}
     {{- $termTitle = .Data.Term | default $termTitle -}}
   {{- end -}}
-  {{- $fullTitle = printf "Tag: %s · %s" $termTitle $siteTitle -}}
+  {{- if eq .Kind "taxonomy" -}}
+    {{- $fullTitle = printf "Tags | %s" $siteTitle -}}
+  {{- else -}}
+    {{- $fullTitle = printf "Tag: %s | %s" $termTitle $siteTitle -}}
+  {{- end -}}
+{{- else if and .IsPage (eq .Section "posts") -}}
+  {{- $fullTitle = $seoTitle -}}
 {{- else -}}
-  {{- $fullTitle = printf "%s · %s" $pageTitle $siteTitle -}}
+  {{- $fullTitle = printf "%s | %s" $seoTitle $siteTitle -}}
 {{- end -}}
 {{- $rawDescription := "" -}}
 {{- if .IsHome -}}
@@ -48,11 +72,11 @@
 {{- if $keywordsValue -}}
 <meta name="keywords" content="{{ $keywordsValue }}">
 {{- end -}}
-{{- $robots := .Params.robots | default "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+{{- $robots := .Scratch.Get "seo_robots" | default (.Params.robots | default "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1") -}}
 <meta name="robots" content="{{ $robots }}">
 <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="{{ .Permalink }}">
+<link rel="canonical" href="{{ $currentPermalink }}">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
 {{- if and .IsPage (eq .Section "posts") -}}
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">

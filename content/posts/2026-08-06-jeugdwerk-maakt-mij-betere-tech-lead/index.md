@@ -17,7 +17,7 @@ images: ["cover.webp"]
 ---
 
 Op papier lijken die werelden ver uit elkaar te liggen.
-Overdag werk ik als tech lead of architect in softwareteams. In mijn vrije tijd engageer ik mij in het jeugdwerk als instructeur bij <a href="https://www.topvakantie.be/vorming" target="_blank" rel="noopener noreferrer">Top Vakantie</a>.
+Overdag werk ik als tech lead of architect in softwareteams. In mijn vrije tijd engageer ik mij in het jeugdwerk als instructeur bij <a href="https://www.topvakantie.be/vorming" target="_blank" rel="noopener">Top Vakantie</a>.
 
 Toch bots ik telkens weer op dezelfde kern: mensen vooruit helpen zonder hun plaats in te nemen.
 

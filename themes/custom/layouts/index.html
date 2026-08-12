@@ -1,6 +1,21 @@
+{{ define "head-pre" }}
+  {{- $posts := where .Site.RegularPages "Section" "posts" -}}
+  {{- $pageSize := 5 -}}
+  {{- $paginator := .Paginator -}}
+  {{- if not $paginator -}}
+    {{- $paginator = .Paginate $posts $pageSize -}}
+  {{- end -}}
+  {{- if gt $paginator.PageNumber 1 -}}
+    {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
+    {{- .Scratch.Set "seo_title" (printf "Start - Pagina %d | %s" $paginator.PageNumber .Site.Title) -}}
+    {{- .Scratch.Set "seo_canonical" ($paginator.URL | absURL) -}}
+    {{- .Scratch.Set "seo_robots" "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+  {{- end -}}
+{{ end }}
+
 {{ define "before_main" }}
   <section class="sr-only" aria-hidden="true">
-    <h1>Maarten's Blog</h1>
+    <p>Maarten's Blog</p>
     <p>
       Persoonlijke Nederlandstalige blog van Maarten Casteels met verhalen, reflecties en praktische stukken over software, samenwerking, home automation en tools die onderweg blijven hangen.
     </p>
