@@ -247,6 +247,15 @@
 
   var lastFocused = null;
 
+  function isFocusable(element) {
+    return !!(
+      element &&
+      !element.hasAttribute("disabled") &&
+      element.getAttribute("aria-hidden") !== "true" &&
+      element.offsetParent !== null
+    );
+  }
+
   function openModal() {
     lastFocused = document.activeElement;
     modal.classList.remove("hidden");
@@ -275,9 +284,9 @@
   var focusHandler = null;
 
   function trapFocus(container) {
-    var focusable = container.querySelectorAll(
+    var focusable = Array.prototype.slice.call(container.querySelectorAll(
       "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
-    );
+    )).filter(isFocusable);
     if (!focusable.length) {
       return;
     }
