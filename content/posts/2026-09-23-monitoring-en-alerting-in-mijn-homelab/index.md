@@ -10,7 +10,7 @@ draft: true
 tags: [homelab, monitoring]
 cover:
   image: "cover.webp"
-  alt: "Abstracte illustratie van meerdere hosts die metrics en logs naar een centraal dashboard en alertsysteem sturen"
+  alt: "Schematische illustratie van meerdere systemen die naar een centraal dashboard sturen"
   title: "Monitoring moet helpen, niet alleen bestaan"
   caption: "Dashboards zijn pas nuttig wanneer ze snel tonen wat aandacht vraagt en wat gewoon gezond draait."
 images: ["cover.webp"]

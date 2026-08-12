@@ -10,7 +10,7 @@ draft: false
 tags: [reflectie]
 cover:
   image: "cover.webp"
-  alt: "Illustratie van een ontwikkelaar die terugblikt op het jaar, met symbolen voor technologie, community en persoonlijke mijlpalen"
+  alt: "Illustratie van een ontwikkelaar voor een scherm met iconen voor community, conferenties en audio"
   title: "Een jaar vol groei en reflectie"
   caption: "2025 in vogelvlucht, met ruimte voor werk, mensen en momenten die blijven hangen."
 images: ["cover.webp"]

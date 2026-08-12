@@ -10,7 +10,7 @@ draft: false
 tags: [java, clean-code]
 cover:
   image: "cover.webp"
-  alt: "Illustratie van een koffiekop met het Java-logo, omringd door symbolen die de evolutie van de programmeertaal voorstellen"
+  alt: "Illustratie van een koffiekop met Java-logo en symbolen rond de programmeertaal"
   title: "30 jaar Java, stabiliteit in evolutie"
   caption: "Java als vertrouwde metgezel, meegroeiend zonder zijn verleden te breken."
 images: ["cover.webp"]

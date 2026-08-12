@@ -10,7 +10,7 @@ draft: false
 tags: [homelab, tutorial]
 cover:
   image: "cover.webp"
-  alt: "Dashboardweergave van Home Assistant met een sectie header voor de keuken, inclusief temperatuur en luchtvochtigheid"
+  alt: "Home Assistant-dashboard met de titel Home Keuken en tegels voor temperatuur en luchtvochtigheid"
   title: "Een slimme sectie header voor je Home Assistant dashboard"
   caption: "Een gepersonaliseerde Home Assistant header die context, metingen en acties samenbrengt in één overzicht."
 images: ["cover.webp"]

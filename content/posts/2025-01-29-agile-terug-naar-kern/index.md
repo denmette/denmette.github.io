@@ -10,7 +10,7 @@ draft: false
 tags: [agile, reflectie]
 cover:
   image: "cover.webp"
-  alt: "Softwareontwikkelaars die samen aan code werken in een open ruimte, met focus op samenwerking en overleg"
+  alt: "Softwareontwikkelaars die samen aan code en een whiteboard werken"
   title: "Agile voorbij processen en ceremonies"
   caption: "Agile draait om mensen, samenwerking en leren, niet om rituelen of vaste processen."
 images: ["cover.webp"]

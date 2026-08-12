@@ -10,7 +10,7 @@ draft: false
 tags: [reflectie]
 cover:
   image: "cover.webp"
-  alt: "Illustratie van een begeleider die met een kleine groep jongeren rond de tafel zit, als symbool voor leiderschap, vertrouwen en groei"
+  alt: "Illustratie van een begeleider met een kleine groep jongeren rond een tafel"
   title: "Jeugdwerk als leerschool voor leiderschap"
   caption: "Veel van wat mij helpt als tech lead, leerde ik niet alleen in softwareteams maar ook in het jeugdwerk."
 images: ["cover.webp"]

@@ -10,7 +10,7 @@ draft: false
 tags: [java, clean-code]
 cover:
   image: "cover.webp"
-  alt: "Visualisatie van een moderne teststrategie met lagen voor unit-, integratie- en end-to-end tests"
+  alt: "Illustratie van een testpiramide met unit-, integratie- en end-to-endtests"
   title: "TDD in 2025"
   caption: "Van testpiramide naar testtrofee, een evolutie in hoe we testen benaderen."
 images: ["cover.webp"]
@@ -67,4 +67,3 @@ Er zijn ondertussen al heel wat voorbeelden van Testcontainers op het internet, 
 Als ontwikkelaars denken we vaak dat we onze code volledig begrijpen. Maar we hebben ons allemaal wel eens vergist en onbedoeld bugs geïntroduceerd. Dat is geen probleem, zolang we bereid zijn om uit onze fouten te leren en onze assumpties kritisch te bekijken. TDD helpt ons hierbij.
 
 Het is geen rigide proces, maar een hulpmiddel om onze softwareontwikkeling naar een hoger niveau te tillen. En als we het een keer vergeten? Dan pakken we het de volgende keer gewoon weer op. Laten we blijven leren en verbeteren.
-

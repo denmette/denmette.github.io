@@ -10,7 +10,7 @@ draft: false
 tags: [obsidian]
 cover:
   image: "cover.webp"
-  alt: "Abstracte illustratie van digitale check-ins met gesprekken, taken en planning in een rustige paarse interface"
+  alt: "Illustratie van een paarse interface met chatballonnen, taken en een kalender"
   title: "Check-ins zonder frictie in Obsidian"
   caption: "Met slimme automatisatie worden check-ins geen last, maar een vast en vol te houden ritme."
 images: ["cover.webp"]

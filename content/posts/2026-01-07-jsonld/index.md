@@ -10,7 +10,7 @@ draft: false
 tags: ["json-ld", "schema-org", "webontwikkeling"]
 cover:
   image: "cover.webp"
-  alt: "Conceptuele illustratie van verbonden entiteiten zoals een persoon, een podcast en een website, weergegeven als losse elementen die via lijnen met elkaar in relatie staan."
+  alt: "Illustratie van een persoon, een microfoon en een venster die met lijnen verbonden zijn."
   caption: "JSON+LD als modelleerprobleem: niet de pagina staat centraal, maar de relaties tussen entiteiten."
 images: ["cover.webp"]
 ---

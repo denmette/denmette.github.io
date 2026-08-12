@@ -10,7 +10,7 @@ draft: false
 tags: [hugo, reflectie]
 cover:
   image: "cover.webp"
-  alt: "Minimalistische werkplek met een laptop waarop een zelfgebouwd blog en Hugo templates zichtbaar zijn, als symbool voor controle, rust en bewust bouwen"
+  alt: "Werkplek met laptop waarop een blog en code zichtbaar zijn"
   title: "Eigenaarschap boven gemak"
   caption: "Terugkijkend op 2025, waarin het loslaten van een bestaand theme plaatsmaakte voor bewuste keuzes, technische rust en bouwen vanuit begrip."
 images: ["cover.webp"]

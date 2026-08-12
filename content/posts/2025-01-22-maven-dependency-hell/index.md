@@ -10,7 +10,7 @@ draft: false
 tags: [java, maven]
 cover:
   image: "cover.webp"
-  alt: "Abstracte illustratie van gekleurde lijnen die in een zwart gat samenkomen, als metafoor voor dependency chaos"
+  alt: "Abstracte illustratie van gekleurde kabels die in een zwart gat samenkomen"
   title: "Wanneer dependencies elkaar opslokken"
   caption: "Dependency Hell verbeeld als een zwart gat waarin ongecontroleerde afhankelijkheden samenkomen."
 images: ["cover.webp"]

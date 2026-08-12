@@ -10,7 +10,7 @@ draft: true
 tags: [homelab, gitops]
 cover:
   image: "cover.webp"
-  alt: "Abstracte technische illustratie van een homelab met meerdere hosts, configuratiebestanden en een centrale deploymentflow"
+  alt: "Schematische illustratie van meerdere servers in een deploymentflow"
   title: "Een homelab dat je in Git kunt begrijpen"
   caption: "Niet alles hoeft publiek te zijn om wel helder gedocumenteerd en reproduceerbaar te blijven."
 images: ["cover.webp"]

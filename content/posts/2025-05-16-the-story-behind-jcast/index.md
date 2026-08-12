@@ -10,7 +10,7 @@ draft: false
 tags: [podcast, java]
 cover:
   image: "cover.webp"
-  alt: "Illustratie van drie ontwikkelaars met microfoons in gesprek, als symbool voor een gezellige developerpodcast"
+  alt: "Illustratie van drie mensen met microfoons in gesprek"
   title: "JCast, een podcast met goesting"
   caption: "Drie Java-ontwikkelaars, één microfoon en veel zin om te praten over code en alles errond."
 images: ["cover.webp"]

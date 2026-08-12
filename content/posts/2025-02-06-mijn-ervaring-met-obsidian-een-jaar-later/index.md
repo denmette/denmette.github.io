@@ -10,7 +10,7 @@ draft: false
 tags: [obsidian]
 cover:
   image: "cover.webp"
-  alt: "Laptop met Obsidian-interface waarin notities visueel met elkaar verbonden zijn via grafieken en knooppunten"
+  alt: "Laptop met Obsidian-interface en een grafiek van verbonden notities"
   title: "Een jaar werken met Obsidian"
   caption: "Obsidian als centrale plek voor notities, verbanden en dagelijkse kennisopbouw."
 images: ["cover.webp"]

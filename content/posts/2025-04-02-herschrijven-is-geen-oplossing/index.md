@@ -10,7 +10,7 @@ draft: false
 tags: [java, clean-code]
 cover:
   image: "cover.webp"
-  alt: "Illustratie van een rommelige tuin die geleidelijk verandert in een verzorgde tuin als metafoor voor het stapsgewijs verbeteren van legacy software"
+  alt: "Illustratie van een tuin die van rommelig naar verzorgd evolueert"
   title: "Van herschrijven naar verzorgen"
   caption: "Legacy software verbetert niet door alles om te gooien, maar door gerichte en doordachte stappen."
 images: ["cover.webp"]

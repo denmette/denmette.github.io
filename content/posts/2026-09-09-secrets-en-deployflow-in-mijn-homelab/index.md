@@ -10,7 +10,7 @@ draft: true
 tags: [homelab, gitops]
 cover:
   image: "cover.webp"
-  alt: "Abstracte illustratie van configuratiebestanden, een afgesloten secret store en een gecontroleerde deploymentstroom tussen laptop en homelab"
+  alt: "Schematische illustratie van configuratiebestanden, een secret store en een deploymentpijl"
   title: "Niet alles wat nodig is, hoort in Git"
   caption: "Een werkbare setup ontstaat pas wanneer code, secrets en uitrol elk hun juiste plaats krijgen."
 images: ["cover.webp"]

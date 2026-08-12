@@ -10,7 +10,7 @@ draft: false
 tags: [homelab]
 cover:
   image: "cover.webp"
-  alt: "Abstracte illustratie van een slim huis met pijlen en iconen voor automatisatie, verlichting en connectiviteit"
+  alt: "Abstracte illustratie van een slim huis met pijlen, lampen en automatisatie-iconen"
   title: "Van losse bridges naar één slim Zigbee-netwerk"
   caption: "Een visuele samenvatting van de evolutie naar een eenvoudiger en centraal aangestuurd smart home."
 images: ["cover.webp"]
