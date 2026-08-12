@@ -6,7 +6,7 @@ author: "Maarten"
 date: 2026-09-09
 lastmod: 2026-09-09
 slug: "202609-secrets-en-deployflow-in-mijn-homelab"
-draft: true
+draft: false
 tags: [homelab, gitops]
 cover:
   image: "cover.webp"

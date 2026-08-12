@@ -6,7 +6,7 @@ author: "Maarten"
 date: 2026-08-26
 lastmod: 2026-08-26
 slug: "202609-mijn-gitops-homelab"
-draft: true
+draft: false
 tags: [homelab, gitops]
 cover:
   image: "cover.webp"

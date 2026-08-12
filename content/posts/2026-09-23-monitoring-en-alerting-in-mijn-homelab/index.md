@@ -6,7 +6,7 @@ author: "Maarten"
 date: 2026-09-23
 lastmod: 2026-09-23
 slug: "202610-monitoring-en-alerting-in-mijn-homelab"
-draft: true
+draft: false
 tags: [homelab, monitoring]
 cover:
   image: "cover.webp"
