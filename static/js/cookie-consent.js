@@ -12,6 +12,7 @@
   var closeButtons = document.querySelectorAll("[data-cookie-close]");
   var analyticsToggle = document.querySelector("[data-cookie-analytics]");
   var dntNote = document.querySelector("[data-dnt-note]");
+  var main = document.getElementById("main");
 
   if (!banner || !modal) {
     return;
@@ -256,6 +257,17 @@
     );
   }
 
+  function focusFallbackTarget() {
+    if (main && typeof main.focus === "function") {
+      main.focus();
+      return;
+    }
+    var skipLink = document.querySelector('a[href="#main"]');
+    if (skipLink && typeof skipLink.focus === "function") {
+      skipLink.focus();
+    }
+  }
+
   function openModal() {
     lastFocused = document.activeElement;
     modal.classList.remove("hidden");
@@ -276,8 +288,10 @@
     modal.classList.add("hidden");
     document.body.classList.remove("overflow-hidden");
     releaseFocusTrap();
-    if (lastFocused && typeof lastFocused.focus === "function") {
+    if (isFocusable(lastFocused) && typeof lastFocused.focus === "function") {
       lastFocused.focus();
+    } else {
+      focusFallbackTarget();
     }
   }
 
@@ -331,6 +345,7 @@
     var stored = writeConsent(consent);
     applyConsent(stored);
     hideBanner();
+    focusFallbackTarget();
   });
 
   acceptNecessaryButton.addEventListener("click", function () {
@@ -342,6 +357,7 @@
     var stored = writeConsent(consent);
     applyConsent(stored);
     hideBanner();
+    focusFallbackTarget();
   });
 
   openButtons.forEach(function (button) {
