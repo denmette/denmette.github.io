@@ -1,10 +1,7 @@
 {{ define "head-pre" }}
   {{- $pageSize := 5 -}}
   {{- $posts := where .Site.RegularPages "Section" "posts" -}}
-  {{- $paginator := .Paginator -}}
-  {{- if not $paginator -}}
-    {{- $paginator = .Paginate $posts $pageSize -}}
-  {{- end -}}
+  {{- $paginator := .Paginate $posts $pageSize -}}
   {{- if gt $paginator.PageNumber 1 -}}
     {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
     {{- .Scratch.Set "seo_title" (printf "Artikels - Pagina %d | %s" $paginator.PageNumber .Site.Title) -}}
@@ -19,10 +16,7 @@
     <div class="flex flex-col gap-6">
       {{- $pageSize := 5 -}}
       {{- $posts := where .Site.RegularPages "Section" "posts" -}}
-      {{- $paginator := .Paginator -}}
-      {{- if not $paginator -}}
-        {{- $paginator = .Paginate $posts $pageSize -}}
-      {{- end -}}
+      {{- $paginator := .Paginate $posts $pageSize -}}
       {{- if and (eq $paginator.PageNumber 1) (gt (len $paginator.Pages) 0) -}}
         {{- $featured := index $paginator.Pages 0 -}}
         {{ partial "featured-post-card.html" (dict "page" $featured) }}

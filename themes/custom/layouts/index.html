@@ -1,10 +1,7 @@
 {{ define "head-pre" }}
   {{- $posts := where .Site.RegularPages "Section" "posts" -}}
   {{- $pageSize := 5 -}}
-  {{- $paginator := .Paginator -}}
-  {{- if not $paginator -}}
-    {{- $paginator = .Paginate $posts $pageSize -}}
-  {{- end -}}
+  {{- $paginator := .Paginate $posts $pageSize -}}
   {{- if gt $paginator.PageNumber 1 -}}
     {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
     {{- .Scratch.Set "seo_title" (printf "Start - Pagina %d | %s" $paginator.PageNumber .Site.Title) -}}
@@ -31,10 +28,7 @@
     <h1 class="hidden">Laatste posts</h1>
     <div class="flex flex-col gap-6">
       {{- $pageSize := 5 -}}
-      {{- $paginator := .Paginator -}}
-      {{- if not $paginator -}}
-        {{- $paginator = .Paginate $posts $pageSize -}}
-      {{- end -}}
+      {{- $paginator := .Paginate $posts $pageSize -}}
       {{- if eq $paginator.PageNumber 1 -}}
         <section class="space-y-2">
           <h2 class="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">Nieuwste stukken</h2>
