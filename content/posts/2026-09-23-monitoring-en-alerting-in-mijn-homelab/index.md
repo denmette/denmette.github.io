@@ -10,7 +10,7 @@ draft: true
 tags: [homelab, monitoring]
 cover:
   image: "cover.webp"
-  alt: "Schematische illustratie van meerdere systemen die naar een centraal dashboard sturen"
+  alt: "Schematische illustratie van meerdere systemen en een centraal dashboard"
   title: "Monitoring moet helpen, niet alleen bestaan"
   caption: "Dashboards zijn pas nuttig wanneer ze snel tonen wat aandacht vraagt en wat gewoon gezond draait."
 images: ["cover.webp"]
@@ -81,7 +81,7 @@ Dat is het dashboard waar ik snel oriëntatie uit haal. Meer cockpit dan werkban
 
 {{< figure
   src="images/homelab-overview-redacted-soft.png"
-  alt="Overzichtsdashboard in Grafana met status van diensten, CPU- en geheugengebruik, schijfruimte en certificaatverval, met gevoelige details bewust weggehaald"
+  alt="Grafana-overzicht met dienststatus, systeembelasting en certificaatinfo"
   title="Grafana dashboard: Homelab Overview"
   caption="Grafana-overzicht van de homelabgezondheid. De gevoelige service- en containerdetails heb ik hier bewust afgezwakt of weggelaten."
 >}}
@@ -97,7 +97,7 @@ Voor mij is dat verschil belangrijk. Een overzichtsdashboard moet rust geven. Ee
 
 {{< figure
   src="images/homelab-operations-redacted-soft.png"
-  alt="Operations-dashboard in Grafana met actieve alerts, probe-status en controles rond back-ups en kritieke diensten, met gevoelige probe-details deels weggehaald"
+  alt="Grafana-operationsdashboard met alerts, probes en back-upcontroles"
   title="Grafana dashboard: Homelab Operations"
   caption="Grafana-dashboard voor operationele opvolging. De probe-targets heb ik hier bewust deels afgezwakt."
 >}}
