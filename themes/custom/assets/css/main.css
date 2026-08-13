@@ -5,57 +5,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-sans: "Work Sans", sans-serif;
+  --font-heading: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --color-moss: #576238;
   --color-mustard: #FFD95D;
   --color-eggshell: #F0EADC;
   --color-forest: #1f2a1a;
 }
 
-@layer components {
-  .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    margin-top: 1.6em;
-    margin-bottom: 0.6em;
-  }
-
-  .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    margin-top: 1.4em;
-    margin-bottom: 0.5em;
-  }
-
-  .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    font-weight: 600;
-    margin-top: 1.2em;
-    margin-bottom: 0.4em;
-  }
-}
-
 @layer base {
-  body {
-    font-family: "Work Sans", sans-serif;
-    line-height: 1.6;
-    text-rendering: optimizeLegibility;
-  }
-
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: "Inter", sans-serif;
-  }
-
-  code,
-  pre,
-  kbd,
-  samp {
-    font-family: "JetBrains Mono", monospace;
+    @apply font-heading;
   }
 
   button {
@@ -75,12 +41,6 @@
     html:focus-within {
       scroll-behavior: auto;
     }
-  }
-}
-
-@layer components {
-  .surface-card {
-    @apply rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
   }
 }
 

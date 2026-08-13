@@ -66,6 +66,33 @@ posts = "/posts/:slug/"
 [taxonomies]
 tag = "tags"
 
+[menus]
+  [[menus.main]]
+    identifier = "home"
+    name = "Start"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    identifier = "search"
+    name = "Zoeken"
+    pageRef = "/zoeken"
+    weight = 20
+  [[menus.main]]
+    identifier = "tags"
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 30
+  [[menus.main]]
+    identifier = "about"
+    name = "Over mij"
+    pageRef = "/over-mij"
+    weight = 40
+  [[menus.main]]
+    identifier = "privacy"
+    name = "Privacy"
+    pageRef = "/privacy"
+    weight = 50
+
 [markup.highlight]
 noClasses = false
 
