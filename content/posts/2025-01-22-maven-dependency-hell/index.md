@@ -7,7 +7,7 @@ date: 2025-01-22
 lastmod: 2025-01-22
 slug: "202501-maven-dependency-hell"
 draft: false
-tags: [java, maven]
+tags: [java]
 cover:
   image: "cover.webp"
   alt: "Abstracte illustratie van gekleurde kabels die in een zwart gat samenkomen"

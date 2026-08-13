@@ -15,9 +15,9 @@
   {{- if .IsHome -}}
     {{- $baseTitle = "Start" -}}
   {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
-    {{- $baseTitle = "Tags" -}}
+    {{- $baseTitle = "Onderwerpen" -}}
     {{- if eq .Kind "term" -}}
-      {{- $baseTitle = printf "Tag: %s" (.Data.Term | default $pageTitle) -}}
+      {{- $baseTitle = printf "Onderwerp: %s" (.Data.Term | default $pageTitle) -}}
     {{- end -}}
   {{- else if and (eq .Kind "section") (eq .Section "posts") -}}
     {{- $baseTitle = "Artikels" -}}
@@ -31,9 +31,9 @@
     {{- $termTitle = .Data.Term | default $termTitle -}}
   {{- end -}}
   {{- if eq .Kind "taxonomy" -}}
-    {{- $fullTitle = printf "Tags | %s" $siteTitle -}}
+    {{- $fullTitle = printf "Onderwerpen | %s" $siteTitle -}}
   {{- else -}}
-    {{- $fullTitle = printf "Tag: %s | %s" $termTitle $siteTitle -}}
+    {{- $fullTitle = printf "Onderwerp: %s | %s" $termTitle $siteTitle -}}
   {{- end -}}
 {{- else if and .IsPage (eq .Section "posts") -}}
   {{- $fullTitle = $seoTitle -}}

@@ -7,7 +7,7 @@ date: 2026-01-07
 lastmod: 2026-01-07
 slug: "202601-jsonld-is-geen-seo-truc"
 draft: false
-tags: ["json-ld", "schema-org", "webontwikkeling"]
+tags: ["webontwikkeling"]
 cover:
   image: "cover.webp"
   alt: "Illustratie van een persoon, een microfoon en een venster die met lijnen verbonden zijn."

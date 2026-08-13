@@ -7,7 +7,7 @@ date: 2025-02-10
 lastmod: 2025-02-10
 slug: "202502-tdd-waarom-is-het-nog-relevant"
 draft: false
-tags: [java, clean-code]
+tags: [java]
 cover:
   image: "cover.webp"
   alt: "Illustratie van een testpiramide met unit-, integratie- en end-to-endtests"

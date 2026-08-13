@@ -7,7 +7,7 @@ date: 2025-12-30
 lastmod: 2025-12-30
 slug: "202512-eigen-hugo-theme-na-papermod"
 draft: false
-tags: [hugo, reflectie]
+tags: [webontwikkeling]
 cover:
   image: "cover.webp"
   alt: "Werkplek met laptop waarop een blog en code zichtbaar zijn"

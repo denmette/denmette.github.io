@@ -7,7 +7,7 @@ date: 2026-10-14
 lastmod: 2026-10-14
 slug: "202610-mijn-blog-voelde-af-tot-ik-er-op-toegankelijkheid-naar-keek"
 draft: false
-tags: [webontwikkeling, reflectie, hugo]
+tags: [webontwikkeling]
 cover:
   image: "cover.webp"
   alt: "Illustratie van een blogscherm met toegankelijkheidsmarkeringen en controle-iconen"

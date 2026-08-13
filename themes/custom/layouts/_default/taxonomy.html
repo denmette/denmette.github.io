@@ -4,7 +4,7 @@
   {{- if gt $paginator.PageNumber 1 -}}
     {{- $termTitle := .Data.Term | default .Title -}}
     {{- .Scratch.Set "seo_page_number" $paginator.PageNumber -}}
-    {{- .Scratch.Set "seo_title" (printf "Tag: %s - Pagina %d | %s" $termTitle $paginator.PageNumber .Site.Title) -}}
+    {{- .Scratch.Set "seo_title" (printf "Onderwerp: %s - Pagina %d | %s" $termTitle $paginator.PageNumber .Site.Title) -}}
     {{- .Scratch.Set "seo_canonical" ($paginator.URL | absURL) -}}
     {{- .Scratch.Set "seo_robots" "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
   {{- end -}}

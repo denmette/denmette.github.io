@@ -79,7 +79,7 @@ tag = "tags"
     weight = 20
   [[menus.main]]
     identifier = "tags"
-    name = "Tags"
+    name = "Onderwerpen"
     pageRef = "/tags"
     weight = 30
   [[menus.main]]

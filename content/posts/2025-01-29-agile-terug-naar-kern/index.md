@@ -7,7 +7,7 @@ date: 2025-01-29
 lastmod: 2025-01-29
 slug: "202501-agile-terug-naar-kern"
 draft: false
-tags: [agile, reflectie]
+tags: [reflectie]
 cover:
   image: "cover.webp"
   alt: "Softwareontwikkelaars die samen aan code en een whiteboard werken"

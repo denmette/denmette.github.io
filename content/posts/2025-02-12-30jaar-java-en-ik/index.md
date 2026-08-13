@@ -7,7 +7,7 @@ date: 2025-02-12
 lastmod: 2025-02-12
 slug: "202502-30jaar-java-en-ik"
 draft: false
-tags: [java, clean-code]
+tags: [java, reflectie]
 cover:
   image: "cover.webp"
   alt: "Illustratie van een koffiekop met Java-logo en symbolen rond de programmeertaal"

@@ -7,7 +7,7 @@ date: 2025-04-02
 lastmod: 2025-04-02
 slug: "202504-herschrijven-is-geen-oplossing"
 draft: false
-tags: [java, clean-code]
+tags: [java]
 cover:
   image: "cover.webp"
   alt: "Illustratie van een tuin die van rommelig naar verzorgd evolueert"

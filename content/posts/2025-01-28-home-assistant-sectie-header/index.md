@@ -7,7 +7,7 @@ date: 2025-01-28
 lastmod: 2025-01-28
 slug: "202501-home-assistant-sectie-header"
 draft: false
-tags: [homelab, tutorial]
+tags: [homelab]
 cover:
   image: "cover.webp"
   alt: "Home Assistant-dashboard met de titel Home Keuken en tegels voor temperatuur en luchtvochtigheid"
